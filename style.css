@@ -1,22 +1,15 @@
-/* style.css */
-
 body {
-    /* font-family: 'Noto Sans', sans-serif; */
     font-family: 'Ubuntu', sans-serif;
-    padding: 20px 0; /* Adds space inside the body, instead of pushing it away from the edges */
+    padding: 20px 0;
     text-align: center;
-    color: #fff; /* White text for better visibility */
-   /* user-select: none;  Prevents text selection */
-
-    background: linear-gradient(to bottom, #010101, #1c1c1c); /* dark gray to light gray */
+    color: #fff; 
     
-    /* background-image: url('pictures/blackbees.jpg'); */ /* Correct image path */
-    /* background-size: cover; */ /* Ensure the image covers the entire screen */
-    /* background-position: center; */ /* Center the background image */
-    background-attachment: fixed; /* Keep background static when scrolling */
-    /* background-repeat: no-repeat; */ /* Prevents repetition of the background image */ 
-
+    /* UPDATED GRADIENT HERE */
+    background: linear-gradient(to bottom, #888888, #000000); 
+    
+    background-attachment: fixed; 
 }
+
 
 
 header {
