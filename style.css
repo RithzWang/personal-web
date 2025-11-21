@@ -1,22 +1,30 @@
+/* Add this HTML block right before the body block */
+html {
+    height: -webkit-fill-available;
+}
+
 body {
     font-family: 'Ubuntu', sans-serif;
     padding: 20px 0;
     text-align: center;
     color: #fff; 
     
-    /* --- UPDATED BACKGROUND SETTINGS --- */
     background: linear-gradient(to bottom, #070707, #090909, #111111, #333333); 
     
-    /* 1. DELETE or COMMENT OUT this line: */
-    /* background-attachment: fixed; */ 
+    /* --- FIX STARTS HERE --- */
+    /* Keeps padding inside the width/height calculation so it doesn't scroll unnecessarily */
+    box-sizing: border-box; 
     
-    /* 2. ADD this line to ensure the black covers the whole screen: */
+    /* Standard height */
     min-height: 100vh;
-    
-    /* Optional: Prevents side-to-side wobbling */
+    /* Fix for Instagram/iOS Webviews */
+    min-height: -webkit-fill-available;
+    /* --- FIX ENDS HERE --- */
+
     overflow-x: hidden; 
     margin: 0;
 }
+
 
 
 
