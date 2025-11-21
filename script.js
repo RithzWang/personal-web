@@ -17,31 +17,43 @@ async function getDiscordStatus() {
         const discordUser = data.data.discord_user;
         const spotifyData = data.data.spotify;
 
-        // --- 1. HANDLE SPOTIFY ---
-        const spotifyContainer = document.getElementById('spotify-container');
-        if (spotifyContainer) { // Check if element exists
-            if (spotifyData) {
-                spotifyContainer.style.display = 'block';
-                document.getElementById('spotify-album-art').src = spotifyData.album_art_url;
-                document.getElementById('spotify-song-title').textContent = spotifyData.song;
-                document.getElementById('spotify-artist-name').textContent = spotifyData.artist;
-            } else {
-                spotifyContainer.style.display = 'none';
-            }
-        }
-
-        // --- 2. HANDLE AVATAR DECORATION ---
+        // --- 1. HANDLE AVATAR DECORATION ---
         const decorationImg = document.getElementById('discord-decoration');
         if (decorationImg) {
-            const decorationHash = discordUser.avatar_decoration;
-            
+            const decorationHash = discordUser.avatar_decoration_data ? discordUser.avatar_decoration_data.asset : discordUser.avatar_decoration;
             if (decorationHash) {
-                // Construct the Discord CDN URL
-                const decorationUrl = `https://cdn.discordapp.com/avatar-decoration-presets/${decorationHash}.png?size=160&passthrough=true`;
-                decorationImg.src = decorationUrl;
+                decorationImg.src = `https://cdn.discordapp.com/avatar-decoration-presets/${decorationHash}.png?size=160&passthrough=true`;
                 decorationImg.style.display = 'block';
             } else {
                 decorationImg.style.display = 'none';
+            }
+        }
+
+        // --- 2. HANDLE SPOTIFY (UPDATED) ---
+        const spotifyContainer = document.getElementById('spotify-container');
+        if (spotifyContainer) {
+            // Always make sure the card is visible
+            spotifyContainer.style.display = 'block'; 
+
+            if (spotifyData) {
+                // IF MUSIC IS PLAYING:
+                document.getElementById('spotify-album-art').src = spotifyData.album_art_url;
+                document.getElementById('spotify-song-title').textContent = spotifyData.song;
+                document.getElementById('spotify-artist-name').textContent = spotifyData.artist;
+                
+                // Make image normal
+                document.getElementById('spotify-album-art').style.filter = "none"; 
+            } else {
+                // IF NO MUSIC IS PLAYING:
+                // Set a default Spotify Logo
+                document.getElementById('spotify-album-art').src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/168px-Spotify_logo_without_text.svg.png';
+                
+                // Set text to "Not Playing"
+                document.getElementById('spotify-song-title').textContent = 'Not Playing';
+                document.getElementById('spotify-artist-name').textContent = 'Spotify';
+                
+                // Optional: Make the logo black & white to show it's offline
+                document.getElementById('spotify-album-art').style.filter = "grayscale(100%)"; 
             }
         }
 
@@ -50,8 +62,5 @@ async function getDiscordStatus() {
     }
 }
 
-// Run immediately
 getDiscordStatus();
-
-// Update every 5 seconds
 setInterval(getDiscordStatus, 5000);
