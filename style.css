@@ -188,6 +188,7 @@ footer {
     border-radius: 8px;
     margin-right: 12px;
     object-fit: cover;
+    transition: filter 0.3s ease;
 }
 
 .spotify-info {
