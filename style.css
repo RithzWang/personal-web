@@ -139,34 +139,71 @@ footer {
 /* --------- */
 
 
-.add-friend-button {
-    display: inline-block;
-    width: 220px; /* Fixed width to ensure both buttons are the same size */
-    background-color: #545454;
-    color: #fff;
-    padding: 10px 25px;
-    font-size: 18px;
-    border-radius: 5px;
-    border: 2px solid #2A2A2A;
-    box-shadow: 0px 4px #1D1D1D;
-    text-decoration: none;
- <!--   font-weight: bold; -->
-    text-align: center;
+/* Spotify Card Styling */
+.spotify-card {
+    background-color: rgba(20, 20, 20, 0.8);
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 15px;
+    width: 280px;
+    margin: 20px auto; /* Center it */
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease;
+}
+
+.spotify-card:hover {
+    transform: scale(1.02);
+    border-color: #1DB954;
+}
+
+.spotify-header {
+    font-size: 12px;
+    color: #1DB954;
     margin-bottom: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
 }
 
-.add-friend-button:hover {
-    background-color: #2A2A2A;
-    box-shadow: 0px 2px #1D1D1D;
+.spotify-content {
+    display: flex;
+    align-items: center;
 }
 
-.add-friend-button:active {
-    background-color: #1D1D1D;
-    transform: translateY(2px);
-    box-shadow: 0px 1px #101010;
+#spotify-album-art {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    margin-right: 12px;
+    object-fit: cover;
 }
 
-/* ---- */
+.spotify-info {
+    overflow: hidden;
+}
+
+.song-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block !important; /* Overrides your global p settings */
+    justify-content: flex-start !important;
+}
+
+.artist-name {
+    font-size: 12px;
+    color: #b3b3b3 !important;
+    margin: 2px 0 0 0;
+    display: block !important;
+    justify-content: flex-start !important;
+}
+
 
 
 
