@@ -8,38 +8,50 @@ document.querySelectorAll('.social-icons a').forEach(icon => {
     });
 });
 
-const DISCORD_ID = "837741275603009626"; // Your ID
+const DISCORD_ID = "837741275603009626"; 
 
-async function getSpotifyStatus() {
+async function getDiscordStatus() {
     try {
         const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
         const data = await response.json();
-        
+        const discordUser = data.data.discord_user;
         const spotifyData = data.data.spotify;
-        const container = document.getElementById('spotify-container');
 
-        if (spotifyData) {
-            // If listening to music, show the card
-            container.style.display = 'block';
-            
-            // Update Image
-            document.getElementById('spotify-album-art').src = spotifyData.album_art_url;
-            
-            // Update Text
-            document.getElementById('spotify-song-title').textContent = spotifyData.song;
-            document.getElementById('spotify-artist-name').textContent = spotifyData.artist;
-        } else {
-            // If not listening, hide the card
-            container.style.display = 'none';
+        // --- 1. HANDLE SPOTIFY ---
+        const spotifyContainer = document.getElementById('spotify-container');
+        if (spotifyContainer) { // Check if element exists
+            if (spotifyData) {
+                spotifyContainer.style.display = 'block';
+                document.getElementById('spotify-album-art').src = spotifyData.album_art_url;
+                document.getElementById('spotify-song-title').textContent = spotifyData.song;
+                document.getElementById('spotify-artist-name').textContent = spotifyData.artist;
+            } else {
+                spotifyContainer.style.display = 'none';
+            }
         }
+
+        // --- 2. HANDLE AVATAR DECORATION ---
+        const decorationImg = document.getElementById('discord-decoration');
+        if (decorationImg) {
+            const decorationHash = discordUser.avatar_decoration;
+            
+            if (decorationHash) {
+                // Construct the Discord CDN URL
+                const decorationUrl = `https://cdn.discordapp.com/avatar-decoration-presets/${decorationHash}.png?size=160&passthrough=true`;
+                decorationImg.src = decorationUrl;
+                decorationImg.style.display = 'block';
+            } else {
+                decorationImg.style.display = 'none';
+            }
+        }
+
     } catch (error) {
-        console.error("Error fetching Spotify status:", error);
+        console.error("Error fetching Discord status:", error);
     }
 }
 
-// Run immediately on load
-getSpotifyStatus();
+// Run immediately
+getDiscordStatus();
 
-// Check again every 5 seconds to keep it real-time
-setInterval(getSpotifyStatus, 5000);
-
+// Update every 5 seconds
+setInterval(getDiscordStatus, 5000);
