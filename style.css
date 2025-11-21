@@ -24,15 +24,28 @@ header {
     height: 130px;
 }
 
+/* Forces the decoration to stay small, even if the HTML is messy */
 .avatar-decoration {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 120%; /* Adjust this if the decoration is too big/small */
-    height: 120%;
+    
+    /* FIXED SIZES instead of percentages */
+    width: 156px !important; 
+    height: 156px !important;
+    
     pointer-events: none;
     z-index: 10;
+}
+
+/* Ensure the container is set up correctly */
+.profile-picture-container {
+    position: relative; /* This is crucial */
+    display: inline-block;
+    width: 130px;
+    height: 130px;
+    margin-bottom: 10px;
 }
 
 
