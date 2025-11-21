@@ -145,7 +145,7 @@ p {
 .social-icons a {
     color: #fff; /* Change icon color */
     margin: 0 3px; /* Space between icons */
-    font-size: 22px; /* Adjust icon size to fit within 38x38px */
+    font-size: 24px; /* Adjust icon size to fit within 38x38px */
     text-decoration: none; /* Remove underline */
     display: inline-block; /* Enable width/height settings */
     width: 42px; /* Width of circular frame */
