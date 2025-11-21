@@ -64,7 +64,7 @@ async function getDiscordStatus() {
             } else {
                 isPlaying = false;
                 document.getElementById('spotify-album-art').src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/168px-Spotify_logo_without_text.svg.png';
-                document.getElementById('spotify-song-title').textContent = 'Not Playing';
+                document.getElementById('spotify-song-title').textContent = 'Not Found';
                 document.getElementById('spotify-artist-name').textContent = 'Spotify';
                 document.getElementById('spotify-album-art').style.filter = "grayscale(100%)";
                 
