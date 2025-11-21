@@ -46,6 +46,8 @@ async function getDiscordStatus() {
 
         // 3. SPOTIFY DATA
         const spotifyContainer = document.getElementById('spotify-container');
+        const progressWrapper = document.querySelector('.spotify-progress-wrapper'); // NEW: Select the progress bar
+
         if (spotifyContainer) {
             spotifyContainer.style.display = 'flex'; 
 
@@ -63,6 +65,9 @@ async function getDiscordStatus() {
                 spotifyContainer.onclick = () => window.open(`https://open.spotify.com/track/${spotifyData.track_id}`, '_blank');
                 spotifyContainer.style.cursor = "pointer";
 
+                // SHOW PROGRESS BAR
+                if (progressWrapper) progressWrapper.style.display = 'flex'; 
+
             } else {
                 isPlaying = false;
                 document.getElementById('spotify-album-art').src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/168px-Spotify_logo_without_text.svg.png';
@@ -70,8 +75,9 @@ async function getDiscordStatus() {
                 document.getElementById('spotify-artist-name').textContent = 'Spotify';
                 document.getElementById('spotify-album-art').style.filter = "grayscale(100%)";
                 
-                // Reset Progress Bar
-                updateProgressBar(0, 1); 
+                // HIDE PROGRESS BAR completely when not playing
+                if (progressWrapper) progressWrapper.style.display = 'none'; 
+                
                 spotifyContainer.onclick = null;
                 spotifyContainer.style.cursor = "default";
             }
@@ -84,12 +90,8 @@ async function getDiscordStatus() {
 
 // --- PROGRESS BAR LOGIC ---
 function updateProgressBar() {
-    if (!isPlaying) {
-        document.getElementById('spotify-time-current').innerText = "0:00";
-        document.getElementById('spotify-time-total').innerText = "0:00";
-        document.getElementById('spotify-progress-fill').style.width = "0%";
-        return;
-    }
+    // If music isn't playing, stop the function here so it doesn't error
+    if (!isPlaying) return; 
 
     const now = Date.now();
     const totalDuration = songEndTimestamp - songStartTimestamp;
@@ -97,14 +99,18 @@ function updateProgressBar() {
     
     // Calculate percentage
     let percentage = (currentProgress / totalDuration) * 100;
-    if (percentage > 100) percentage = 100; // Cap at 100%
+    if (percentage > 100) percentage = 100;
 
     // Update Bar Width
-    document.getElementById('spotify-progress-fill').style.width = `${percentage}%`;
+    const barFill = document.getElementById('spotify-progress-fill');
+    if (barFill) barFill.style.width = `${percentage}%`;
 
     // Update Time Text
-    document.getElementById('spotify-time-current').innerText = formatTime(currentProgress);
-    document.getElementById('spotify-time-total').innerText = formatTime(totalDuration);
+    const timeCurr = document.getElementById('spotify-time-current');
+    const timeTot = document.getElementById('spotify-time-total');
+    
+    if (timeCurr) timeCurr.innerText = formatTime(currentProgress);
+    if (timeTot) timeTot.innerText = formatTime(totalDuration);
 }
 
 // Helper: Convert milliseconds to MM:SS
@@ -117,6 +123,6 @@ function formatTime(ms) {
 }
 
 // --- TIMERS ---
-getDiscordStatus(); // Run once immediately
-setInterval(getDiscordStatus, 5000); // Fetch data every 5s
-setInterval(updateProgressBar, 1000); // Update progress bar every 1s
+getDiscordStatus(); 
+setInterval(getDiscordStatus, 5000); 
+setInterval(updateProgressBar, 1000); 
