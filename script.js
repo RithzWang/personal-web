@@ -86,7 +86,7 @@ async function getDiscordStatus() {
                 art.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/168px-Spotify_logo_without_text.svg.png';
                 art.style.filter = "grayscale(100%) opacity(0.5)";
                 
-                document.getElementById('spotify-song-title').textContent = 'Not Listening';
+                document.getElementById('spotify-song-title').textContent = 'Not Found';
                 document.getElementById('spotify-artist-name').textContent = 'Spotify';
                 
                 if (progressWrapper) {
