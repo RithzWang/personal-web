@@ -17,14 +17,24 @@ header {
     margin-top: 30px; /* Added space at the top */
 }
 
-.profile-picture {
+.profile-picture-container {
+    position: relative;
+    display: inline-block;
     width: 130px;
     height: 130px;
-    border-radius: 50%; /* Create a circular frame */
-    overflow: hidden; /* Ensure content stays within the circular frame */
-    background-size: cover;
-    margin: 0 auto; /* Center the profile picture */
 }
+
+.avatar-decoration {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%; /* Adjust this if the decoration is too big/small */
+    height: 120%;
+    pointer-events: none;
+    z-index: 10;
+}
+
 
 h1, p {
     margin: 7px 0;
