@@ -4,11 +4,20 @@ body {
     text-align: center;
     color: #fff; 
     
-    /* UPDATED GRADIENT HERE */
+    /* --- UPDATED BACKGROUND SETTINGS --- */
     background: linear-gradient(to bottom, #010101, #1c1c1c); 
     
-    background-attachment: fixed; 
+    /* 1. DELETE or COMMENT OUT this line: */
+    /* background-attachment: fixed; */ 
+    
+    /* 2. ADD this line to ensure the black covers the whole screen: */
+    min-height: 100vh;
+    
+    /* Optional: Prevents side-to-side wobbling */
+    overflow-x: hidden; 
+    margin: 0;
 }
+
 
 
 
