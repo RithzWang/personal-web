@@ -5,7 +5,7 @@ body {
     color: #fff; 
     
     /* UPDATED GRADIENT HERE */
-    background: linear-gradient(to bottom, #000000, #888888); 
+    background: linear-gradient(to bottom, #010101, #1c1c1c); 
     
     background-attachment: fixed; 
 }
