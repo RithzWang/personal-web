@@ -128,7 +128,7 @@ function createRainDrop() {
     
     // --- CHANGE IS HERE ---
     // Use innerHTML to inject the Font Awesome icon code
-    drop.innerHTML = '<i class="fa-regular fa-snowflake"></i>';
+    drop.innerText = '❆';
 
     // --- UPDATED POSITION LOGIC ---
     const maxPosX = window.innerWidth - 50; 
