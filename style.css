@@ -139,22 +139,37 @@ p {
 
 .social-icons a {
     color: #fff; 
-    /* RESTORED MARGIN */
     margin: 0 3px; 
-    /* Increased font size */
     font-size: 27px; 
     text-decoration: none; 
+    
+    /* FLEXBOX SETUP */
     display: inline-flex; 
     align-items: center; 
     justify-content: center; 
-    /* Increased circle size */
+    
     width: 45px; 
     height: 45px; 
     border-radius: 50%; 
     background-color: rgba(255, 255, 255, 0.2); 
-    /* RESTORED MARGIN */
+    
     margin-bottom: 20px; 
+    
+    /* --- NEW ADDITION --- */
+    /* Ensures the container itself doesn't add spacing */
+    padding: 0;
+    line-height: 0; 
 }
+
+/* --- ADD THIS NEW RULE --- */
+/* This targets the actual icon inside the circle to kill line-height offsets */
+.social-icons a i, 
+.social-icons a svg {
+    display: block;
+    line-height: 1; /* Resets the text height to fit the icon exactly */
+    margin: 0;
+}
+
 
 
 .social-icons a {
