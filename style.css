@@ -157,7 +157,7 @@ p {
     height: 43px; /* Circle height */
     border-radius: 50%; /* Make circle */
     background-color: rgba(255, 255, 255, 0.2); /* Background color */
-    margin-bottom: 30px; /* Space below icons */
+    margin-bottom: 20px; /* Space below icons */
 }
 
 
