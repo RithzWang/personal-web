@@ -146,36 +146,18 @@ p {
 }
 
 .social-icons a {
-    color: #fff; 
-    margin: 0 3px; 
-    font-size: 27px; 
-    text-decoration: none; 
-    
-    /* FLEXBOX SETUP */
-    display: inline-flex; 
-    align-items: center; 
-    justify-content: center; 
-    
-    width: 45px; 
-    height: 45px; 
-    border-radius: 50%; 
-    background-color: rgba(255, 255, 255, 0.2); 
-    
-    margin-bottom: 20px; 
-    
-    /* --- NEW ADDITION --- */
-    /* Ensures the container itself doesn't add spacing */
-    padding: 0;
-    line-height: 0; 
-}
-
-/* --- ADD THIS NEW RULE --- */
-/* This targets the actual icon inside the circle to kill line-height offsets */
-.social-icons a i, 
-.social-icons a svg {
-    display: block;
-    line-height: 1; /* Resets the text height to fit the icon exactly */
-    margin: 0;
+    color: #fff; /* Icon color */
+    margin: 0 3px; /* Space between icons */
+    font-size: 27px; /* Icon size */
+    text-decoration: none; /* Remove underline */
+    display: inline-flex; /* Use flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    width: 45px; /* Circle width */
+    height: 45px; /* Circle height */
+    border-radius: 50%; /* Make circle */
+    background-color: rgba(255, 255, 255, 0.2); /* Background color */
+    margin-bottom: 30px; /* Space below icons */
 }
 
 
