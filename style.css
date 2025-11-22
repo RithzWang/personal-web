@@ -14,7 +14,7 @@ html {
 body {
     font-family: 'Ubuntu', sans-serif;
     /* Increased padding 20px -> 23px (Internal size) */
-    padding: 23px 0;
+    padding: 20px 0;
     text-align: center;
     color: #fff; 
     
@@ -39,14 +39,14 @@ header {
     position: relative;
     display: inline-block;
     /* Increased size */
-    width: 131px;
-    height: 131px;
+    width: 130px;
+    height: 130px;
 }
 
 .profile-picture {
     /* Increased size */
-    width: 131px;
-    height: 131px;
+    width: 128px;
+    height: 128px;
     border-radius: 50%;
     object-fit: cover;
     transition: transform 0.3s ease;
@@ -64,8 +64,8 @@ header {
     transform: translate(-50%, -50%);
     
     /* Increased size */
-    width: 157px !important; 
-    height: 157px !important;
+    width: 154px !important; 
+    height: 154px !important;
     
     pointer-events: none;
     z-index: 10;
@@ -76,8 +76,8 @@ header {
     position: relative; 
     display: inline-block;
     /* Increased size */
-    width: 133px;
-    height: 133px;
+    width: 130px;
+    height: 130px;
     /* RESTORED MARGIN */
     margin-bottom: 10px;
 }
@@ -94,7 +94,7 @@ h1 {
   font-family: "Aref Ruqaa", serif;
   font-weight: 400;
   /* Increased font size */
-  font-size: 43px;
+  font-size: 40px;
   /* RESTORED MARGIN */
   margin: 7px 0;
   background: linear-gradient(120deg, yellow, orange, red, orange, yellow);
@@ -148,13 +148,13 @@ p {
 .social-icons a {
     color: #fff; /* Icon color */
     margin: 0 3px; /* Space between icons */
-    font-size: 27px; /* Icon size */
+    font-size: 25px; /* Icon size */
     text-decoration: none; /* Remove underline */
     display: inline-flex; /* Use flexbox for centering */
     align-items: center; /* Center vertically */
     justify-content: center; /* Center horizontally */
-    width: 45px; /* Circle width */
-    height: 45px; /* Circle height */
+    width: 43px; /* Circle width */
+    height: 43px; /* Circle height */
     border-radius: 50%; /* Make circle */
     background-color: rgba(255, 255, 255, 0.2); /* Background color */
     margin-bottom: 30px; /* Space below icons */
@@ -195,7 +195,7 @@ footer {
     border: 1px solid #333;
     border-radius: 12px;
     /* Increased Padding (internal size) */
-    padding: 18px;
+    padding: 15px;
     /* Increased Width */
     width: 283px;
     /* RESTORED MARGIN */
