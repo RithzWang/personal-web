@@ -299,3 +299,41 @@ footer {
     margin-top: 5px;
     font-family: monospace; /* Keeps numbers aligned */
 }
+
+
+/* --- RAIN EFFECT --- */
+
+/* Container for rain so it doesn't affect layout */
+#rain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Ensure clicks go through to links below */
+    z-index: 9999; /* Sit on top of everything */
+    overflow: hidden;
+}
+
+/* Individual drop style */
+.raindrop {
+    position: absolute;
+    top: -50px; /* Start above screen */
+    color: #ffffff;
+    font-family: 'Ubuntu', monospace; /* Monospace looks more digital */
+    font-weight: bold;
+    user-select: none;
+    will-change: transform, opacity; /* Performance optimization */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+/* The falling animation */
+@keyframes fall {
+    to {
+        top: 110vh; /* End below screen */
+        transform: translateY(20px) rotate(10deg); /* Slight wobble */
+    }
+}
