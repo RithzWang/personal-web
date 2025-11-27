@@ -96,6 +96,7 @@ h1 {
   /* Increased font size */
   font-size: 38px;
   /* RESTORED MARGIN */
+  margin-top: -10px;
   margin: 7px 0;
   background: linear-gradient(120deg, yellow, orange, red, orange, yellow);
   background-size: 400% auto;
@@ -148,6 +149,7 @@ p {
 
 .social-icons a {
     color: #fff; /* Icon color */
+    margin-top: -10px;
     margin: 0 3px; /* Space between icons */
     font-size: 23px; /* Icon size */
     text-decoration: none; /* Remove underline */
