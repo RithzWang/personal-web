@@ -106,7 +106,7 @@ function formatTime(ms) {
 // --- SNOWFALL LOGIC ---
 
 // Symbols for a slight variation
-const SNOWFLAKE_SYMBOLS = ['fa-snowflake', 'fa-star', 'fa-sparkle']; 
+const SNOWFLAKE_SYMBOLS = 'fa-snowflake'; 
 
 function createSnowflake() {
     const snowContainer = document.getElementById('snow-container');
