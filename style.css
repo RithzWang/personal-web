@@ -45,8 +45,8 @@ header {
 
 .profile-picture {
     /* Increased size */
-    width: 126px;
-    height: 126px;
+    width: 128px;
+    height: 128px;
     border-radius: 50%;
     object-fit: cover;
     transition: transform 0.3s ease;
