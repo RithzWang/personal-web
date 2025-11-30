@@ -19,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400..700&display=swap" rel="stylesheet">
     <script>
         function handleButtonClick(platform) {
             console.log("Clicked on " + platform + " button!");
@@ -26,6 +27,8 @@
         }
     </script>
 </head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body>
    
@@ -40,12 +43,12 @@
 
        <!-- <h1 id="copyText">Ridouane</h1> -->
 
-     <h1>رِضْوَان</h1>
+     <h1>رضوان</h1>
 
 <!-- &nbsp;<i ="fa-solid fa-fire"></i> -->
 
 
-    <!-- <p class="spidey-text"><i class="fa-solid fa-location-dot"></i>&nbsp;Thailand</p> -->
+    <!-- <p class="yousuf">بن احمد</p> -->
 
    <!-- <p class="spidey-text">اعمل لدنياك كأنك تعيش أبدا، واعمل لآخرتك كأنك تموت غدا</p>
     <p class="yousuf">— من يوسف —</p> -->
@@ -60,8 +63,8 @@
     <a href="https://snapchat.com/add/#" target="_blank"><i class="fa-brands fa-snapchat"></i></a>
     <!-- <a href="https://x.com/aaronrithz_" target="_blank"><i class="fab fa-x-twitter"></i></a> -->
    <!-- <a href="https://tiktok.com/@r.ithwan" target="_blank"><i class="fab fa-tiktok"></i></a> -->
-    <!-- <a href="mailto:me@rithz.dev?subject=Hiya Rithz!" target="_blank"><i class="fa-solid fa-envelope"></i></a>
-</div> -->
+    <a href="mailto:talk@ridouan.xyz" target="_blank"><i class="fa-solid fa-envelope"></i></a>
+</div> 
 
 <!-- <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/1E67Pp2oFKKSRY2sQ79XqQ?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
 
