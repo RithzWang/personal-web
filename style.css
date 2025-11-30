@@ -64,8 +64,8 @@ header {
     transform: translate(-50%, -50%);
     
     /* Increased size */
-    width: 152px !important; 
-    height: 152px !important;
+    width: 144px !important; 
+    height: 144px !important;
     
     pointer-events: none;
     z-index: 10;
