@@ -14,7 +14,7 @@ let songStartTimestamp = 0;
 let songEndTimestamp = 0;
 let isPlaying = false;
 
-// --- FETCH DATA FROM DISCORD (LANYARD) ---
+// --- FETCH DATA FROM DISCORD ---
 async function getDiscordStatus() {
     try {
         const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
@@ -22,7 +22,11 @@ async function getDiscordStatus() {
 
         if (!data.success) return;
 
+        // NOTE: discordUser data is now unused as avatar decoration is static
         const spotifyData = data.data.spotify;
+
+        // 1. AVATAR DECORATION LOGIC REMOVED
+        // The decoration is now a static Tenor GIF embedded directly in index.html
 
         // 2. SPOTIFY DATA
         const spotifyContainer = document.getElementById('spotify-container');
@@ -107,3 +111,6 @@ function formatTime(ms) {
 getDiscordStatus(); 
 setInterval(getDiscordStatus, 5000); 
 setInterval(updateProgressBar, 1000);
+
+
+// createRainDrop function removed per request.
