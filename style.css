@@ -39,15 +39,15 @@ header {
     position: relative;
     display: inline-block;
     /* Increased size */
-    width: 200px;
-    height: 200px;
+    width: 134px;
+    height: 134px;
    /* margin-bottom: 10px; */
 }
 
 .profile-picture {
     /* Increased size */
-    width: 190px;
-    height: 190px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
     object-fit: cover;
     transition: transform 0.3s ease;
@@ -65,8 +65,8 @@ header {
     transform: translate(-50%, -50%);
     
     /* Increased size */
-    width: 210px !important; 
-    height: 210px !important;
+    width: 144px !important; 
+    height: 144px !important;
     
     pointer-events: none;
     z-index: 10;
