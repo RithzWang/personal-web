@@ -39,14 +39,14 @@ header {
     position: relative;
     display: inline-block;
     /* Increased size */
-    width: 130px;
-    height: 130px;
+    width: 134px;
+    height: 134px;
 }
 
 .profile-picture {
     /* Increased size */
-    width: 126px;
-    height: 126px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
     object-fit: cover;
     transition: transform 0.3s ease;
@@ -64,8 +64,8 @@ header {
     transform: translate(-50%, -50%);
     
     /* Increased size */
-    width: 152px !important; 
-    height: 152px !important;
+    width: 156px !important; 
+    height: 156px !important;
     
     pointer-events: none;
     z-index: 10;
@@ -76,8 +76,8 @@ header {
     position: relative; 
     display: inline-block;
     /* Increased size */
-    width: 128px;
-    height: 128px;
+    width: 132px;
+    height: 132px;
     /* RESTORED MARGIN */
     margin-bottom: 10px;
 }
