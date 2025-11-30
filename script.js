@@ -14,7 +14,7 @@ let songStartTimestamp = 0;
 let songEndTimestamp = 0;
 let isPlaying = false;
 
-// --- FETCH DATA FROM DISCORD ---
+// --- FETCH DATA FROM DISCORD (LANYARD) ---
 async function getDiscordStatus() {
     try {
         const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
@@ -22,11 +22,7 @@ async function getDiscordStatus() {
 
         if (!data.success) return;
 
-        // NOTE: discordUser data is now unused as avatar decoration is static
         const spotifyData = data.data.spotify;
-
-        // 1. AVATAR DECORATION LOGIC REMOVED
-        // The decoration is now a static Tenor GIF embedded directly in index.html
 
         // 2. SPOTIFY DATA
         const spotifyContainer = document.getElementById('spotify-container');
@@ -107,10 +103,50 @@ function formatTime(ms) {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
+// --- SNOWFALL LOGIC ---
+
+// Symbols for a slight variation
+const SNOWFLAKE_SYMBOLS = ['fa-snowflake', 'fa-star', 'fa-sparkle']; 
+
+function createSnowflake() {
+    const snowContainer = document.getElementById('snow-container');
+    if (!snowContainer) return;
+
+    // Use <i> for Font Awesome Icon
+    const snowflake = document.createElement('i');
+    
+    // Add base classes, plus a random icon for variation
+    const symbolClass = SNOWFLAKE_SYMBOLS[Math.floor(Math.random() * SNOWFLAKE_SYMBOLS.length)];
+    snowflake.classList.add('snowflake', 'fa-regular', symbolClass);
+    
+    // Random initial position (start above the screen)
+    const startX = Math.random() * 100;
+    snowflake.style.left = `${startX}vw`;
+    snowflake.style.top = `${-5 - Math.random() * 10}vh`; // Start above screen
+
+    // Random duration for falling
+    const fallDuration = Math.random() * 10 + 5; // 5 to 15 seconds
+    const swayDuration = Math.random() * 5 + 3; // 3 to 8 seconds for horizontal sway
+    snowflake.style.animationDuration = `${fallDuration}s, ${swayDuration}s`; 
+
+    // Random size
+    const size = Math.random() * 12 + 8; // 8px to 20px
+    snowflake.style.fontSize = `${size}px`;
+
+    // Add to container
+    snowContainer.appendChild(snowflake);
+
+    // Clean up: Remove the element after the animation is complete (with buffer)
+    setTimeout(() => {
+        snowflake.remove();
+    }, (fallDuration * 1000) + 1000);
+}
+
+// Start generating snowflakes every 500ms
+setInterval(createSnowflake, 500);
+
+
 // --- TIMERS ---
 getDiscordStatus(); 
 setInterval(getDiscordStatus, 5000); 
 setInterval(updateProgressBar, 1000);
-
-
-// createRainDrop function removed per request.
