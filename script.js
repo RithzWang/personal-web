@@ -22,14 +22,12 @@ async function getDiscordStatus() {
 
         if (!data.success) return;
 
-        // NOTE: discordUser data is now unused as avatar decoration is static
         const spotifyData = data.data.spotify;
-
-        // 1. AVATAR DECORATION LOGIC REMOVED
-        // The decoration is now a static Tenor GIF embedded directly in index.html
-
-        // 2. SPOTIFY DATA
+        
+        // CHECK IF PLAYER EXISTS (Prevent errors on About/More pages)
         const spotifyContainer = document.getElementById('spotify-container');
+        if (!spotifyContainer) return;
+
         const progressWrapper = document.querySelector('.spotify-progress-wrapper');
 
         if (spotifyContainer) {
@@ -46,7 +44,7 @@ async function getDiscordStatus() {
                 document.getElementById('spotify-album-art').style.filter = "none";
                 
                 // Link to song
-                spotifyContainer.onclick = () => window.open(`https://open.spotify.com/track/${spotifyData.track_id}`, '_blank');
+                spotifyContainer.onclick = () => window.open(`https://open.spotify.com/track/$${spotifyData.track_id}`, '_blank');
                 spotifyContainer.style.cursor = "pointer";
 
                 // Ensure bar is visible
@@ -59,9 +57,9 @@ async function getDiscordStatus() {
                 document.getElementById('spotify-artist-name').textContent = 'Spotify';
                 document.getElementById('spotify-album-art').style.filter = "grayscale(100%)";
                 
-                // --- VISUAL RESET (Keep showing 0:00) ---
+                // --- VISUAL RESET ---
                 if (progressWrapper) {
-                    progressWrapper.style.display = 'flex'; // Keep it visible
+                    progressWrapper.style.display = 'flex';
                     document.getElementById('spotify-progress-fill').style.width = '0%';
                     document.getElementById('spotify-time-current').innerText = '0:00';
                     document.getElementById('spotify-time-total').innerText = '0:00';
@@ -79,7 +77,7 @@ async function getDiscordStatus() {
 
 // --- PROGRESS BAR LOGIC ---
 function updateProgressBar() {
-    if (!isPlaying) return; // Stop calculating if music is off
+    if (!isPlaying) return; 
 
     const now = Date.now();
     const totalDuration = songEndTimestamp - songStartTimestamp;
@@ -98,7 +96,6 @@ function updateProgressBar() {
     if (timeTot) timeTot.innerText = formatTime(totalDuration);
 }
 
-// Helper: Convert milliseconds to MM:SS
 function formatTime(ms) {
     if (ms < 0) ms = 0;
     const totalSeconds = Math.floor(ms / 1000);
@@ -111,6 +108,3 @@ function formatTime(ms) {
 getDiscordStatus(); 
 setInterval(getDiscordStatus, 1000); 
 setInterval(updateProgressBar, 1000);
-
-
-// createRainDrop function removed per request.
