@@ -121,35 +121,3 @@ getDiscordStatus();
 setInterval(getDiscordStatus, 5000); 
 setInterval(updateProgressBar, 1000);
 
-
-function createRainDrop() {
-    const drop = document.createElement('div');
-    drop.classList.add('raindrop');
-    
-    // --- CHANGE IS HERE ---
-    // Use innerHTML to inject the Font Awesome icon code
-    drop.innerText = '❆';
-
-    // --- UPDATED POSITION LOGIC ---
-    const maxPosX = window.innerWidth - 50; 
-    const randomPos = Math.floor(Math.random() * maxPosX);
-    drop.style.left = randomPos + 'px';
-
-    // --- Animation Duration ---
-    const duration = Math.random() * 5 + 2; 
-    drop.style.animationDuration = duration + 's';
-
-    // --- Opacity ---
-    drop.style.opacity = Math.random() * 0.6 + 0.2; 
-
-    // --- Size (adjusted slightly for icons) ---
-    const size = Math.random() * 15 + 10; 
-    drop.style.fontSize = size + 'px';
-
-    rainContainer.appendChild(drop);
-
-    // --- Cleanup ---
-    setTimeout(() => {
-        drop.remove();
-    }, duration * 1000);
-}
