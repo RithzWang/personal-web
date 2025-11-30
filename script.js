@@ -22,20 +22,11 @@ async function getDiscordStatus() {
 
         if (!data.success) return;
 
-        const discordUser = data.data.discord_user;
+        // NOTE: discordUser data is now unused as avatar decoration is static
         const spotifyData = data.data.spotify;
 
-        // 1. AVATAR DECORATION
-        const decorationImg = document.getElementById('discord-decoration');
-        if (decorationImg) {
-            const decorationHash = discordUser.avatar_decoration_data ? discordUser.avatar_decoration_data.asset : null;
-            if (decorationHash) {
-                decorationImg.src = `https://cdn.discordapp.com/avatar-decoration-presets/${decorationHash}.png?size=160&passthrough=true`;
-                decorationImg.style.display = 'block';
-            } else {
-                decorationImg.style.display = 'none';
-            }
-        }
+        // 1. AVATAR DECORATION LOGIC REMOVED
+        // The decoration is now a static Tenor GIF embedded directly in index.html
 
         // 2. SPOTIFY DATA
         const spotifyContainer = document.getElementById('spotify-container');
@@ -121,3 +112,5 @@ getDiscordStatus();
 setInterval(getDiscordStatus, 5000); 
 setInterval(updateProgressBar, 1000);
 
+
+// createRainDrop function removed per request.
