@@ -109,7 +109,7 @@ function formatTime(ms) {
 
 // --- TIMERS ---
 getDiscordStatus(); 
-setInterval(getDiscordStatus, 5000); 
+setInterval(getDiscordStatus, 1000); 
 setInterval(updateProgressBar, 1000);
 
 
