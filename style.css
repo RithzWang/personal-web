@@ -96,7 +96,7 @@ h1 {
   /* Increased font size */
   font-size: 42px;
   /* RESTORED MARGIN */
-  margin-top: 0px;
+  margin-top: -5px;
   margin: 7px 0;
   background: linear-gradient(120deg, yellow, orange, red, orange, yellow);
   background-size: 400% auto;
