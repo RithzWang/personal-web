@@ -76,8 +76,8 @@ header {
     position: relative; 
     display: inline-block;
     /* Increased size */
-    width: 128px;
-    height: 128px;
+    width: 134px;
+    height: 134px;
     /* RESTORED MARGIN */
     margin-bottom: 10px;
 }
