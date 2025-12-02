@@ -309,24 +309,12 @@ footer {
 .page-title {
     font-family: 'Aref Ruqaa', serif;
     font-size: 36px;
+    margin-top: 20px;
     margin-bottom: 20px;
     background: linear-gradient(120deg, #fff, #bbb, #fff);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-.content-card {
-    background-color: rgba(20, 20, 20, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 30px;
-    width: 90%;
-    max-width: 500px;
-    margin: 0 auto;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    text-align: left;
 }
 
 .intro-text {
