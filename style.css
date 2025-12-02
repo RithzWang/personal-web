@@ -23,7 +23,7 @@ body {
     overflow-x: hidden;
     margin: 0;
     
-    /* Page Fade-in Animation */
+    /* Page Fade-in Animation (For first load) */
     animation: fadeIn 0.5s ease-out;
 }
 
@@ -326,7 +326,6 @@ footer {
     -webkit-text-fill-color: transparent;
 }
 
-/* RESTORED THIS MISSING BLOCK */
 .content-card {
     background-color: rgba(20, 20, 20, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -367,10 +366,7 @@ footer {
 .bio-section p {
     font-family: 'Noto Sans', sans-serif;
     font-size: 14px;
-    
-    /* CHANGED FROM ORANGE TO GREY */
     color: #ccc; 
-    
     justify-content: flex-start;
     display: block;
     line-height: 1.6;
@@ -392,19 +388,16 @@ footer {
 
 /* --- MOBILE & RESPONSIVE FIXES --- */
 @media (max-width: 600px) {
-    /* 1. Fix the card width on phones */
     .content-card {
         width: 95% !important;
         padding: 20px 20px !important;
         margin: 0 auto 80px auto !important;
     }
     
-    /* 2. Fix text alignment on phones */
     .bio-section p {
         text-align: left;
     }
     
-    /* 3. Fix footer spacing on very small phones */
     .footer-nav {
         gap: 8px;
         padding: 10px 15px;
@@ -412,6 +405,49 @@ footer {
     
     .footer-nav a {
         font-size: 12px;
-        white-space: nowrap !important; /* Force single line */
+        white-space: nowrap !important;
     }
+}
+
+/* --- MAGIC PAGE TRANSITIONS (THE KEY TO THE SMOOTH FOOTER) --- */
+
+/* 1. Define the Animations (Slide Up + Fade) */
+@keyframes slideOutToTop {
+    to { 
+        opacity: 0;
+        transform: translateY(-20px); /* Move UP and vanish */
+    }
+}
+
+@keyframes slideInFromBottom {
+    from { 
+        opacity: 0;
+        transform: translateY(20px); /* Start DOWN and appear */
+    }
+}
+
+/* 2. Assign Names to the Parts of Your Page */
+footer {
+    /* "Keep the footer on screen!" */
+    view-transition-name: site-footer;
+    z-index: 1000;
+}
+
+main {
+    /* "Animate the content!" */
+    view-transition-name: page-content;
+}
+
+/* 3. Apply the Animation to the Content */
+::view-transition-old(page-content) {
+    animation: slideOutToTop 0.4s ease both;
+}
+
+::view-transition-new(page-content) {
+    animation: slideInFromBottom 0.4s ease both;
+}
+
+/* 4. Ensure the footer transition is smooth */
+::view-transition-group(site-footer) {
+    animation-duration: 0.4s;
 }
