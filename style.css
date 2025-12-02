@@ -307,7 +307,7 @@ footer {
 
 /* --- ABOUT PAGE CONTENT --- */
 .page-title {
-    font-family: 'Outfit';
+    font-family: 'Outfit', sans-serif;
     font-size: 36px;
     margin-top: 30px;
     margin-bottom: 20px;
