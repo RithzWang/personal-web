@@ -191,14 +191,22 @@ p {
 
 /* --- FOOTER NAVIGATION --- */
 footer {
-    margin-top: 40px;       /* Space from Spotify card */
-    margin-bottom: 30px;    /* Space from bottom of screen */
+    position: fixed;           /* Pins it to the screen */
+    bottom: 30px;              /* Distance from the bottom edge (the red circle area) */
+    left: 50%;                 /* Moves it to the middle */
+    transform: translateX(-50%); /* Centers it perfectly */
+    
+    z-index: 999;              /* Ensures it floats ON TOP of everything */
+    width: auto;               /* Only take up needed space */
+    margin: 0;                 /* Remove old margins */
+    
     display: flex;
-    flex-direction: column; /* Stack Nav on top of Copyright */
+    flex-direction: column;
     align-items: center;
     gap: 10px;
     font-family: 'Ubuntu', sans-serif;
 }
+
 
 .footer-nav {
     display: flex;
