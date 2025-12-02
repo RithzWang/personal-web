@@ -359,3 +359,88 @@ footer {
 
 
 
+
+/* --- ABOUT PAGE STYLES --- */
+
+/* Different styling for the page title vs the main name */
+.page-title {
+    font-family: 'Aref Ruqaa', serif;
+    font-size: 36px;
+    margin-bottom: 20px;
+    /* Use the same gradient animation you have */
+    background: linear-gradient(120deg, #fff, #bbb, #fff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* The Glass Card Container */
+.content-card {
+    background-color: rgba(20, 20, 20, 0.8); /* Dark glass */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px; /* Limits width on big screens */
+    margin: 0 auto;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    text-align: left; /* Easier to read text */
+}
+
+.intro-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ddd;
+    text-align: center;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+}
+
+.bio-section h3 {
+    font-family: 'Ubuntu', sans-serif;
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-left: 3px solid #1DB954; /* Green accent line */
+    padding-left: 10px;
+}
+
+.bio-section p {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 14px;
+    color: #aaa;
+    justify-content: flex-start; /* Overrides previous flex settings */
+    display: block;
+    line-height: 1.6;
+}
+
+/* Tech Stack Icons */
+.tech-icons {
+    display: flex;
+    gap: 15px;
+    font-size: 24px;
+    margin-top: 15px;
+    color: #ccc;
+}
+
+.tech-icons i:hover {
+    color: #fff;
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+/* Highlight the current page in footer */
+.footer-nav a.active {
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+}
+
+
+
