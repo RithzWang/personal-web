@@ -126,7 +126,7 @@ function createSnowflake() {
     snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
     
     // Randomize the size (between 5px and 15px)
-    const size = Math.random() * 8 + 4 + 'px';
+    const size = Math.random() * 9 + 3 + 'px';
     snowflake.style.width = size;
     snowflake.style.height = size;
     
