@@ -113,5 +113,4 @@ setInterval(getDiscordStatus, 1000);
 setInterval(updateProgressBar, 1000);
 
 
-
-
+// createRainDrop function removed per request.
