@@ -1,3 +1,4 @@
+/* --- GLOBAL SETTINGS --- */
 html {
     min-height: -webkit-fill-available;
     height: 100%;
@@ -8,7 +9,6 @@ html {
     /* 2. GRADIENT loads second (sits on top) */
     background-image: linear-gradient(to bottom, #070707, #090909, #111111, #333333); 
 }
-
 
 body {
     font-family: 'Ubuntu', sans-serif;
@@ -180,12 +180,11 @@ footer {
     text-transform: uppercase;
     white-space: nowrap !important;
     
-    /* ADD THESE 3 LINES TO DISABLE THE MENU */
-    -webkit-touch-callout: none; /* Stops the "Open in new tab" menu on iOS/Android */
-    -webkit-user-select: none;   /* Stops the text from being highlighted */
-    user-select: none;           /* Standard version of the above */
+    /* DISABLES THE LONG-PRESS MENU */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+    user-select: none;     
 }
-
 
 .footer-nav a:hover {
     color: #fff;
@@ -327,6 +326,20 @@ footer {
     -webkit-text-fill-color: transparent;
 }
 
+/* RESTORED THIS MISSING BLOCK */
+.content-card {
+    background-color: rgba(20, 20, 20, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    text-align: left;
+}
+
 .intro-text {
     display: block !important;
     text-align: center;
@@ -354,7 +367,10 @@ footer {
 .bio-section p {
     font-family: 'Noto Sans', sans-serif;
     font-size: 14px;
-    color: orange;
+    
+    /* CHANGED FROM ORANGE TO GREY */
+    color: #ccc; 
+    
     justify-content: flex-start;
     display: block;
     line-height: 1.6;
@@ -396,7 +412,6 @@ footer {
     
     .footer-nav a {
         font-size: 12px;
-        white-space: nowrap !important; 
-
+        white-space: nowrap !important; /* Force single line */
     }
 }
