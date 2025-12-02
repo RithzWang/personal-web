@@ -309,9 +309,9 @@ footer {
 .page-title {
     font-family: 'Outfit', sans-serif;
     font-size: 36px;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 20px;
-    background: linear-gradient(120deg, #fff, #bbb, #fff);
+    background: linear-gradient(120deg, yellow, orange, red, orange, yellow);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
