@@ -128,8 +128,8 @@ p.spidey-text {
 
 p.yousuf {
   font-family: "Scheherazade New", serif;
-  font-weight: bold;
-  font-size: 20px;
+  /* font-weight: bold; */
+  font-size: 12px;
   margin-top: -15px;
   background: linear-gradient(120deg, yellow, orange, red, orange, yellow);
   background-size: 400% auto;
