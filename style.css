@@ -445,4 +445,13 @@ footer {
 }
 
 
+/* Add to the bottom of style.css */
+@media (max-width: 600px) {
+    .content-card {
+        padding: 20px; /* Less padding = more space for text on phones */
+    }
+}
+
+
+
 
