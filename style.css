@@ -9,6 +9,8 @@ html {
 
 @media (min-width: 769px) { /* desktop */
   /* normal layout */
+       
+    background: linear-gradient(to bottom, #070707, #090909, #111111, #333333);
 }
 
 body {
@@ -18,8 +20,7 @@ body {
     padding-bottom: 120px;
     text-align: center;
     color: #fff; 
-    
-    background: linear-gradient(to bottom, #070707, #090909, #111111, #333333); 
+ 
     
     box-sizing: border-box; 
     
