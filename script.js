@@ -140,4 +140,4 @@ function createSnowflake() {
     }, 5000);
 }
 
-setInterval(createSnowflake, 50);
+setInterval(createSnowflake, 100);
