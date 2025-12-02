@@ -389,11 +389,13 @@ footer {
 }
 
 .intro-text {
+    display: block;       /* <--- THIS FIXES THE WEIRD SPLIT */
     font-size: 16px;
     line-height: 1.6;
     color: #ddd;
-    text-align: center;
+    text-align: center;   /* Ensures the text is centered */
 }
+
 
 .divider {
     border: 0;
