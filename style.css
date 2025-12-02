@@ -498,4 +498,23 @@ body {
     }
 }
 
+/* --- MOBILE FIXES --- */
+@media (max-width: 600px) {
+    .content-card {
+        /* Make the card take up almost the full screen width */
+        width: 95% !important; 
+        
+        /* Reduce padding from 30px to 20px so text has more room */
+        padding: 20px 20px !important; 
+        
+        /* Ensure the margins are balanced */
+        margin: 0 auto 80px auto !important; 
+    }
+
+    /* Fix the text alignment if it feels off */
+    .bio-section p {
+        text-align: left; /* Ensures paragraphs don't look weirdly centered */
+    }
+}
+
 
