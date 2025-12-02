@@ -112,31 +112,6 @@ getDiscordStatus();
 setInterval(getDiscordStatus, 1000); 
 setInterval(updateProgressBar, 1000);
 
-// --- SMOOTH PAGE TRANSITIONS ---
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Find all links that point to internal pages
-    const links = document.querySelectorAll('a[href^="/"], a[href^="../"], a[href^="index.html"], a[href^="about.html"], a[href^="more.html"]');
 
-    links.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
-
-            // Ignore links that are just "#" or open in new tabs
-            if (href === '#' || link.target === '_blank') return;
-
-            // 2. Stop the ugly immediate reload
-            e.preventDefault();
-
-            // 3. Fade the whole page to black
-            document.body.style.transition = 'opacity 0.3s ease';
-            document.body.style.opacity = '0';
-
-            // 4. Wait for the fade, THEN go to the new page
-            setTimeout(() => {
-                window.location.href = href;
-            }, 300); // 300ms matches the CSS transition time
-        });
-    });
-});
 
 
