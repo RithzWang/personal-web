@@ -416,7 +416,7 @@ footer {
 .bio-section p {
     font-family: 'Noto Sans', sans-serif;
     font-size: 14px;
-    color: #aaa;
+    color: orange;
     justify-content: flex-start; /* Overrides previous flex settings */
     display: block;
     line-height: 1.6;
