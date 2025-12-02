@@ -1,6 +1,8 @@
 /* Add this HTML block right before the body block */
 html {
     min-height: -webkit-fill-available;
+    background: linear-gradient(to bottom, #070707, #090909, #111111, #333333);
+    height: 100%;
 }
 
 @media (max-width: 768px) { /* tablets & phones */
@@ -10,7 +12,7 @@ html {
 @media (min-width: 769px) { /* desktop */
   /* normal layout */
        
-    background: linear-gradient(to bottom, #070707, #090909, #111111, #333333);
+   
 }
 
 body {
