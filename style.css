@@ -1,10 +1,14 @@
-/* --- GLOBAL SETTINGS --- */
 html {
     min-height: -webkit-fill-available;
-    /* Background moved here to prevent white flash on reload */
-    background: linear-gradient(to bottom, #070707, #090909, #111111, #333333);
     height: 100%;
+    
+    /* 1. SOLID COLOR loads instantly (Prevents White Flash) */
+    background-color: #070707; 
+    
+    /* 2. GRADIENT loads second (sits on top) */
+    background-image: linear-gradient(to bottom, #070707, #090909, #111111, #333333); 
 }
+
 
 body {
     font-family: 'Ubuntu', sans-serif;
