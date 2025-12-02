@@ -224,15 +224,20 @@ footer {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Update this block in style.css */
 .footer-nav a {
-    color: #b3b3b3; /* Grey text like Spotify artist */
+    color: #b3b3b3;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
     transition: all 0.3s ease;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    
+    /* ADD THIS LINE: */
+    white-space: nowrap;  /* Forces "About Me" to stay on one line */
 }
+
 
 /* Hover Effect: Turns white and glows */
 .footer-nav a:hover {
