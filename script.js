@@ -114,3 +114,30 @@ setInterval(updateProgressBar, 1000);
 
 
 // createRainDrop function removed per request.
+/* script.js */
+function createSnowflake() {
+    const snowflake = document.createElement('div');
+    snowflake.classList.add('snowflake');
+    
+    // Randomize the horizontal position
+    snowflake.style.left = Math.random() * 100 + 'vw';
+    
+    // Randomize the animation duration (speed)
+    snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+    
+    // Randomize the size (between 5px and 15px)
+    const size = Math.random() * 10 + 5 + 'px';
+    snowflake.style.width = size;
+    snowflake.style.height = size;
+    
+    // Randomize opacity
+    snowflake.style.opacity = Math.random();
+
+    document.body.appendChild(snowflake);
+
+    setTimeout(() => {
+        snowflake.remove();
+    }, 5000);
+}
+
+setInterval(createSnowflake, 50);
