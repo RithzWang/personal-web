@@ -304,107 +304,21 @@ footer {
 
 
 
-.snow-container {
-  position: fixed; /* Changed from absolute to fixed so it covers the screen even if you scroll */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none; /* CRITICAL: This allows you to click buttons behind the snow */
-  z-index: 50; /* This forces the snow to be the top layer */
-}
-
-
-/* 2. Basic Snowflake Style */
 .snowflake {
-  position: absolute;
-  top: -10px; /* Start just above the screen */
-  background: white;
-  border-radius: 50%; /* Makes them circular */
-  opacity: 0.8;
+    position: absolute;
+    top: -10px;
+    background: white; /* The color of the snow */
+    border-radius: 50%; /* This turns the square div into a circle */
+    opacity: 0.8;
+    pointer-events: none;
+    animation: fall linear forwards;
+    
+    /* Optional: Makes the snow look softer/fluffier */
+    filter: blur(1px); 
 }
 
-/* 3. The Falling Animation */
 @keyframes fall {
-  0% {
-    transform: translateY(-10vh) translateX(0px);
-  }
-  100% {
-    transform: translateY(100vh) translateX(20px); /* Falls down and drifts slightly right */
-  }
+    to {
+        transform: translateY(105vh);
+    }
 }
-
-/* 4. Randomize the Snowflakes */
-/* We use nth-child to give different flakes different sizes, speeds, and positions */
-
-.snowflake:nth-child(1) {
-  left: 10%;
-  width: 10px; height: 10px;
-  animation: fall 10s linear infinite;
-  animation-delay: -2s;
-}
-
-.snowflake:nth-child(2) {
-  left: 20%;
-  width: 10px; height: 10px;
-  animation: fall 8s linear infinite;
-  animation-delay: -4s;
-}
-
-.snowflake:nth-child(3) {
-  left: 30%;
-  width: 10px; height: 10px;
-  animation: fall 12s linear infinite;
-  animation-delay: -1s;
-}
-
-.snowflake:nth-child(4) {
-  left: 40%;
-  width: 10px; height: 10px;
-  animation: fall 9s linear infinite;
-  animation-delay: -6s;
-}
-
-.snowflake:nth-child(5) {
-  left: 50%;
-  width: 10px; height: 10px;
-  animation: fall 11s linear infinite;
-  animation-delay: -3s;
-}
-
-.snowflake:nth-child(6) {
-  left: 60%;
-  width: 10px; height: 10px;
-  animation: fall 7s linear infinite;
-  animation-delay: -8s;
-}
-
-.snowflake:nth-child(7) {
-  left: 70%;
-  width: 10px; height: 10px;
-  animation: fall 13s linear infinite;
-  animation-delay: -5s;
-}
-
-.snowflake:nth-child(8) {
-  left: 80%;
-  width: 10px; height: 10px;
-  animation: fall 8.5s linear infinite;
-  animation-delay: -2s;
-}
-
-.snowflake:nth-child(9) {
-  left: 90%;
-  width: 10px; height: 10px;
-  animation: fall 14s linear infinite;
-  animation-delay: -7s;
-}
-
-.snowflake:nth-child(10) {
-  left: 25%;
-  width: 10px; height: 10px;
-  animation: fall 9.5s linear infinite;
-  animation-delay: -3.5s;
-}
-/* You can add more nth-child rules for more variety */
-
