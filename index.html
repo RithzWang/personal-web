@@ -5,15 +5,13 @@
     <title>Ridouan :)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    
     <meta name="view-transition" content="same-origin">
      
-    <link rel="prefetch" href="/about-me">
+    <link rel="prefetch" href="/about-me/">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-
     <link rel="stylesheet" type="text/css" href="style.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu|Lora">
@@ -24,81 +22,63 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <script>
-        function handleButtonClick(platform) {
-            console.log("Clicked on " + platform + " button!");
-            // Add your desired action or redirection here
-        }
-    </script>
 </head>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 
 <body>
     
-    <header>
-        <div class="profile-picture-container">
-            <img src="pictures/twt.jpg" alt="Profile Picture" class="profile-picture" draggable="false" oncontextmenu="return false;">
+    <main>
+        <header>
+            <div class="profile-picture-container">
+                <img src="pictures/twt.jpg" alt="Profile Picture" class="profile-picture" draggable="false" oncontextmenu="return false;">
+                <img id="victory-crown-decoration" class="avatar-decoration" src="decoration/confetti_festive.png" alt="Decoration" draggable="false" oncontextmenu="return false;">
+            </div>
 
-            <img id="victory-crown-decoration" class="avatar-decoration" src="decoration/confetti_festive.png" alt="Decoration" draggable="false" oncontextmenu="return false;">
-            
-        </div>
-
-
-        <h1>رضوان</h1>
-
+            <h1>رضوان</h1>
         </header>
 
-    <div class="social-icons">
-        <a href="https://discord.com/users/837741275603009626" target="_blank"><i class="fab fa-discord"></i></a>
-        <a href="https://instagram.com/32r.6" target="_blank"><i class="fab fa-instagram"></i></a>
-        <!-- <a href="https://spotify.link/fot0mTLxITb" target="_blank"><i class="fab fa-spotify"></i></a> -->
-        <a href="https://open.spotify.com/user/31vzm6toku6qrnlburqo47ileg4q" target="_blank"><i class="fab fa-spotify"></i></a>
-        <a href="https://snapchat.com/add/#" target="_blank"><i class="fa-brands fa-snapchat"></i></a>
-       <!-- <a href="mailto:talk@ridouan.xyz" target="_blank"><i class="fa-solid fa-envelope"></i></a> -->
-    </div> 
+        <div class="social-icons">
+            <a href="https://discord.com/users/837741275603009626" target="_blank"><i class="fab fa-discord"></i></a>
+            <a href="https://instagram.com/32r.6" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://open.spotify.com/user/31vzm6toku6qrnlburqo47ileg4q" target="_blank"><i class="fab fa-spotify"></i></a>
+            <a href="https://snapchat.com/add/#" target="_blank"><i class="fa-brands fa-snapchat"></i></a>
+        </div> 
 
-    <div id="spotify-container" class="spotify-card" style="display: none;">
-        
-        <div class="spotify-header">
-            <i class="fab fa-spotify" style="color: #1DB954; margin-right: 8px;"></i>
-            <span>Now Playing</span>
-        </div>
+        <div id="spotify-container" class="spotify-card" style="display: none;">
+            <div class="spotify-header">
+                <i class="fab fa-spotify" style="color: #1DB954; margin-right: 8px;"></i>
+                <span>Now Playing</span>
+            </div>
 
-        <div class="spotify-row">
-            <img id="spotify-album-art" src="" alt="Album Art" draggable="false" oncontextmenu="return false;">
-            
-            <div class="spotify-info">
-                <p id="spotify-song-title" class="song-title">Song Title</p>
-                <p id="spotify-artist-name" class="artist-name">Artist</p>
+            <div class="spotify-row">
+                <img id="spotify-album-art" src="" alt="Album Art" draggable="false" oncontextmenu="return false;">
+                
+                <div class="spotify-info">
+                    <p id="spotify-song-title" class="song-title">Song Title</p>
+                    <p id="spotify-artist-name" class="artist-name">Artist</p>
+                </div>
+            </div>
+
+            <div class="spotify-progress-wrapper">
+                <div class="spotify-progress-bar">
+                    <div id="spotify-progress-fill"></div>
+                </div>
+                <div class="spotify-time">
+                    <span id="spotify-time-current">0:00</span>
+                    <span id="spotify-time-total">0:00</span>
+                </div>
             </div>
         </div>
+    </main>
 
-        <div class="spotify-progress-wrapper">
-            <div class="spotify-progress-bar">
-                <div id="spotify-progress-fill"></div>
-            </div>
-            <div class="spotify-time">
-                <span id="spotify-time-current">0:00</span>
-                <span id="spotify-time-total">0:00</span>
-            </div>
+    <footer>
+        <div class="footer-nav">
+            <a href="#" class="active" oncontextmenu="return false;">Home</a>
+            <span class="separator">|</span>
+            <a href="/about-me/" oncontextmenu="return false;">About Me</a>
         </div>
-
-    </div>
+    </footer>
 
     <script src="script.js"></script>
 
-        <footer>
-        <div class="footer-nav">
-            <a href="/" class="active" oncontextmenu="return false;">Home</a>
-<span class="separator">|</span>
-<a href="/about-me" oncontextmenu="return false;">About Me</a>
- </div>
-    </footer>
-
-
 </body>
-
 </html>
