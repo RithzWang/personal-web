@@ -370,6 +370,7 @@ footer {
     justify-content: flex-start;
     display: block;
     line-height: 1.6;
+    padding-left: 10px;
 }
 
 .tech-icons {
