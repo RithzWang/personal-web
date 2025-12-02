@@ -114,30 +114,64 @@ setInterval(updateProgressBar, 1000);
 
 
 // createRainDrop function removed per request.
-/* script.js */
-function createSnowflake() {
-    const snowflake = document.createElement('div');
-    snowflake.classList.add('snowflake');
-    
-    // Randomize the horizontal position
-    snowflake.style.left = Math.random() * 100 + 'vw';
-    
-    // Randomize the animation duration (speed)
-    snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
-    
-    // Randomize the size (between 5px and 15px)
-    const size = Math.random() * 9 + 3 + 'px';
-    snowflake.style.width = size;
-    snowflake.style.height = size;
-    
-    // Randomize opacity
-    snowflake.style.opacity = Math.random();
+const canvas = document.getElementById('snowCanvas');
+const ctx = canvas.getContext('2d');
 
-    document.body.appendChild(snowflake);
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-    setTimeout(() => {
-        snowflake.remove();
-    }, 5000);
+const snowflakes = [];
+const maxSnowflakes = 100; // Keep count low for a clean look
+
+// Create snowflakes
+for (let i = 0; i < maxSnowflakes; i++) {
+    snowflakes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        // KEY CHANGE: Radius is now very small (between 1px and 2.5px)
+        radius: Math.random() * 1.5 + 1, 
+        // Speed is steady
+        speed: Math.random() * 1 + 0.5,
+        opacity: Math.random() * 0.5 + 0.5
+    });
 }
 
-setInterval(createSnowflake, 100);
+function drawSnow() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // KEY CHANGE: Pure white, no blur effects
+    ctx.fillStyle = 'white';
+    ctx.beginPath();
+
+    for (let i = 0; i < snowflakes.length; i++) {
+        const flake = snowflakes[i];
+        
+        ctx.moveTo(flake.x, flake.y);
+        // Draw a sharp circle
+        ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+    }
+    
+    ctx.fill();
+    updateSnow();
+    requestAnimationFrame(drawSnow);
+}
+
+function updateSnow() {
+    for (let i = 0; i < snowflakes.length; i++) {
+        const flake = snowflakes[i];
+        flake.y += flake.speed;
+
+        // Reset when it goes off screen (No accumulation!)
+        if (flake.y > canvas.height) {
+            flake.y = 0;
+            flake.x = Math.random() * canvas.width;
+        }
+    }
+}
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+drawSnow();
