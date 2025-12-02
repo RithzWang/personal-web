@@ -465,5 +465,22 @@ footer {
 }
 
 
+/* Make the whole page fade in gently */
+body {
+    animation: fadeInPage 0.5s ease-out;
+}
+
+@keyframes fadeInPage {
+    0% {
+        opacity: 0;
+        transform: translateY(10px); /* Slide up slightly */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
 
 
