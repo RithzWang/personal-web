@@ -314,7 +314,7 @@ footer {
     animation: fall linear forwards;
     
     /* Optional: Makes the snow look softer/fluffier */
-    filter: blur(1px); 
+    will-change: transform; 
 }
 
 @keyframes fall {
