@@ -1,124 +1,92 @@
-/* Add this HTML block right before the body block */
+/* --- GLOBAL SETTINGS --- */
 html {
     min-height: -webkit-fill-available;
+    /* Background moved here to prevent white flash on reload */
     background: linear-gradient(to bottom, #070707, #090909, #111111, #333333);
     height: 100%;
 }
 
-@media (max-width: 768px) { /* tablets & phones */
-  /* smaller font sizes, stacked layout */
-}
-
-@media (min-width: 769px) { /* desktop */
-  /* normal layout */
-       
-   
-}
-
 body {
     font-family: 'Ubuntu', sans-serif;
-    /* Increased padding 20px -> 23px (Internal size) */
     padding: 30px 0;
-    padding-bottom: 120px;
+    /* Padding bottom ensures content isn't hidden behind the fixed footer */
+    padding-bottom: 120px; 
     text-align: center;
-    color: #fff; 
- 
-    
-    box-sizing: border-box; 
-    
+    color: #fff;
+    box-sizing: border-box;
     min-height: 100vh;
     min-height: -webkit-fill-available;
-
-    overflow-x: hidden; 
+    overflow-x: hidden;
     margin: 0;
+    
+    /* Page Fade-in Animation */
+    animation: fadeIn 0.5s ease-out;
 }
 
+/* --- ANIMATIONS --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes waveGlow {
+  0% { background-position: 0% center; }
+  100% { background-position: 100% center; }
+}
+
+/* --- HEADER & PROFILE --- */
 header {
-    /* RESTORED MARGINS */
     margin-bottom: 10px;
-    margin-top: 20px; 
+    margin-top: 20px;
 }
 
 .profile-picture-container {
     position: relative;
     display: inline-block;
-    /* Increased size */
     width: 134px;
     height: 134px;
 }
 
 .profile-picture {
-    /* Increased size */
     width: 130px;
     height: 130px;
     border-radius: 50%;
     object-fit: cover;
     transition: transform 0.3s ease;
-    
-    user-select: none;          
-    -webkit-user-drag: none;    
-    -webkit-touch-callout: none; 
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
 }
-
 
 .avatar-decoration {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
-    /* Increased size */
-    width: 156px !important; 
+    width: 156px !important;
     height: 156px !important;
-    
     pointer-events: none;
     z-index: 10;
 }
 
-/* Ensure the container is set up correctly */
-.profile-picture-container {
-    position: relative; 
-    display: inline-block;
-    /* Increased size */
-    width: 132px;
-    height: 132px;
-    /* RESTORED MARGIN */
-   /* margin-bottom: 10px; */
-}
-
-
+/* --- TYPOGRAPHY --- */
 h1, p {
-    /* RESTORED MARGIN */
     margin: 7px 0;
-    -webkit-touch-callout: none; 
+    -webkit-touch-callout: none;
     -webkit-tap-highlight-color: transparent;
 }
 
 h1 {
-  font-family: "Aref Ruqaa", serif;
-  font-weight: 400;
-  /* Increased font size */
-  font-size: 42px;
-  /* RESTORED MARGIN */
-  margin-top: 0px 0;
-  margin: 7px 0;
-  background: linear-gradient(120deg, yellow, orange, red, orange, yellow);
-  background-size: 400% auto;
-  background-position: 0% center;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: waveGlow 5s linear infinite;
-}
-
-@keyframes waveGlow {
-  0% {
+    font-family: "Aref Ruqaa", serif;
+    font-weight: 400;
+    font-size: 42px;
+    background: linear-gradient(120deg, yellow, orange, red, orange, yellow);
+    background-size: 400% auto;
     background-position: 0% center;
-  }
-  100% {
-    background-position: 100% center;
-  }
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: waveGlow 5s linear infinite;
 }
-
 
 p.spidey-text {
     color: #777;
@@ -126,84 +94,59 @@ p.spidey-text {
     font-weight: bold;
     justify-content: center;
     font-family: 'Amiri', serif;
-    margin: 0; 
+    margin: 0;
 }
-
 
 p.yousuf {
-  font-family: "Reem Kufi", sans-serif;
-  font-weight: bold;
-  font-size: 20px;
-  margin-top: -15px;
-  background: linear-gradient(120deg, yellow, orange, red, orange, yellow);
-  background-size: 400% auto;
-  background-position: 0% center;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: waveGlow 5s linear infinite;
+    font-family: "Reem Kufi", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: -15px;
+    background: linear-gradient(120deg, yellow, orange, red, orange, yellow);
+    background-size: 400% auto;
+    background-position: 0% center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: waveGlow 5s linear infinite;
 }
-
 
 p {
-    color: #777; 
-    display: flex;
-    justify-content: center;
-    font-family: 'Noto Sans', sans-serif; 
-}
-
-.social-icons a {
-    color: #fff; /* Icon color */
-    margin: 0 3px; /* Space between icons */
-    font-size: 23px; /* Icon size */
-    text-decoration: none; /* Remove underline */
-    display: inline-flex; /* Use flexbox for centering */
-    align-items: center; /* Center vertically */
-    justify-content: center; /* Center horizontally */
-    width: 41px; /* Circle width */
-    height: 41px; /* Circle height */
-    border-radius: 50%; /* Make circle */
-    background-color: rgba(255, 255, 255, 0.2); /* Background color */
-    margin-bottom: 25px; /* Space below icons */
-}
-
-
-
-.social-icons a {
-    transition: transform 0.2s ease; 
-}
-
-.social-icons a:active {
-    transform: scale(0.9); 
-}
-
-
-.social-icons a.clicked {
-    transform: scale(0.9); 
-    transition: transform 0.2s ease; 
-}
-
-
-<!-- footer {
-    /* RESTORED MARGIN */
-    margin-top: 20px;
-    color: #777; 
+    color: #777;
     display: flex;
     justify-content: center;
     font-family: 'Noto Sans', sans-serif;
-    user-select: none;
-} -->
+}
 
-/* --- FOOTER NAVIGATION --- */
+/* --- SOCIAL ICONS --- */
+.social-icons a {
+    color: #fff;
+    margin: 0 3px;
+    font-size: 23px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 41px;
+    height: 41px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 25px;
+    transition: transform 0.2s ease;
+}
+
+.social-icons a:active, .social-icons a.clicked {
+    transform: scale(0.9);
+}
+
+/* --- FOOTER NAVIGATION (Sticky & Glass) --- */
 footer {
-    position: fixed;           /* Pins it to the screen */
-    bottom: 30px;              /* Distance from the bottom edge (the red circle area) */
-    left: 50%;                 /* Moves it to the middle */
-    transform: translateX(-50%); /* Centers it perfectly */
-    
-    z-index: 999;              /* Ensures it floats ON TOP of everything */
-    width: auto;               /* Only take up needed space */
-    margin: 0;                 /* Remove old margins */
-    
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    width: auto;
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -211,20 +154,18 @@ footer {
     font-family: 'Ubuntu', sans-serif;
 }
 
-
 .footer-nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px; /* Distance between words */
-    background: rgba(255, 255, 255, 0.05); /* Very subtle background */
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.05);
     padding: 10px 20px;
     border-radius: 20px;
-    backdrop-filter: blur(5px); /* Glass effect */
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Update this block in style.css */
 .footer-nav a {
     color: #b3b3b3;
     text-decoration: none;
@@ -233,21 +174,23 @@ footer {
     transition: all 0.3s ease;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    
-    /* ADD THIS LINE: */
-    white-space: nowrap;  /* Forces "About Me" to stay on one line */
+    white-space: nowrap; /* Forces "About Me" to stay on one line */
 }
 
-
-/* Hover Effect: Turns white and glows */
 .footer-nav a:hover {
     color: #fff;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
     transform: translateY(-1px);
 }
 
+.footer-nav a.active {
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(255,255,255,0.5);
+}
+
 .separator {
-    color: #444; /* Dark separator so it's not distracting */
+    color: #444;
     font-size: 12px;
     user-select: none;
 }
@@ -260,10 +203,7 @@ footer {
     opacity: 0.7;
 }
 
-
-/* --------- */
-
-/* --- SPOTIFY CARD (FIXED LAYOUT) --- */
+/* --- SPOTIFY CARD --- */
 .spotify-card {
     background-color: rgba(20, 20, 20, 0.9);
     border: 1px solid #333;
@@ -274,18 +214,13 @@ footer {
     text-align: left;
     box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     backdrop-filter: blur(5px);
-    
-    /* Stack items vertically: Header -> Row -> Progress */
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Space between elements */
-
-    /* Protection */
+    gap: 10px;
     user-select: none;
     -webkit-user-select: none;
 }
 
-/* header styling */
 .spotify-header {
     font-size: 12px;
     color: #1DB954;
@@ -294,7 +229,6 @@ footer {
     align-items: center;
 }
 
-/* The container for Image + Text Side-by-Side */
 .spotify-row {
     display: flex !important;
     flex-direction: row !important;
@@ -302,7 +236,6 @@ footer {
     width: 100%;
 }
 
-/* The Image Styling */
 #spotify-album-art {
     width: 56px !important;
     height: 56px !important;
@@ -310,11 +243,10 @@ footer {
     border-radius: 8px;
     margin-right: 12px;
     object-fit: cover;
-    flex-shrink: 0; /* Prevents squishing */
-    pointer-events: none; /* Cannot click/drag */
+    flex-shrink: 0;
+    pointer-events: none;
 }
 
-/* The Text Info */
 .spotify-info {
     overflow: hidden;
     display: flex;
@@ -342,7 +274,6 @@ footer {
     text-align: left !important;
 }
 
-/* Progress Bar Styling */
 .spotify-progress-wrapper {
     width: 100%;
     display: flex;
@@ -359,7 +290,7 @@ footer {
 
 #spotify-progress-fill {
     height: 100%;
-    background-color: #fff; /* White bar like Spotify */
+    background-color: #fff;
     border-radius: 2px;
     width: 0%;
     transition: width 1s linear;
@@ -371,48 +302,40 @@ footer {
     font-size: 10px;
     color: #b3b3b3;
     margin-top: 5px;
-    font-family: monospace; /* Keeps numbers aligned */
+    font-family: monospace;
 }
 
-
-
-
-/* --- ABOUT PAGE STYLES --- */
-
-/* Different styling for the page title vs the main name */
+/* --- ABOUT PAGE CONTENT --- */
 .page-title {
     font-family: 'Aref Ruqaa', serif;
     font-size: 36px;
     margin-bottom: 20px;
-    /* Use the same gradient animation you have */
     background: linear-gradient(120deg, #fff, #bbb, #fff);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* The Glass Card Container */
 .content-card {
-    background-color: rgba(20, 20, 20, 0.8); /* Dark glass */
+    background-color: rgba(20, 20, 20, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     padding: 30px;
     width: 90%;
-    max-width: 500px; /* Limits width on big screens */
+    max-width: 500px;
     margin: 0 auto;
     backdrop-filter: blur(8px);
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    text-align: left; /* Easier to read text */
+    text-align: left;
 }
 
-/* Fixes the broken sentence structure on About Me page */
 .intro-text {
-    display: block !important; /* Forces it to behave like a normal paragraph */
+    display: block !important;
     text-align: center;
     line-height: 1.6;
+    font-size: 16px;
+    color: #ddd;
 }
-
-
 
 .divider {
     border: 0;
@@ -426,7 +349,7 @@ footer {
     color: #fff;
     font-size: 18px;
     margin-bottom: 10px;
-    border-left: 3px solid #1DB954; /* Green accent line */
+    border-left: 3px solid #1DB954;
     padding-left: 10px;
 }
 
@@ -434,12 +357,11 @@ footer {
     font-family: 'Noto Sans', sans-serif;
     font-size: 14px;
     color: orange;
-    justify-content: flex-start; /* Overrides previous flex settings */
+    justify-content: flex-start;
     display: block;
     line-height: 1.6;
 }
 
-/* Tech Stack Icons */
 .tech-icons {
     display: flex;
     gap: 15px;
@@ -454,78 +376,27 @@ footer {
     transition: transform 0.2s ease;
 }
 
-/* Highlight the current page in footer */
-.footer-nav a.active {
-    color: #fff;
-    font-weight: bold;
-    text-shadow: 0 0 5px rgba(255,255,255,0.5);
-}
-
-
-/* Add to the bottom of style.css */
+/* --- MOBILE & RESPONSIVE FIXES --- */
 @media (max-width: 600px) {
+    /* 1. Fix the card width on phones */
     .content-card {
-        padding: 20px; /* Less padding = more space for text on phones */
+        width: 95% !important;
+        padding: 20px 20px !important;
+        margin: 0 auto 80px auto !important;
     }
-}
-
-
-/* Make the whole page fade in gently */
-body {
-    animation: fadeInPage 0.5s ease-out;
-}
-
-@keyframes fadeInPage {
-    0% {
-        opacity: 0;
-        transform: translateY(10px); /* Slide up slightly */
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-/* Add to bottom of style.css */
-@media (max-width: 400px) {
-    .footer-nav {
-        gap: 8px; /* brings items closer together */
-        padding: 10px 15px; /* smaller container padding */
-    }
-    .footer-nav a {
-        font-size: 12px; /* slightly smaller text if needed */
-    }
-}
-
-/* --- MOBILE FIXES --- */
-@media (max-width: 600px) {
-    .content-card {
-        /* Make the card take up almost the full screen width */
-        width: 95% !important; 
-        
-        /* Reduce padding from 30px to 20px so text has more room */
-        padding: 20px 20px !important; 
-        
-        /* Ensure the margins are balanced */
-        margin: 0 auto 80px auto !important; 
-    }
-
-    /* Fix the text alignment if it feels off */
+    
+    /* 2. Fix text alignment on phones */
     .bio-section p {
-        text-align: left; /* Ensures paragraphs don't look weirdly centered */
+        text-align: left;
+    }
+    
+    /* 3. Fix footer spacing on very small phones */
+    .footer-nav {
+        gap: 8px;
+        padding: 10px 15px;
+    }
+    
+    .footer-nav a {
+        font-size: 12px;
     }
 }
-
-
-/* Animation: Fade page in */
-body {
-    animation: fadeIn 0.4s ease-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(5px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
-
