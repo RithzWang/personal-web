@@ -174,8 +174,14 @@ footer {
     transition: all 0.3s ease;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    white-space: nowrap; /* Forces "About Me" to stay on one line */
+    white-space: nowrap !important;
+    
+    /* ADD THESE 3 LINES TO DISABLE THE MENU */
+    -webkit-touch-callout: none; /* Stops the "Open in new tab" menu on iOS/Android */
+    -webkit-user-select: none;   /* Stops the text from being highlighted */
+    user-select: none;           /* Standard version of the above */
 }
+
 
 .footer-nav a:hover {
     color: #fff;
