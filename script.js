@@ -14,60 +14,6 @@ let songStartTimestamp = 0;
 let songEndTimestamp = 0;
 let isPlaying = false;
 
-// --- SIDEBAR TOGGLE LOGIC ---
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebar-overlay');
-    const expandBtn = document.getElementById('expand-btn');
-
-    sidebar.classList.toggle('active');
-    overlay.classList.toggle('active');
-    
-    if (sidebar.classList.contains('active')) {
-        expandBtn.style.left = "-50px"; 
-    } else {
-        expandBtn.style.left = "0"; 
-    }
-}
-
-// --- LANGUAGE SWITCHER ---
-let currentLang = 'en'; // Default
-
-function toggleLanguage() {
-    // Swap the variable
-    if (currentLang === 'en') {
-        currentLang = 'ar';
-    } else {
-        currentLang = 'en';
-    }
-    updateLanguageUI();
-}
-
-function updateLanguageUI() {
-    const btn = document.getElementById('lang-btn');
-    const enBlock = document.getElementById('content-en');
-    const arBlock = document.getElementById('content-ar');
-
-    if (currentLang === 'en') {
-        // Show English
-        btn.innerHTML = '<i class="fa-solid fa-language"></i> EN';
-        enBlock.style.display = 'block';
-        arBlock.style.display = 'none';
-    } else {
-        // Show Arabic
-        btn.innerHTML = '<i class="fa-solid fa-language"></i> AR';
-        enBlock.style.display = 'none';
-        arBlock.style.display = 'block';
-    }
-}
-
-// Set default on load
-window.addEventListener('load', () => {
-    currentLang = 'en';
-    updateLanguageUI();
-});
-
-
 // --- FETCH DATA FROM DISCORD ---
 async function getDiscordStatus() {
     try {
@@ -156,3 +102,22 @@ function formatTime(ms) {
 getDiscordStatus(); 
 setInterval(getDiscordStatus, 1000); 
 setInterval(updateProgressBar, 1000);
+
+
+// --- SIDEBAR TOGGLE LOGIC ---
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    const expandBtn = document.getElementById('expand-btn');
+
+    // Toggle classes
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+    
+    // Hide 'Expand' button when open, show when closed
+    if (sidebar.classList.contains('active')) {
+        expandBtn.style.left = "-50px"; // Hide it off-screen
+    } else {
+        expandBtn.style.left = "0"; // Bring it back
+    }
+}
