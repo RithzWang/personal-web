@@ -45,16 +45,16 @@ async function getDiscordStatus() {
                 document.getElementById('spotify-artist-name').textContent = spotifyData.artist;
                 document.getElementById('spotify-album-art').style.filter = "none";
                 
-                // --- NEW: Check if song changed to fetch new lyrics ---
+                // --- CHECK SONG CHANGE FOR LYRICS ---
                 if (currentTrackId !== spotifyData.track_id) {
                     currentTrackId = spotifyData.track_id;
-                    // Reset lyrics immediately to avoid showing old song lyrics
-                    if (lyricsElement) lyricsElement.innerText = "Loading lyrics...";
+                    // Show placeholder immediately
+                    if (lyricsElement) lyricsElement.innerText = "...🎶...";
                     fetchLyrics(spotifyData.song, spotifyData.artist, (songEndTimestamp - songStartTimestamp) / 1000);
                 }
 
-                // Fixed the variable syntax here
-                spotifyContainer.onclick = () => window.open(`https://open.spotify.com/track/${spotifyData.track_id}`, '_blank');
+                // Link to song
+                spotifyContainer.onclick = () => window.open(`https://open.spotify.com/track/$${spotifyData.track_id}`, '_blank');
                 spotifyContainer.style.cursor = "pointer";
 
                 if (progressWrapper) progressWrapper.style.display = 'flex'; 
@@ -64,7 +64,7 @@ async function getDiscordStatus() {
                 isPlaying = false;
                 lyricsActive = false;
                 currentTrackId = null;
-                if (lyricsElement) lyricsElement.innerText = ''; // Clear lyrics
+                if (lyricsElement) lyricsElement.innerText = ''; 
 
                 document.getElementById('spotify-album-art').src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/168px-Spotify_logo_without_text.svg.png';
                 document.getElementById('spotify-song-title').textContent = 'Not Found';
@@ -96,14 +96,12 @@ async function fetchLyrics(track, artist, duration) {
     const lyricsElement = document.getElementById('spotify-lyrics');
 
     try {
-        // Using Lrclib API (Free & Open Source)
         const url = `https://lrclib.net/api/get?artist_name=${encodeURIComponent(artist)}&track_name=${encodeURIComponent(track)}&duration=${Math.round(duration)}`;
-        
         const response = await fetch(url);
         
-        // If API returns 404 or error
         if (!response.ok) {
-            if (lyricsElement) lyricsElement.innerText = ""; // Hide text if no lyrics
+            // API failed or no lyrics found -> Show placeholder
+            if (lyricsElement) lyricsElement.innerText = "...🎶...";
             return;
         }
         
@@ -112,17 +110,16 @@ async function fetchLyrics(track, artist, duration) {
         if (data && data.syncedLyrics) {
             currentLyrics = parseLrc(data.syncedLyrics);
             lyricsActive = true;
-            if (lyricsElement) lyricsElement.innerText = ""; // Ready to start showing
         } else {
-            if (lyricsElement) lyricsElement.innerText = ""; // No synced lyrics found
+            if (lyricsElement) lyricsElement.innerText = "...🎶...";
         }
     } catch (err) {
-        if (lyricsElement) lyricsElement.innerText = "";
+        if (lyricsElement) lyricsElement.innerText = "...🎶...";
         console.log("Lyrics fetch error:", err);
     }
 }
 
-// --- PARSER: Convert LRC string to usable Array ---
+// --- PARSER ---
 function parseLrc(lrc) {
     const lines = lrc.split('\n');
     const result = [];
@@ -136,14 +133,13 @@ function parseLrc(lrc) {
             const ms = parseInt(match[3]);
             const time = min * 60 + sec + ms / 100;
             const text = line.replace(timeReg, '').trim();
-            // We push even empty strings if you want to clear the line during instrumental breaks
             result.push({ time, text });
         }
     });
     return result;
 }
 
-// --- PROGRESS BAR & LYRIC SYNC LOGIC ---
+// --- PROGRESS BAR & LYRIC SYNC ---
 function updateProgressBar() {
     if (!isPlaying) return; 
 
@@ -165,27 +161,30 @@ function updateProgressBar() {
     if (timeCurr) timeCurr.innerText = formatTime(currentProgress);
     if (timeTot) timeTot.innerText = formatTime(totalDuration);
 
-    // --- LYRIC SYNC UPDATE ---
+    // --- LYRIC LOGIC ---
     const lyricsElement = document.getElementById('spotify-lyrics');
     if (lyricsActive && currentLyrics.length > 0 && lyricsElement) {
         const currentSec = currentProgress / 1000;
         
-        // Find the correct line for the current time
-        let currentLine = lyricsElement.innerText; // Default to keeping current
-        
-        // We iterate to find the last line that has a timestamp <= current time
-        // A simple loop is fine for the small amount of lines in a song
         let foundLine = null;
+        // Find the line matching current time
         for (let i = 0; i < currentLyrics.length; i++) {
             if (currentLyrics[i].time <= currentSec) {
                 foundLine = currentLyrics[i].text;
             } else {
-                break; // Stop once we pass the current time
+                break; 
             }
         }
 
-        if (foundLine !== null && foundLine !== currentLine) {
-            lyricsElement.innerText = foundLine;
+        // If no line found (Intro) or line is empty (Instrumental) -> Show Placeholder
+        if (foundLine === null || foundLine.trim() === "") {
+            if (lyricsElement.innerText !== "...🎶...") {
+                lyricsElement.innerText = "...🎶...";
+            }
+        } else {
+            if (lyricsElement.innerText !== foundLine) {
+                lyricsElement.innerText = foundLine;
+            }
         }
     }
 }
@@ -201,10 +200,9 @@ function formatTime(ms) {
 // --- TIMERS ---
 getDiscordStatus(); 
 setInterval(getDiscordStatus, 1000); 
-setInterval(updateProgressBar, 1000); // 1000ms is standard, 100ms makes the bar smoother but uses more CPU
+setInterval(updateProgressBar, 1000); 
 
-
-// --- SIDEBAR TOGGLE LOGIC ---
+// --- SIDEBAR TOGGLE ---
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebar-overlay');
@@ -219,7 +217,6 @@ function toggleSidebar() {
         expandBtn.style.left = "0"; 
     }
 }
-
 
 // --- AGE COUNTER ---
 const birthDate = new Date(2007, 2, 15); 
