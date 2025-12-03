@@ -37,6 +37,16 @@ header {
     user-select: none;          
     -webkit-user-drag: none;    
     -webkit-touch-callout: none; 
+    user-select: none;
+
+  /* Safari */
+  -webkit-user-select: none;
+
+  /* Firefox */
+  -moz-user-select: none;
+
+  /* Internet Explorer/Edge */
+  -ms-user-select: none;
 }
 
 .avatar-decoration {
@@ -132,6 +142,16 @@ p.aboutme {
 
 .social-icons a:active, .social-icons a.clicked {
     transform: scale(0.9); 
+    user-select: none;
+
+  /* Safari */
+  -webkit-user-select: none;
+
+  /* Firefox */
+  -moz-user-select: none;
+
+  /* Internet Explorer/Edge */
+  -ms-user-select: none;
 }
 
 /* --- SPOTIFY CARD --- */
