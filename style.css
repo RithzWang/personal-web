@@ -97,7 +97,7 @@ p.aboutme {
     color: #777;
     display: block;      /* Changed from flex to block */
     text-align: left;    /* Forces text to the left */
-    padding-left: 20px;
+    /* padding-left: 20px; */
     font-family: 'Noto Sans', sans-serif;
     line-height: 1.6;    /* Adds a little space between lines */
 }
