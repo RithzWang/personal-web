@@ -269,7 +269,6 @@ p.aboutme {
     transform: rotate(180deg); /* Flips text to read correctly */
     font-size: 12px;
     font-weight: bold;
-    margin: 20px;
     letter-spacing: 1px;
     font-family: 'Ubuntu', sans-serif;
 }
