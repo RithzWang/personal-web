@@ -94,7 +94,7 @@ p {
 }
 
 p.aboutme {
-    color: #777;
+    color: #ccc;
     display: block;      /* Changed from flex to block */
     text-align: left;    /* Forces text to the left */
     padding-left: -30px;
