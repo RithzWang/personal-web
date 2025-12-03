@@ -82,6 +82,16 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: waveGlow 5s linear infinite;
+  user-select: none;
+
+  /* Safari */
+  -webkit-user-select: none;
+
+  /* Firefox */
+  -moz-user-select: none;
+
+  /* Internet Explorer/Edge */
+  -ms-user-select: none;
 }
 
 
