@@ -285,25 +285,32 @@ p.aboutme {
     font-family: monospace;
 }
 
-/* --- ADD or UPDATE this block in style.css --- */
+/* Find and replace this block in style.css */
 .lyrics-line {
     font-size: 14px;
-    color: #1DB954; /* Spotify Green */
+    color: #1DB954; 
     
-    /* Margins to push the progress bar down */
+    /* Spacing: Moves the text away from the song title and progress bar */
     margin-top: 12px;    
     margin-bottom: 12px; 
     
-    font-style: italic;
-    min-height: 20px;
-    transition: opacity 0.3s ease;
+    /* Layout: Forces the text to stay inside the 278px card */
+    display: block;
+    width: 100%;
+    max-width: 248px; /* 278px (card width) - 30px (padding) = 248px available space */
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* The Fix: Cuts off text with "..." if it's too long */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    
+    text-align: center;
+    font-style: italic;
     opacity: 0.9;
-    text-align: center; /* Centers the lyrics over the bar */
-    width: 100%;
 }
+
 
 
 
