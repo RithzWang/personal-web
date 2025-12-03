@@ -95,11 +95,12 @@ p {
 
 p.aboutme {
     color: #ccc;
-    display: block;      /* Changed from flex to block */
-    text-align: left;    /* Forces text to the left */
+    font-size: 15px;
+    display: block;
+    text-align: left; 
     padding-left: -30px;
     font-family: 'Noto Sans', sans-serif;
-    line-height: 1.6;    /* Adds a little space between lines */
+    line-height: 1.6; 
 }
 
 
