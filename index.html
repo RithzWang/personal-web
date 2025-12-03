@@ -32,7 +32,33 @@
 
 <body>
    
+        <div id="expand-btn" class="side-toggle-btn expand" onclick="toggleSidebar()">
+        <span class="vertical-text">Expand</span>
+        <i class="fas fa-chevron-right"></i>
+    </div>
+
+    <div id="sidebar" class="sidebar">
+        <div class="side-toggle-btn collapse" onclick="toggleSidebar()">
+            <span class="vertical-text">Collapse</span>
+            <i class="fas fa-chevron-left"></i>
+        </div>
+
+        <div class="sidebar-content">
+            <h2>About Me</h2>
+            <div class="sidebar-divider"></div>
+            <p>
+                Name: Ridouan<br>
+                Passion: Web Dev<br>
+                Location: Earth
+            </p>
+            
+            </div>
+    </div>
     
+    <div id="sidebar-overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+
+
     <header>
         <div class="profile-picture-container">
             <img src="pictures/twt.jpg" alt="Profile Picture" class="profile-picture" draggable="false" oncontextmenu="return false;">
