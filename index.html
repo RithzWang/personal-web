@@ -28,51 +28,32 @@
 </head>
 
 <body>
-   
+
     <div id="expand-btn" class="side-toggle-btn expand" onclick="toggleSidebar()">
-        <span class="vertical-text">About Me</span>
+        <span class="vertical-text">Expand</span>
         <i class="fas fa-chevron-right"></i>
     </div>
 
     <div id="sidebar" class="sidebar">
         <div class="side-toggle-btn collapse" onclick="toggleSidebar()">
-            <span class="vertical-text">Close</span>
+            <span class="vertical-text">Collapse</span>
             <i class="fas fa-chevron-left"></i>
         </div>
 
         <div class="sidebar-content">
+            <h2>About Me</h2>
+            <div class="sidebar-divider"></div>
+            <p>
+                Name: Ridouan<br>
+                Age: 18 years old<br>
+                Location: Earth
+            </p>
             
-            <div class="lang-toggle-wrapper">
-                <button id="lang-btn" class="lang-switch-btn" onclick="toggleLanguage()">
-                    <i class="fa-solid fa-language"></i> EN
-                </button>
             </div>
-
-            
-
-            <div id="content-en" class="lang-content">
-                <h2>About Me</h2>
-                <div class="sidebar-divider"></div>
-                <br>
-                <ul class="about-list">
-                    Name : Ridouan <br> Age : 18 years old <br> Location : Earth
-                </ul>
-            </div>
-
-            <div id="content-ar" class="lang-content" style="display: none;">
-                <h2 style="font-family: 'Scheherazade New', serif;">من أنا</h2>
-             
-               <div class="sidebar-divider"></div>
-
-                <ul class="about-list" style="font-family: 'Scheherazade New', serif; padding-right: 0;">
-                اسمي : رضوان <br> العمر : ١٨ سنة <br> ghhjjj
-                </ul>
-            </div>
-
-        </div>
     </div>
     
     <div id="sidebar-overlay" class="overlay" onclick="toggleSidebar()"></div>
+
 
     <header>
         <div class="profile-picture-container">
