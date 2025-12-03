@@ -114,3 +114,22 @@ setInterval(updateProgressBar, 1000);
 
 
 // createRainDrop function removed per request.
+
+// --- SIDEBAR TOGGLE LOGIC ---
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    const expandBtn = document.getElementById('expand-btn');
+
+    // Toggle classes
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+    
+    // Hide 'Expand' button when open, show when closed
+    if (sidebar.classList.contains('active')) {
+        expandBtn.style.left = "-50px"; // Hide it off-screen
+    } else {
+        expandBtn.style.left = "0"; // Bring it back
+    }
+}
+
