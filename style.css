@@ -155,13 +155,14 @@ p.aboutme {
 }
 
 
+
 #my-age {
-    /* Magic property to make all numbers the same width */
-    font-variant-numeric: tabular-nums;
-    /* Webkit support for older browsers */
-    -webkit-font-feature-settings: "tnum";
-    font-feature-settings: "tnum";
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    /* Optional: ensures the number doesn't break to a new line */
+    white-space: nowrap; 
 }
+
 
 
 
