@@ -154,6 +154,17 @@ p.aboutme {
   -ms-user-select: none;
 }
 
+
+#my-age {
+    /* Magic property to make all numbers the same width */
+    font-variant-numeric: tabular-nums;
+    /* Webkit support for older browsers */
+    -webkit-font-feature-settings: "tnum";
+    font-feature-settings: "tnum";
+}
+
+
+
 /* --- SPOTIFY CARD --- */
 .spotify-card {
     background-color: rgba(20, 20, 20, 0.9);
