@@ -285,6 +285,21 @@ p.aboutme {
     font-family: monospace;
 }
 
+/* Add to style.css */
+.lyrics-line {
+    font-size: 13px;
+    color: #1DB954; /* Spotify Green, or use #fff for white */
+    margin-top: 5px;
+    font-style: italic;
+    min-height: 20px; /* Keeps the layout stable if empty */
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0.8;
+}
+
+
 /* --- SIDEBAR & TOGGLE BUTTONS --- */
 
 /* The Buttons (Expand/Collapse) */
