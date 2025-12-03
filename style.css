@@ -94,12 +94,14 @@ p {
 }
 
 p.aboutme {
-    color: #777; 
-    display: flex;
-    justify-content: left;
+    color: #777;
+    display: block;      /* Changed from flex to block */
+    text-align: left;    /* Forces text to the left */
     padding-left: 20px;
-    font-family: 'Noto Sans', sans-serif; 
+    font-family: 'Noto Sans', sans-serif;
+    line-height: 1.6;    /* Adds a little space between lines */
 }
+
 
 .social-icons a {
     color: #fff;
@@ -280,16 +282,19 @@ p.aboutme {
     position: fixed;
     top: 0;
     left: 0;
-    width: 300px; /* Width of the drawer */
+    width: 300px;
     height: 100%;
-    background-color: #111; /* Dark sidebar color */
+    background-color: #111;
     border-right: 1px solid #333;
     z-index: 1500;
-    transform: translateX(-100%); /* Hidden by default */
+    transform: translateX(-100%);
     transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
     box-shadow: 5px 0 15px rgba(0,0,0,0.5);
-    overflow-y: auto;
+    
+    /* CHANGE THIS: 'visible' allows the button to stick out */
+    overflow: visible !important; 
 }
+
 
 /* Class added by JS to show sidebar */
 .sidebar.active {
