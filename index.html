@@ -61,9 +61,19 @@
             <img id="victory-crown-decoration" class="avatar-decoration" src="decoration/hood_crimson.png" alt="Decoration" draggable="false" oncontextmenu="return false;">
         </div>
 
-        <h1>رضوان</h1>
+        <h1 id="mystery">رضوان</h1>
        <!-- <p class="yousuf">صلوا على رسول الله ﷺ</p> -->
     </header>
+
+<script>
+let clicks = 0;
+document.getElementById('mystery').addEventListener('click', () => {
+  clicks++;
+  if (clicks === 10) {
+    alert('🎊 Surprise! You’re patient.');
+  }
+});
+</script>
 
     <div class="social-icons">
         <a href="https://discord.com/users/837741275603009626" target="_blank"><i class="fab fa-discord"></i></a>
