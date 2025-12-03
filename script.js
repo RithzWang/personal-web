@@ -14,6 +14,11 @@ let songStartTimestamp = 0;
 let songEndTimestamp = 0;
 let isPlaying = false;
 
+// Lyrics Variables
+let currentTrackId = null;
+let currentLyrics = []; 
+let lyricsActive = false;
+
 // --- FETCH DATA FROM DISCORD ---
 async function getDiscordStatus() {
     try {
@@ -25,6 +30,7 @@ async function getDiscordStatus() {
         const spotifyData = data.data.spotify;
         const spotifyContainer = document.getElementById('spotify-container');
         const progressWrapper = document.querySelector('.spotify-progress-wrapper');
+        const lyricsElement = document.getElementById('spotify-lyrics');
 
         if (spotifyContainer) {
             spotifyContainer.style.display = 'flex'; 
@@ -39,14 +45,27 @@ async function getDiscordStatus() {
                 document.getElementById('spotify-artist-name').textContent = spotifyData.artist;
                 document.getElementById('spotify-album-art').style.filter = "none";
                 
-                // Link to song (Fixed variable interpolation)
-                spotifyContainer.onclick = () => window.open(`https://open.spotify.com/track/$${spotifyData.track_id}`, '_blank');
+                // --- NEW: Check if song changed to fetch new lyrics ---
+                if (currentTrackId !== spotifyData.track_id) {
+                    currentTrackId = spotifyData.track_id;
+                    // Reset lyrics immediately to avoid showing old song lyrics
+                    if (lyricsElement) lyricsElement.innerText = "Loading lyrics...";
+                    fetchLyrics(spotifyData.song, spotifyData.artist, (songEndTimestamp - songStartTimestamp) / 1000);
+                }
+
+                // Fixed the variable syntax here
+                spotifyContainer.onclick = () => window.open(`https://open.spotify.com/track/${spotifyData.track_id}`, '_blank');
                 spotifyContainer.style.cursor = "pointer";
 
                 if (progressWrapper) progressWrapper.style.display = 'flex'; 
 
             } else {
+                // Not Playing
                 isPlaying = false;
+                lyricsActive = false;
+                currentTrackId = null;
+                if (lyricsElement) lyricsElement.innerText = ''; // Clear lyrics
+
                 document.getElementById('spotify-album-art').src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/168px-Spotify_logo_without_text.svg.png';
                 document.getElementById('spotify-song-title').textContent = 'Not Found';
                 document.getElementById('spotify-artist-name').textContent = 'Spotify';
@@ -69,7 +88,62 @@ async function getDiscordStatus() {
     }
 }
 
-// --- PROGRESS BAR LOGIC ---
+// --- FETCH LYRICS FUNCTION ---
+async function fetchLyrics(track, artist, duration) {
+    // Reset
+    currentLyrics = [];
+    lyricsActive = false;
+    const lyricsElement = document.getElementById('spotify-lyrics');
+
+    try {
+        // Using Lrclib API (Free & Open Source)
+        const url = `https://lrclib.net/api/get?artist_name=${encodeURIComponent(artist)}&track_name=${encodeURIComponent(track)}&duration=${Math.round(duration)}`;
+        
+        const response = await fetch(url);
+        
+        // If API returns 404 or error
+        if (!response.ok) {
+            if (lyricsElement) lyricsElement.innerText = ""; // Hide text if no lyrics
+            return;
+        }
+        
+        const data = await response.json();
+        
+        if (data && data.syncedLyrics) {
+            currentLyrics = parseLrc(data.syncedLyrics);
+            lyricsActive = true;
+            if (lyricsElement) lyricsElement.innerText = ""; // Ready to start showing
+        } else {
+            if (lyricsElement) lyricsElement.innerText = ""; // No synced lyrics found
+        }
+    } catch (err) {
+        if (lyricsElement) lyricsElement.innerText = "";
+        console.log("Lyrics fetch error:", err);
+    }
+}
+
+// --- PARSER: Convert LRC string to usable Array ---
+function parseLrc(lrc) {
+    const lines = lrc.split('\n');
+    const result = [];
+    const timeReg = /\[(\d{2}):(\d{2})\.(\d{2})\]/;
+
+    lines.forEach(line => {
+        const match = timeReg.exec(line);
+        if (match) {
+            const min = parseInt(match[1]);
+            const sec = parseInt(match[2]);
+            const ms = parseInt(match[3]);
+            const time = min * 60 + sec + ms / 100;
+            const text = line.replace(timeReg, '').trim();
+            // We push even empty strings if you want to clear the line during instrumental breaks
+            result.push({ time, text });
+        }
+    });
+    return result;
+}
+
+// --- PROGRESS BAR & LYRIC SYNC LOGIC ---
 function updateProgressBar() {
     if (!isPlaying) return; 
 
@@ -77,17 +151,43 @@ function updateProgressBar() {
     const totalDuration = songEndTimestamp - songStartTimestamp;
     const currentProgress = now - songStartTimestamp;
     
+    // Update Bar
     let percentage = (currentProgress / totalDuration) * 100;
     if (percentage > 100) percentage = 100;
 
     const barFill = document.getElementById('spotify-progress-fill');
     if (barFill) barFill.style.width = `${percentage}%`;
 
+    // Update Time Text
     const timeCurr = document.getElementById('spotify-time-current');
     const timeTot = document.getElementById('spotify-time-total');
     
     if (timeCurr) timeCurr.innerText = formatTime(currentProgress);
     if (timeTot) timeTot.innerText = formatTime(totalDuration);
+
+    // --- LYRIC SYNC UPDATE ---
+    const lyricsElement = document.getElementById('spotify-lyrics');
+    if (lyricsActive && currentLyrics.length > 0 && lyricsElement) {
+        const currentSec = currentProgress / 1000;
+        
+        // Find the correct line for the current time
+        let currentLine = lyricsElement.innerText; // Default to keeping current
+        
+        // We iterate to find the last line that has a timestamp <= current time
+        // A simple loop is fine for the small amount of lines in a song
+        let foundLine = null;
+        for (let i = 0; i < currentLyrics.length; i++) {
+            if (currentLyrics[i].time <= currentSec) {
+                foundLine = currentLyrics[i].text;
+            } else {
+                break; // Stop once we pass the current time
+            }
+        }
+
+        if (foundLine !== null && foundLine !== currentLine) {
+            lyricsElement.innerText = foundLine;
+        }
+    }
 }
 
 function formatTime(ms) {
@@ -101,7 +201,7 @@ function formatTime(ms) {
 // --- TIMERS ---
 getDiscordStatus(); 
 setInterval(getDiscordStatus, 1000); 
-setInterval(updateProgressBar, 1000);
+setInterval(updateProgressBar, 1000); // 1000ms is standard, 100ms makes the bar smoother but uses more CPU
 
 
 // --- SIDEBAR TOGGLE LOGIC ---
@@ -110,42 +210,27 @@ function toggleSidebar() {
     const overlay = document.getElementById('sidebar-overlay');
     const expandBtn = document.getElementById('expand-btn');
 
-    // Toggle classes
     sidebar.classList.toggle('active');
     overlay.classList.toggle('active');
     
-    // Hide 'Expand' button when open, show when closed
     if (sidebar.classList.contains('active')) {
-        expandBtn.style.left = "-50px"; // Hide it off-screen
+        expandBtn.style.left = "-50px"; 
     } else {
-        expandBtn.style.left = "0"; // Bring it back
+        expandBtn.style.left = "0"; 
     }
 }
 
 
-// Set birthdate: March 15, 2007
-// Month is 2 because JavaScript counts months starting at 0 (Jan=0, Feb=1, Mar=2)
+// --- AGE COUNTER ---
 const birthDate = new Date(2007, 2, 15); 
-
 const ageElement = document.getElementById("my-age");
 
 function updateAge() {
     const now = new Date();
-    
-    // Calculate the difference in milliseconds
     const diff = now - birthDate;
-
-    // Convert milliseconds to years
-    // We divide by (1000ms * 60s * 60m * 24h * 365.25 days)
     const ageInYears = diff / 31557600000;
-
-    // Update the text to show 9 decimal places
     ageElement.innerText = ageInYears.toFixed(9);
 }
 
-// Update every 50 milliseconds for the animation effect
 setInterval(updateAge, 50);
-
-// Run immediately so there is no delay on load
 updateAge();
-
