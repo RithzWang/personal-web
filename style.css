@@ -3,6 +3,11 @@ html {
     min-height: -webkit-fill-available;
 }
 
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
 body {
     font-family: 'Ubuntu', sans-serif;
     padding: 30px 0;
