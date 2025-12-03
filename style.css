@@ -297,32 +297,37 @@ p.aboutme {
 
     /* --- Language Support --- */
     font-family: 'Ubuntu', 'Amiri', 'Noto Sans', sans-serif;
-    line-height: 1.5; /* Space between lines */
+    line-height: 1.5; 
 
     /* --- Spacing & Layout --- */
     margin-top: 10px;    
     margin-bottom: 12px; 
     
-    /* STABILITY FIX: Force height to match 2 lines so the bar doesn't jump */
-    /* 14px font * 1.5 line-height * 2 lines = ~42px */
+    /* Fixed Height for stability (2 lines) */
     height: 42px;        
-    display: flex;         /* Use flex to center text vertically if it's only 1 line */
-    align-items: center;   /* Centers 1-line lyrics vertically in the 42px box */
+    display: flex;         
+    align-items: center;   
     justify-content: center;
 
-    /* --- The 2-Line Limit (Line Clamp) --- */
-    /* We have to use -webkit-box inside the flex container or directly on it */
+    /* --- THE FIX IS HERE --- */
+    /* 1. Reset wrapping so it can actually go to line 2 */
+    white-space: normal;   
+    
+    /* 2. Enforce the 2-line limit */
     display: -webkit-box;
-    -webkit-line-clamp: 2;      /* Max 2 lines */
+    -webkit-line-clamp: 2;      
     -webkit-box-orient: vertical;
-    overflow: hidden;           /* Cut off anything after line 2 */
-    text-overflow: ellipsis;    /* Add "..." if it's longer than 2 lines */
+    overflow: hidden;           
+    text-overflow: ellipsis;    
     
     /* --- Width Constraints --- */
     width: 100%;
     max-width: 240px;
     margin-left: auto;
     margin-right: auto;
+    
+    /* Optional: Word breaking for very long words/URLs */
+    word-break: break-word; 
 }
 
 
