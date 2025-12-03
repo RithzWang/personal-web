@@ -285,34 +285,36 @@ p.aboutme {
     font-family: monospace;
 }
 
-/* ALTERNATIVE: Use this if you want the text to scroll back and forth */
+
 .lyrics-line {
+    /* --- Text Styling --- */
     font-size: 14px;
-    color: #1DB954; 
-    margin: 12px auto;
-    
-    /* Layout */
-    display: block;
-    max-width: 240px; 
-    white-space: nowrap;
-    overflow: hidden; /* Hide the overflow */
-    
-    text-align: center;
+    color: #1DB954; /* Spotify Green */
+    font-weight: 500;
     font-style: italic;
     opacity: 0.9;
+    text-align: center;
+
+    /* --- Language Support (Arab Vibe) --- */
+    /* English uses Ubuntu, Arabic falls back to Amiri */
+    font-family: 'Ubuntu', 'Amiri', 'Noto Sans', sans-serif;
+    line-height: 1.5; /* Extra height for Arabic accents/dots */
+
+    /* --- Spacing --- */
+    margin-top: 10px;    /* Pushes it away from the Artist name */
+    margin-bottom: 12px; /* Pushes the Progress Bar down */
+    min-height: 21px;    /* Keeps the layout stable even if lyrics are empty */
+
+    /* --- The Overflow Fix (Vital) --- */
+    display: block;
+    width: 100%;
+    max-width: 240px; /* STRICT LIMIT: 278px card - 30px padding = ~248px space */
+    margin-left: auto;
+    margin-right: auto;
     
-    /* Animation setup */
-    transform: translateX(0);
-}
-
-/* Only scroll if the mouse hovers over the card (optional, or remove :hover to always scroll) */
-.spotify-card:hover .lyrics-line {
-    animation: scrollText 5s linear infinite alternate; 
-}
-
-@keyframes scrollText {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-20%); } /* Adjust -20% depending on how long your lines usually are */
+    white-space: nowrap;     /* Forces text onto one line */
+    overflow: hidden;        /* Hides anything that goes outside the box */
+    text-overflow: ellipsis; /* Adds "..." at the end if the text is too long */
 }
 
 
