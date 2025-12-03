@@ -92,6 +92,13 @@ p {
     font-family: 'Noto Sans', sans-serif; 
 }
 
+p.aboutme {
+    color: #777; 
+    display: flex;
+    padding-left: 20px;
+    font-family: 'Noto Sans', sans-serif; 
+}
+
 .social-icons a {
     color: #fff;
     margin: 0 3px;
