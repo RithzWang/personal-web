@@ -289,35 +289,41 @@ p.aboutme {
 .lyrics-line {
     /* --- Text Styling --- */
     font-size: 14px;
-    color: #1DB954; /* Spotify Green */
+    color: #1DB954;
     font-weight: 500;
     font-style: italic;
     opacity: 0.9;
     text-align: center;
 
-    /* --- Language Support (Arab Vibe) --- */
-    /* English uses Ubuntu, Arabic falls back to Amiri */
+    /* --- Language Support --- */
     font-family: 'Ubuntu', 'Amiri', 'Noto Sans', sans-serif;
-    line-height: 1.5; /* Extra height for Arabic accents/dots */
+    line-height: 1.5; /* Space between lines */
 
-    /* --- Spacing --- */
-    margin-top: 10px;    /* Pushes it away from the Artist name */
-    margin-bottom: 12px; /* Pushes the Progress Bar down */
-    min-height: 21px;    /* Keeps the layout stable even if lyrics are empty */
+    /* --- Spacing & Layout --- */
+    margin-top: 10px;    
+    margin-bottom: 12px; 
+    
+    /* STABILITY FIX: Force height to match 2 lines so the bar doesn't jump */
+    /* 14px font * 1.5 line-height * 2 lines = ~42px */
+    height: 42px;        
+    display: flex;         /* Use flex to center text vertically if it's only 1 line */
+    align-items: center;   /* Centers 1-line lyrics vertically in the 42px box */
+    justify-content: center;
 
-    /* --- The Overflow Fix (Vital) --- */
-    display: block;
+    /* --- The 2-Line Limit (Line Clamp) --- */
+    /* We have to use -webkit-box inside the flex container or directly on it */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;      /* Max 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;           /* Cut off anything after line 2 */
+    text-overflow: ellipsis;    /* Add "..." if it's longer than 2 lines */
+    
+    /* --- Width Constraints --- */
     width: 100%;
-    max-width: 240px; /* STRICT LIMIT: 278px card - 30px padding = ~248px space */
+    max-width: 240px;
     margin-left: auto;
     margin-right: auto;
-    
-    white-space: nowrap;     /* Forces text onto one line */
-    overflow: hidden;        /* Hides anything that goes outside the box */
-    text-overflow: ellipsis; /* Adds "..." at the end if the text is too long */
 }
-
-
 
 
 
