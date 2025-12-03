@@ -101,6 +101,16 @@ p.aboutme {
     padding-left: -30px;
     font-family: 'Outfit', sans-serif;
     line-height: 1.6; 
+    user-select: none;
+
+  /* Safari */
+  -webkit-user-select: none;
+
+  /* Firefox */
+  -moz-user-select: none;
+
+  /* Internet Explorer/Edge */
+  -ms-user-select: none;
 }
 
 
@@ -312,6 +322,16 @@ p.aboutme {
 .sidebar h2 {
     color: #fff;
     margin-bottom: 20px;
+    user-select: none;
+
+  /* Safari */
+  -webkit-user-select: none;
+
+  /* Firefox */
+  -moz-user-select: none;
+
+  /* Internet Explorer/Edge */
+  -ms-user-select: none;
 }
 
 .sidebar-divider {
