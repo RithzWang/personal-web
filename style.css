@@ -285,31 +285,36 @@ p.aboutme {
     font-family: monospace;
 }
 
-/* Find and replace this block in style.css */
+/* ALTERNATIVE: Use this if you want the text to scroll back and forth */
 .lyrics-line {
     font-size: 14px;
     color: #1DB954; 
+    margin: 12px auto;
     
-    /* Spacing: Moves the text away from the song title and progress bar */
-    margin-top: 12px;    
-    margin-bottom: 12px; 
-    
-    /* Layout: Forces the text to stay inside the 278px card */
+    /* Layout */
     display: block;
-    width: 100%;
-    max-width: 248px; /* 278px (card width) - 30px (padding) = 248px available space */
-    margin-left: auto;
-    margin-right: auto;
-    
-    /* The Fix: Cuts off text with "..." if it's too long */
+    max-width: 240px; 
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow: hidden; /* Hide the overflow */
     
     text-align: center;
     font-style: italic;
     opacity: 0.9;
+    
+    /* Animation setup */
+    transform: translateX(0);
 }
+
+/* Only scroll if the mouse hovers over the card (optional, or remove :hover to always scroll) */
+.spotify-card:hover .lyrics-line {
+    animation: scrollText 5s linear infinite alternate; 
+}
+
+@keyframes scrollText {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-20%); } /* Adjust -20% depending on how long your lines usually are */
+}
+
 
 
 
