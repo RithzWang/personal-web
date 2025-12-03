@@ -96,6 +96,7 @@ p {
 p.aboutme {
     color: #777; 
     display: flex;
+    justify-content: left;
     padding-left: 20px;
     font-family: 'Noto Sans', sans-serif; 
 }
