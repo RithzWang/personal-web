@@ -285,19 +285,26 @@ p.aboutme {
     font-family: monospace;
 }
 
-/* Add to style.css */
+/* --- ADD or UPDATE this block in style.css --- */
 .lyrics-line {
-    font-size: 13px;
-    color: #1DB954; /* Spotify Green, or use #fff for white */
-    margin-top: 5px;
+    font-size: 14px;
+    color: #1DB954; /* Spotify Green */
+    
+    /* Margins to push the progress bar down */
+    margin-top: 12px;    
+    margin-bottom: 12px; 
+    
     font-style: italic;
-    min-height: 20px; /* Keeps the layout stable if empty */
+    min-height: 20px;
     transition: opacity 0.3s ease;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    opacity: 0.8;
+    opacity: 0.9;
+    text-align: center; /* Centers the lyrics over the bar */
+    width: 100%;
 }
+
 
 
 /* --- SIDEBAR & TOGGLE BUTTONS --- */
