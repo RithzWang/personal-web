@@ -35,22 +35,23 @@
     </div>
 
     <div id="sidebar" class="sidebar">
-        <div class="side-toggle-btn collapse" onclick="toggleSidebar()">
-            <span class="vertical-text">Collapse</span>
-            <i class="fas fa-chevron-left"></i>
-        </div>
-
-        <div class="sidebar-content">
-            <h2>About Me</h2>
-            <div class="sidebar-divider"></div>
-            <p class="aboutme">
-                My name is Ridouan<br>
-                I'm <span id="my-age">18.000000000</span> years old<br>
-                From planet earth 
-            </p>
-            
-            </div>
+    
+    <div id="toggle-btn" class="side-toggle-btn" onclick="toggleSidebar()">
+        <span id="toggle-text" class="vertical-text">About Me</span>
+        <i id="toggle-icon" class="fas fa-chevron-right"></i>
     </div>
+
+    <div class="sidebar-content">
+        <h2>About Me</h2>
+        <div class="sidebar-divider"></div>
+        <p class="aboutme">
+            My name is Ridouan<br>
+            I'm <span id="my-age">18.000000000</span> years old<br>
+            From planet earth 
+        </p>
+    </div>
+</div>
+
     
     <div id="sidebar-overlay" class="overlay" onclick="toggleSidebar()"></div>
 
