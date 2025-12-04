@@ -286,113 +286,9 @@ p.aboutme {
 }
 
 
-.lyrics-line {
-    /* --- Text Styling --- */
-    font-size: 14px;
-    color: #1DB954;
-    font-weight: 500;
-    font-style: italic;
-    opacity: 0.9;
-    text-align: center;
-
-    /* --- Language Support --- */
-    font-family: 'Ubuntu', 'Amiri', 'Noto Sans', sans-serif;
-    line-height: 1.5; 
-
-    /* --- Spacing & Layout --- */
-    margin-top: 10px;    
-    margin-bottom: 12px; 
-    
-    /* Fixed Height for stability (2 lines) */
-    height: 42px;        
-    display: flex;         
-    align-items: center;   
-    justify-content: center;
-
-    /* --- THE FIX IS HERE --- */
-    /* 1. Reset wrapping so it can actually go to line 2 */
-    white-space: normal;   
-    
-    /* 2. Enforce the 2-line limit */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;      
-    -webkit-box-orient: vertical;
-    overflow: hidden;           
-    text-overflow: ellipsis;    
-    
-    /* --- Width Constraints --- */
-    width: 100%;
-    max-width: 240px;
-    margin-left: auto;
-    margin-right: auto;
-    
-    /* Optional: Word breaking for very long words/URLs */
-    word-break: break-word; 
-}
-
 
 
 /* --- SIDEBAR & TOGGLE BUTTONS --- */
-
-/* The Buttons (Expand/Collapse) */
-.side-toggle-btn {
-    position: fixed;
-    top: 100px; /* Adjust height position */
-    width: 35px;
-    height: 120px;
-    background-color: #1e1e1e; /* Dark background */
-    color: #fff;
-    border: 1px solid #333;
-    border-left: none;
-    border-radius: 0 10px 10px 0; /* Rounded right corners */
-    cursor: pointer;
-    z-index: 2000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: left 0.4s ease, transform 0.2s;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-}
-
-.side-toggle-btn:hover {
-    background-color: #252526;
-}
-
-/* Position 'Expand' on the far left */
-.expand {
-    left: 0;
-}
-
-/* Position 'Collapse' relative to the sidebar width */
-.collapse {
-    position: absolute;
-    right: -35px; /* Stick it out the side of the sidebar */
-    top: 100px;
-    border-left: none; /* Looks connected */
-}
-
-/* Vertical Text Styling */
-.vertical-text {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    transform: rotate(180deg); /* Flips text to read correctly */
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    font-family: 'Ubuntu', sans-serif;
-    user-select: none;
-
-  /* Safari */
-  -webkit-user-select: none;
-
-  /* Firefox */
-  -moz-user-select: none;
-
-  /* Internet Explorer/Edge */
-  -ms-user-select: none;
-}
 
 /* The Sidebar Panel */
 .sidebar {
@@ -404,18 +300,53 @@ p.aboutme {
     background-color: #111;
     border-right: 1px solid #333;
     z-index: 1500;
-    transform: translateX(-100%);
+    transform: translateX(-100%); /* Hidden by default */
     transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
     box-shadow: 5px 0 15px rgba(0,0,0,0.5);
-    
-    /* CHANGE THIS: 'visible' allows the button to stick out */
-    overflow: visible !important; 
+    overflow: visible !important; /* IMPORTANT: Allows button to hang outside */
 }
-
 
 /* Class added by JS to show sidebar */
 .sidebar.active {
     transform: translateX(0);
+}
+
+/* The Single Toggle Button */
+.side-toggle-btn {
+    position: absolute; /* Stick relative to the sidebar */
+    top: 100px;
+    right: -35px; /* Push it 35px out the right side of the sidebar */
+    width: 35px;
+    height: 120px;
+    background-color: #1e1e1e;
+    color: #fff;
+    border: 1px solid #333;
+    border-left: none; /* Make it look attached */
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.side-toggle-btn:hover {
+    background-color: #252526;
+}
+
+/* Vertical Text Styling */
+.vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: 'Ubuntu', sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 /* Content inside the sidebar */
@@ -429,15 +360,7 @@ p.aboutme {
     color: #fff;
     margin-bottom: 20px;
     user-select: none;
-
-  /* Safari */
-  -webkit-user-select: none;
-
-  /* Firefox */
-  -moz-user-select: none;
-
-  /* Internet Explorer/Edge */
-  -ms-user-select: none;
+    -webkit-user-select: none;
 }
 
 .sidebar-divider {
@@ -446,7 +369,7 @@ p.aboutme {
     margin-bottom: 20px;
 }
 
-/* Overlay (Darkens the main site) */
+/* Overlay */
 .overlay {
     position: fixed;
     top: 0;
@@ -458,10 +381,11 @@ p.aboutme {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s;
-    backdrop-filter: blur(2px); /* Blur effect like video */
+    backdrop-filter: blur(2px);
 }
 
 .overlay.active {
     opacity: 1;
     visibility: visible;
 }
+
