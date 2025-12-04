@@ -108,19 +108,29 @@ setInterval(updateProgressBar, 1000);
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebar-overlay');
-    const expandBtn = document.getElementById('expand-btn');
+    
+    // Get the text and icon inside the button
+    const textSpan = document.getElementById('toggle-text');
+    const icon = document.getElementById('toggle-icon');
 
-    // Toggle classes
+    // Toggle the active class
     sidebar.classList.toggle('active');
     overlay.classList.toggle('active');
     
-    // Hide 'Expand' button when open, show when closed
+    // Check if open or closed to change text/icon
     if (sidebar.classList.contains('active')) {
-        expandBtn.style.left = "-50px"; // Hide it off-screen
+        // Sidebar is OPEN: Show "Collapse" and Left Arrow
+        textSpan.innerText = "Collapse";
+        icon.classList.remove('fa-chevron-right');
+        icon.classList.add('fa-chevron-left');
     } else {
-        expandBtn.style.left = "0"; // Bring it back
+        // Sidebar is CLOSED: Show "About Me" and Right Arrow
+        textSpan.innerText = "About Me";
+        icon.classList.remove('fa-chevron-left');
+        icon.classList.add('fa-chevron-right');
     }
 }
+
 
 
 // Set birthdate: March 15, 2007
