@@ -354,6 +354,16 @@ p.aboutme {
     padding: 30px;
     color: #d4d4d4;
     text-align: left;
+    user-select: none;
+
+  /* Safari */
+  -webkit-user-select: none;
+
+  /* Firefox */
+  -moz-user-select: none;
+
+  /* Internet Explorer/Edge */
+  -ms-user-select: none;
 }
 
 .sidebar h2 {
@@ -361,6 +371,16 @@ p.aboutme {
     margin-bottom: 20px;
     user-select: none;
     -webkit-user-select: none;
+    user-select: none;
+
+  /* Safari */
+  -webkit-user-select: none;
+
+  /* Firefox */
+  -moz-user-select: none;
+
+  /* Internet Explorer/Edge */
+  -ms-user-select: none;
 }
 
 .sidebar-divider {
@@ -404,6 +424,16 @@ p.aboutme {
     border: 1px solid #333;
     line-height: 1.5;
     box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    user-select: none;
+
+  /* Safari */
+  -webkit-user-select: none;
+
+  /* Firefox */
+  -moz-user-select: none;
+
+  /* Internet Explorer/Edge */
+  -ms-user-select: none;
 }
 
 /* Syntax Highlighting Colors */
