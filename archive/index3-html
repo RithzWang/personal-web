@@ -19,42 +19,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <script>
-        function handleButtonClick(platform) {
-            console.log("Clicked on " + platform + " button!");
-        }
-    </script>
 </head>
 
 <body>
 
-    <div id="expand-btn" class="side-toggle-btn expand" onclick="toggleSidebar()">
-        <span class="vertical-text">About Me</span>
-        <i class="fas fa-chevron-right"></i>
-    </div>
-
     <div id="sidebar" class="sidebar">
-    
-    <div id="toggle-btn" class="side-toggle-btn" onclick="toggleSidebar()">
-        <span id="toggle-text" class="vertical-text">About Me</span>
-        <i id="toggle-icon" class="fas fa-chevron-right"></i>
-    </div>
+        <div id="toggle-btn" class="side-toggle-btn" onclick="toggleSidebar()">
+            <span id="toggle-text" class="vertical-text">About Me</span>
+            <i id="toggle-icon" class="fas fa-chevron-right"></i>
+        </div>
 
-    <div class="sidebar-content">
-        <h2>About Me</h2>
-        <div class="sidebar-divider"></div>
-        <p class="aboutme">
-            My name is Ridouan<br>
-            I'm <span id="my-age">18.000000000</span> years old<br>
-            From planet earth 
-        </p>
+        <div class="sidebar-content">
+            <h2>About Me</h2>
+            <div class="sidebar-divider"></div>
+            <p class="aboutme">
+                My Name is Ridouan<br> People also call me Rithz<br>
+                My Birthday is on 15th March 2007<br> My Passion is Learning Languages
+            </p>
+        </div>
     </div>
-</div>
-
     
     <div id="sidebar-overlay" class="overlay" onclick="toggleSidebar()"></div>
-
 
     <header>
         <div class="profile-picture-container">
@@ -63,18 +48,17 @@
         </div>
 
         <h1 id="mystery">رضوان</h1>
-       <!-- <p class="yousuf">صلوا على رسول الله ﷺ</p> -->
     </header>
 
-<script>
-let clicks = 0;
-document.getElementById('mystery').addEventListener('click', () => {
-  clicks++;
-  if (clicks === 10) {
-    alert('🎊 Surprise! You’re patient.');
-  }
-});
-</script>
+    <script>
+    let clicks = 0;
+    document.getElementById('mystery').addEventListener('click', () => {
+      clicks++;
+      if (clicks === 10) {
+        alert('🎊 Surprise! You’re patient.');
+      }
+    });
+    </script>
 
     <div class="social-icons">
         <a href="https://discord.com/users/837741275603009626" target="_blank"><i class="fab fa-discord"></i></a>
