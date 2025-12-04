@@ -279,7 +279,7 @@ p.aboutme {
 .spotify-time {
     display: flex;
     justify-content: space-between;
-    font-size: 10px;
+    font-size: 12px;
     color: #b3b3b3;
     margin-top: 5px;
     font-family: monospace;
