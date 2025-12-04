@@ -14,11 +14,6 @@ let songStartTimestamp = 0;
 let songEndTimestamp = 0;
 let isPlaying = false;
 
-// Lyrics Variables
-let currentTrackId = null;
-let currentLyrics = []; 
-let lyricsActive = false;
-
 // --- FETCH DATA FROM DISCORD ---
 async function getDiscordStatus() {
     try {
@@ -30,7 +25,6 @@ async function getDiscordStatus() {
         const spotifyData = data.data.spotify;
         const spotifyContainer = document.getElementById('spotify-container');
         const progressWrapper = document.querySelector('.spotify-progress-wrapper');
-        const lyricsElement = document.getElementById('spotify-lyrics');
 
         if (spotifyContainer) {
             spotifyContainer.style.display = 'flex'; 
@@ -45,27 +39,14 @@ async function getDiscordStatus() {
                 document.getElementById('spotify-artist-name').textContent = spotifyData.artist;
                 document.getElementById('spotify-album-art').style.filter = "none";
                 
-                // --- CHECK SONG CHANGE FOR LYRICS ---
-                if (currentTrackId !== spotifyData.track_id) {
-                    currentTrackId = spotifyData.track_id;
-                    // Show placeholder immediately
-                    if (lyricsElement) lyricsElement.innerText = "...🎶...";
-                    fetchLyrics(spotifyData.song, spotifyData.artist, (songEndTimestamp - songStartTimestamp) / 1000);
-                }
-
-                // Link to song
+                // Link to song (Fixed variable interpolation)
                 spotifyContainer.onclick = () => window.open(`https://open.spotify.com/track/$${spotifyData.track_id}`, '_blank');
                 spotifyContainer.style.cursor = "pointer";
 
                 if (progressWrapper) progressWrapper.style.display = 'flex'; 
 
             } else {
-                // Not Playing
                 isPlaying = false;
-                lyricsActive = false;
-                currentTrackId = null;
-                if (lyricsElement) lyricsElement.innerText = ''; 
-
                 document.getElementById('spotify-album-art').src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/168px-Spotify_logo_without_text.svg.png';
                 document.getElementById('spotify-song-title').textContent = 'Not Found';
                 document.getElementById('spotify-artist-name').textContent = 'Spotify';
@@ -88,58 +69,7 @@ async function getDiscordStatus() {
     }
 }
 
-// --- FETCH LYRICS FUNCTION ---
-async function fetchLyrics(track, artist, duration) {
-    // Reset
-    currentLyrics = [];
-    lyricsActive = false;
-    const lyricsElement = document.getElementById('spotify-lyrics');
-
-    try {
-        const url = `https://lrclib.net/api/get?artist_name=${encodeURIComponent(artist)}&track_name=${encodeURIComponent(track)}&duration=${Math.round(duration)}`;
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-            // API failed or no lyrics found -> Show placeholder
-            if (lyricsElement) lyricsElement.innerText = "...🎶...";
-            return;
-        }
-        
-        const data = await response.json();
-        
-        if (data && data.syncedLyrics) {
-            currentLyrics = parseLrc(data.syncedLyrics);
-            lyricsActive = true;
-        } else {
-            if (lyricsElement) lyricsElement.innerText = "...🎶...";
-        }
-    } catch (err) {
-        if (lyricsElement) lyricsElement.innerText = "...🎶...";
-        console.log("Lyrics fetch error:", err);
-    }
-}
-
-// --- PARSER ---
-function parseLrc(lrc) {
-    const lines = lrc.split('\n');
-    const result = [];
-    const timeReg = /\[(\d{2}):(\d{2})\.(\d{2})\]/;
-
-    lines.forEach(line => {
-        const match = timeReg.exec(line);
-        if (match) {
-            const min = parseInt(match[1]);
-            const sec = parseInt(match[2]);
-            const ms = parseInt(match[3]);
-            const time = min * 60 + sec + ms / 100;
-            const text = line.replace(timeReg, '').trim();
-            result.push({ time, text });
-        }
-    });
-    return result;
-}
-
-// --- PROGRESS BAR & LYRIC SYNC ---
+// --- PROGRESS BAR LOGIC ---
 function updateProgressBar() {
     if (!isPlaying) return; 
 
@@ -147,46 +77,17 @@ function updateProgressBar() {
     const totalDuration = songEndTimestamp - songStartTimestamp;
     const currentProgress = now - songStartTimestamp;
     
-    // Update Bar
     let percentage = (currentProgress / totalDuration) * 100;
     if (percentage > 100) percentage = 100;
 
     const barFill = document.getElementById('spotify-progress-fill');
     if (barFill) barFill.style.width = `${percentage}%`;
 
-    // Update Time Text
     const timeCurr = document.getElementById('spotify-time-current');
     const timeTot = document.getElementById('spotify-time-total');
     
     if (timeCurr) timeCurr.innerText = formatTime(currentProgress);
     if (timeTot) timeTot.innerText = formatTime(totalDuration);
-
-    // --- LYRIC LOGIC ---
-    const lyricsElement = document.getElementById('spotify-lyrics');
-    if (lyricsActive && currentLyrics.length > 0 && lyricsElement) {
-        const currentSec = currentProgress / 1000;
-        
-        let foundLine = null;
-        // Find the line matching current time
-        for (let i = 0; i < currentLyrics.length; i++) {
-            if (currentLyrics[i].time <= currentSec) {
-                foundLine = currentLyrics[i].text;
-            } else {
-                break; 
-            }
-        }
-
-        // If no line found (Intro) or line is empty (Instrumental) -> Show Placeholder
-        if (foundLine === null || foundLine.trim() === "") {
-            if (lyricsElement.innerText !== "...🎶...") {
-                lyricsElement.innerText = "...🎶...";
-            }
-        } else {
-            if (lyricsElement.innerText !== foundLine) {
-                lyricsElement.innerText = foundLine;
-            }
-        }
-    }
 }
 
 function formatTime(ms) {
@@ -200,34 +101,61 @@ function formatTime(ms) {
 // --- TIMERS ---
 getDiscordStatus(); 
 setInterval(getDiscordStatus, 1000); 
-setInterval(updateProgressBar, 1000); 
+setInterval(updateProgressBar, 1000);
 
-// --- SIDEBAR TOGGLE ---
+
+// --- SIDEBAR TOGGLE LOGIC ---
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebar-overlay');
-    const expandBtn = document.getElementById('expand-btn');
+    
+    // Get the text and icon inside the button
+    const textSpan = document.getElementById('toggle-text');
+    const icon = document.getElementById('toggle-icon');
 
+    // Toggle the active class
     sidebar.classList.toggle('active');
     overlay.classList.toggle('active');
     
+    // Check if open or closed to change text/icon
     if (sidebar.classList.contains('active')) {
-        expandBtn.style.left = "-50px"; 
+        // Sidebar is OPEN: Show "Collapse" and Left Arrow
+        textSpan.innerText = "Collapse";
+        icon.classList.remove('fa-chevron-right');
+        icon.classList.add('fa-chevron-left');
     } else {
-        expandBtn.style.left = "0"; 
+        // Sidebar is CLOSED: Show "About Me" and Right Arrow
+        textSpan.innerText = "About Me";
+        icon.classList.remove('fa-chevron-left');
+        icon.classList.add('fa-chevron-right');
     }
 }
 
-// --- AGE COUNTER ---
+
+
+// Set birthdate: March 15, 2007
+// Month is 2 because JavaScript counts months starting at 0 (Jan=0, Feb=1, Mar=2)
 const birthDate = new Date(2007, 2, 15); 
+
 const ageElement = document.getElementById("my-age");
 
 function updateAge() {
     const now = new Date();
+    
+    // Calculate the difference in milliseconds
     const diff = now - birthDate;
+
+    // Convert milliseconds to years
+    // We divide by (1000ms * 60s * 60m * 24h * 365.25 days)
     const ageInYears = diff / 31557600000;
+
+    // Update the text to show 9 decimal places
     ageElement.innerText = ageInYears.toFixed(9);
 }
 
+// Update every 50 milliseconds for the animation effect
 setInterval(updateAge, 50);
+
+// Run immediately so there is no delay on load
 updateAge();
+
