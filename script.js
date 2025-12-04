@@ -132,3 +132,30 @@ function toggleSidebar() {
 }
 
 
+
+// Set birthdate: March 15, 2007
+// Month is 2 because JavaScript counts months starting at 0 (Jan=0, Feb=1, Mar=2)
+const birthDate = new Date(2007, 2, 15); 
+
+const ageElement = document.getElementById("my-age");
+
+function updateAge() {
+    const now = new Date();
+    
+    // Calculate the difference in milliseconds
+    const diff = now - birthDate;
+
+    // Convert milliseconds to years
+    // We divide by (1000ms * 60s * 60m * 24h * 365.25 days)
+    const ageInYears = diff / 31557600000;
+
+    // Update the text to show 9 decimal places
+    ageElement.innerText = ageInYears.toFixed(9);
+}
+
+// Update every 50 milliseconds for the animation effect
+setInterval(updateAge, 50);
+
+// Run immediately so there is no delay on load
+updateAge();
+
