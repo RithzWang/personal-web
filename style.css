@@ -389,3 +389,29 @@ p.aboutme {
     visibility: visible;
 }
 
+
+/* --- CODE SNIPPET STYLING --- */
+.code-snippet {
+    background-color: #1e1e1e; /* Matches your sidebar button */
+    color: #abb2bf;            /* Default text color */
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 13px;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+    white-space: pre;          /* This keeps the spacing/indentation automatically */
+    overflow-x: auto;          /* Scroll sideways if text is too long */
+    border: 1px solid #333;
+    line-height: 1.5;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* Syntax Highlighting Colors */
+.keyword { color: #c678dd; font-weight: bold; } /* const (Purple) */
+.variable { color: #e06c75; } /* me (Red) */
+.operator { color: #56b6c2; } /* = (Cyan) */
+.key { color: #d19a66; }      /* name, aka (Orange) */
+.string { color: #98c379; }   /* 'Ridouan' (Green) */
+.object { color: #e5c07b; }   /* console (Yellow) */
+.method { color: #61afef; }   /* log (Blue) */
+
