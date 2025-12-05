@@ -111,6 +111,11 @@ p.yousuf {
   animation: waveGlow 5s linear infinite;
 }
 
+@keyframes waveGlow {
+  0% { background-position: 0% center; }
+  100% { background-position: 100% center; }
+}
+
 p {
     color: #777; 
     display: flex;
