@@ -103,7 +103,7 @@ p.yousuf {
   font-family: "Scheherazade New", serif;
   font-weight: bold;
   margin-top: -10px; 
-  background: linear-gradient(120deg, gray, white, gray);
+  background: linear-gradient(120deg, gray, white, white, gray);
   background-size: 400% auto;
   background-position: 0% center;
   -webkit-background-clip: text;
