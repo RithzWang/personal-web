@@ -6,6 +6,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'times new roman';
+    src: url('fonts/times.ttf') format('truetype');
+    font-weight: regular;
+    font-style: normal;
+}
+
 html {
     min-height: -webkit-fill-available;
 }
@@ -244,8 +251,8 @@ h1 {
     padding: 6px 12px;
     border-radius: 8px;
     font-size: 12px;
-    font-family: 'gg sans', 'Ubuntu', sans-serif;
-    font-weight: bold;
+    font-family: 'times new roman', 'Ubuntu', sans-serif;
+    font-weight: regular;
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
