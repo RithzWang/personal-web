@@ -258,7 +258,7 @@ h1 {
     padding: 6px 12px;
     border-radius: 8px;
     font-size: 12px;
-    font-family: 'times new roman', 'Prima Sans Regular', sans-serif;
+    font-family: 'Prima Sans Regular', 'times new roman', sans-serif;
     font-weight: 40px;
     white-space: nowrap;
     opacity: 0;
