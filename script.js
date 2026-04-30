@@ -61,10 +61,10 @@ document.querySelectorAll('.flag-wrapper').forEach(wrapper => {
         // 3. Show the tooltip for the flag we just clicked
         this.classList.add('show-tooltip');
         
-        // 4. Automatically hide the tooltip after 3 seconds
+        // 4. Automatically hide the tooltip after 5 seconds
         setTimeout(() => {
             this.classList.remove('show-tooltip');
-        }, 3000); 
+        }, 5000); 
     });
 });
 
