@@ -42,38 +42,13 @@ async function getDiscordStatus() {
 
 // --- TIMERS ---
 getDiscordStatus(); 
-setInterval(getDiscordStatus, 5000); // Polling safely every 5 seconds
+setInterval(getDiscordStatus, 5000); 
 
-// --- SIDEBAR TOGGLE LOGIC ---
-function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebar-overlay');
-    
-    const textSpan = document.getElementById('toggle-text');
-    const icon = document.getElementById('toggle-icon');
-
-    sidebar.classList.toggle('active');
-    overlay.classList.toggle('active');
-    
-    if (sidebar.classList.contains('active')) {
-        textSpan.innerText = "Collapse";
-        icon.classList.remove('fa-chevron-right');
-        icon.classList.add('fa-chevron-left');
-    } else {
-        textSpan.innerText = "About Me";
-        icon.classList.remove('fa-chevron-left');
-        icon.classList.add('fa-chevron-right');
-    }
-}
-
-// --- PROFILE PICTURE POP ANIMATION ---
+// --- PROFILE PICTURE TOGGLE ANIMATION ---
 const profileImage = document.querySelector('.profile-picture');
 if (profileImage) {
     profileImage.addEventListener('click', function() {
-        this.classList.add('pop-clicked');
-        
-        setTimeout(() => {
-            this.classList.remove('pop-clicked');
-        }, 200);
+        // Toggles the 'pop-clicked' class on and off with each click
+        this.classList.toggle('pop-clicked');
     });
 }
