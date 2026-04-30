@@ -262,11 +262,12 @@ h1#mystery {
     animation-delay: 0.3s;
 }
 
-/* 4. Flags: Pops in right after the name (0.5s) instead of waiting for socials! */
+/* 4. Flags: Slides UP (same motion as name) but appears more slowly */
 .flags-container {
-    animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation: slideFadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-delay: 0.5s; 
 }
+
 
 /* --- THE ANIMATION KEYFRAMES --- */
 
