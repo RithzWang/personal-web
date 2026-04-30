@@ -39,7 +39,7 @@ header {
     object-fit: cover;
     
     /* THE GAP: This creates the exact dark empty space */
-    padding: 6px; 
+    padding: 3px; 
     
     /* THE RING: Thick border to match the image */
     border: 6px solid transparent; 
