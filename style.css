@@ -115,15 +115,42 @@ h1, p {
 }
 
 h1 {
-  font-family: 'gg sans', sans-serif;
   font-weight: bold;
   font-size: 42px;
   color: #ffffff;
+  
+  /* Flexbox makes them sit perfectly side-by-side */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* This controls the space between the words and the separator */
+  
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
 }
+
+.en-name {
+    font-family: 'gg sans', sans-serif;
+}
+
+.ar-name {
+    font-family: 'Aref Ruqaa', serif;
+    font-weight: 700;
+    /* Arabic fonts often sit differently on the baseline. 
+       This nudges it down slightly to perfectly align with the English text. */
+    margin-top: 5px; 
+}
+
+.name-separator {
+    color: rgba(255, 255, 255, 0.25); /* Faint grey vertical line */
+    font-size: 36px; /* Slightly smaller than the names */
+    font-weight: 400;
+    font-family: 'Ubuntu', sans-serif; /* Gives a perfectly straight line */
+    margin-bottom: 5px; /* Nudges the separator to center it visually */
+}
+
 
 .social-icons a {
     color: #fff;
