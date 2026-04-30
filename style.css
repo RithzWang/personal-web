@@ -154,23 +154,31 @@ h1 {
 }
 
 /* =========================================
-   AL HILAL ICON STYLES
+   AL HILAL APP ICON STYLES
    ========================================= */
 .extra-icon-container {
-    margin-top: 10px;
+    margin-top: 15px; /* Pushes it down a bit from the social icons */
     opacity: 0; 
     animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     animation-delay: 0.9s; 
 }
 
 .alhilal-icon {
-    width: 55px; 
-    height: 55px; 
+    width: 40px;  /* Much smaller size! */
+    height: 40px; 
     object-fit: cover;
-    border-radius: 14px; 
-    border: 3px solid #666666; 
+    
+    /* Classic app icon curve */
+    border-radius: 10px; 
+    
+    /* Subtle clean border instead of thick grey line */
+    border: 1px solid rgba(255, 255, 255, 0.15); 
+    
+    /* Nice drop shadow to make it float like an app */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
+    
     cursor: pointer;
-    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.2s ease;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
     
     user-select: none;
     -webkit-user-drag: none;
@@ -178,12 +186,14 @@ h1 {
 }
 
 .alhilal-icon:hover {
-    border-color: #888888;
+    box-shadow: 0 6px 14px rgba(255, 255, 255, 0.1); /* Glows slightly when hovered */
 }
 
+/* Presses straight down like tapping an app on a phone */
 .alhilal-icon:active, .alhilal-icon.clicked {
-    transform: scale(0.85) translateY(5px); 
+    transform: scale(0.85); 
 }
+
 
 /* =========================================
    ENTRY ANIMATIONS (Fade In & Slide Up)
