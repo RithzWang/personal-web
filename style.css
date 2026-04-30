@@ -157,15 +157,15 @@ h1 {
    AL HILAL APP ICON STYLES
    ========================================= */
 .extra-icon-container {
-    margin-top: 15px; /* Pushes it down a bit from the social icons */
+    margin-top: 0px; /* Pushes it down a bit from the social icons */
     opacity: 0; 
     animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     animation-delay: 0.9s; 
 }
 
 .alhilal-icon {
-    width: 40px;  /* Much smaller size! */
-    height: 40px; 
+    width: 50px;  /* Much smaller size! */
+    height: 50px; 
     object-fit: cover;
     
     /* Classic app icon curve */
