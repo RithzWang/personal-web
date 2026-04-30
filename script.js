@@ -44,15 +44,27 @@ async function getDiscordStatus() {
 getDiscordStatus(); 
 setInterval(getDiscordStatus, 5000); 
 
-// --- AL HILAL ICON CLICK ANIMATION ---
-const alhilalIcon = document.querySelector('.alhilal-icon');
-if (alhilalIcon) {
-    alhilalIcon.addEventListener('click', function () {
-        this.classList.add('clicked');
+// --- FLAG ICONS & TOOLTIPS CLICK ANIMATION ---
+document.querySelectorAll('.flag-wrapper').forEach(wrapper => {
+    wrapper.addEventListener('click', function () {
+        const icon = this.querySelector('.flag-icon');
         
-        // Removes the class after 200ms so it bounces back up
+        // 1. Do the bounce animation on the flag image
+        icon.classList.add('clicked');
         setTimeout(() => {
-            this.classList.remove('clicked');
+            icon.classList.remove('clicked');
         }, 200);
+
+        // 2. Hide tooltips from any OTHER flags we previously clicked
+        document.querySelectorAll('.flag-wrapper').forEach(w => w.classList.remove('show-tooltip'));
+        
+        // 3. Show the tooltip for the flag we just clicked
+        this.classList.add('show-tooltip');
+        
+        // 4. Automatically hide the tooltip after 2 seconds
+        setTimeout(() => {
+            this.classList.remove('show-tooltip');
+        }, 2000); 
     });
-}
+});
+
