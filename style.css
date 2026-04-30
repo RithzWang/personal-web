@@ -9,7 +9,14 @@
 @font-face {
     font-family: 'times new roman';
     src: url('fonts/times.ttf') format('truetype');
-    font-weight: regular;
+    font-weight: 40px;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Prima Sans Regular';
+    src: url('fonts/Prima Sans Regular.otf') format('truetype');
+    font-weight: 40px;
     font-style: normal;
 }
 
@@ -251,8 +258,8 @@ h1 {
     padding: 6px 12px;
     border-radius: 8px;
     font-size: 12px;
-    font-family: 'times new roman', 'Ubuntu', sans-serif;
-    font-weight: regular;
+    font-family: 'times new roman', 'Prima Sans Regilar', sans-serif;
+    font-weight: 40px;
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
