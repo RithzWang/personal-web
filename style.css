@@ -223,7 +223,7 @@ h1 {
     -webkit-touch-callout: none;
 }
 
-/* Bounces down when clicked (no sticky hover glow!) */
+/* Bounces down when clicked */
 .flag-icon:active, .flag-icon.clicked {
     transform: scale(0.85); 
 }
@@ -235,13 +235,14 @@ h1 {
     cursor: pointer;
 }
 
-/* --- THE TOOLTIP TEXT BOX (MOVED BELOW) --- */
+/* --- THE TOOLTIP TEXT BOX (BELOW THE FLAG) --- */
 .flag-wrapper::after {
     content: attr(data-tooltip);
     position: absolute;
-    top: 130%; /* Positions it BELOW the flag */
+    /* Pushed down exactly 14px below the flag to make room for the arrow */
+    top: calc(100% + 14px); 
     left: 50%;
-    transform: translateX(-50%) translateY(-10px); /* Starts slightly higher */
+    transform: translateX(-50%) translateY(-5px); 
     background-color: rgba(30, 30, 30, 0.95);
     color: #fff;
     padding: 6px 12px;
@@ -256,19 +257,20 @@ h1 {
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     pointer-events: none;
     z-index: 100;
-    border: 1px solid rgba(255,255,255,0.1);
+    /* Removed the border so the arrow melts right into the box! */
 }
 
-/* --- THE TOOLTIP LITTLE ARROW (POINTING UP) --- */
+/* --- THE TOOLTIP ARROW (POINTING UP AT THE FLAG) --- */
 .flag-wrapper::before {
     content: '';
     position: absolute;
-    top: 105%; /* Positions it BELOW the flag */
+    /* Positions the arrow exactly on top of the box (14px - 8px arrow height = 6px) */
+    top: calc(100% + 6px); 
     left: 50%;
-    transform: translateX(-50%) translateY(-10px); /* Matches text box */
-    border-width: 6px;
+    transform: translateX(-50%) translateY(-5px); 
+    /* A bigger, 8px solid triangle pointing UP */
+    border-width: 0 8px 8px 8px; 
     border-style: solid;
-    /* This makes the arrow point UP towards the flag */
     border-color: transparent transparent rgba(30, 30, 30, 0.95) transparent; 
     opacity: 0;
     visibility: hidden;
@@ -282,7 +284,7 @@ h1 {
 .flag-wrapper.show-tooltip::before {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(0); /* Drops down smoothly into place */
+    transform: translateX(-50%) translateY(0); 
 }
 
 
@@ -328,7 +330,7 @@ h1#mystery, p {
 
 /* --- THE ANIMATION KEYFRAMES --- */
 
-/* NEW: Slowly pops out from smaller size */
+/* Slowly pops out from smaller size */
 @keyframes slowPopOut {
     0% {
         opacity: 0;
