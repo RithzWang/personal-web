@@ -145,4 +145,221 @@ h1 {
 
 .name-separator {
     color: rgba(255, 255, 255, 0.25); /* Faint grey vertical line */
-    font-size: 36px; /* Slightly smaller than the namesChange the profile picture animation to like it slowly pop out
+    font-size: 36px; /* Slightly smaller than the names */
+    font-weight: 400;
+    font-family: 'Ubuntu', sans-serif; /* Gives a perfectly straight line */
+    margin-bottom: 5px; /* Nudges the separator to center it visually */
+}
+
+
+/* =========================================
+   FLOATING SOCIAL ICONS (Top Right)
+   ========================================= */
+.social-icons {
+    position: fixed; /* Floats them over everything else */
+    top: 25px;
+    right: 25px;
+    display: flex;
+    flex-direction: row; 
+    gap: 8px; /* Space between icons */
+    z-index: 1000; /* Ensures they stay on top of other elements */
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 19px; 
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; 
+    height: 32px; 
+    border-radius: 50%;
+    
+    /* Removed the background */
+    background-color: transparent; 
+    
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
+}
+
+/* Let's make them scale up slightly when hovered */
+.social-icons a:hover {
+    transform: scale(1.15);
+    opacity: 0.8;
+}
+
+.social-icons a:active, .social-icons a.clicked {
+    transform: scale(0.8); 
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+
+/* =========================================
+   FLAG ICONS & TOOLTIPS STYLES
+   ========================================= */
+.flags-container {
+    margin-top: 15px; 
+    display: flex;
+    justify-content: center; /* Centers the row of flags */
+    align-items: center;
+    gap: 12px; /* Perfect amount of space between each flag */
+}
+
+.flag-icon {
+    width: 38px;  /* Small and clean */
+    height: auto; /* Automatically keeps the 512x370 aspect ratio */
+    
+    border-radius: 6px; /* Softly rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle floating shadow */
+    
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+}
+
+/* Bounces down when clicked (no sticky hover glow!) */
+.flag-icon:active, .flag-icon.clicked {
+    transform: scale(0.85); 
+}
+
+/* --- TOOLTIP WRAPPER --- */
+.flag-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* --- THE TOOLTIP TEXT BOX (MOVED BELOW) --- */
+.flag-wrapper::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 130%; /* Positions it BELOW the flag */
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px); /* Starts slightly higher */
+    background-color: rgba(30, 30, 30, 0.95);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-family: 'gg sans', 'Ubuntu', sans-serif;
+    font-weight: bold;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    pointer-events: none;
+    z-index: 100;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* --- THE TOOLTIP LITTLE ARROW (POINTING UP) --- */
+.flag-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 105%; /* Positions it BELOW the flag */
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px); /* Matches text box */
+    border-width: 6px;
+    border-style: solid;
+    /* This makes the arrow point UP towards the flag */
+    border-color: transparent transparent rgba(30, 30, 30, 0.95) transparent; 
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* --- WHEN CLICKED (Triggered by JS) --- */
+.flag-wrapper.show-tooltip::after,
+.flag-wrapper.show-tooltip::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0); /* Drops down smoothly into place */
+}
+
+
+/* =========================================
+   ENTRY ANIMATIONS (Slow Cinematic Fade In)
+   ========================================= */
+.profile-picture-container, 
+h1#mystery, 
+p, 
+.social-icons a,
+.flags-container {
+    opacity: 0; 
+}
+
+/* 1. Profile Picture: Slowly POP OUT (scale up) at 0.2s */
+.profile-picture-container {
+    animation: slowPopOut 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.2s;
+}
+
+/* 2. Social Icons: Float down slowly, matching the picture's start time */
+.social-icons a {
+    animation: slideFadeDown 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggering the social icons slowly one by one */
+.social-icons a:nth-child(1) { animation-delay: 0.2s; } 
+.social-icons a:nth-child(2) { animation-delay: 0.4s; }
+.social-icons a:nth-child(3) { animation-delay: 0.6s; }
+.social-icons a:nth-child(4) { animation-delay: 0.8s; }
+
+/* 3. Name & Text: Slowly glides up after the picture is halfway in */
+h1#mystery, p {
+    animation: slideFadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.8s;
+}
+
+/* 4. Flags: Slowly appear last at the bottom */
+.flags-container {
+    animation: slideFadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 1.2s; 
+}
+
+/* --- THE ANIMATION KEYFRAMES --- */
+
+/* NEW: Slowly pops out from smaller size */
+@keyframes slowPopOut {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Slides up slowly from below */
+@keyframes slideFadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slides down slowly from above */
+@keyframes slideFadeDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
