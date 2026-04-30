@@ -43,3 +43,16 @@ async function getDiscordStatus() {
 // --- TIMERS ---
 getDiscordStatus(); 
 setInterval(getDiscordStatus, 5000); 
+
+// --- AL HILAL ICON CLICK ANIMATION ---
+const alhilalIcon = document.querySelector('.alhilal-icon');
+if (alhilalIcon) {
+    alhilalIcon.addEventListener('click', function () {
+        this.classList.add('clicked');
+        
+        // Removes the class after 200ms so it bounces back up
+        setTimeout(() => {
+            this.classList.remove('clicked');
+        }, 200);
+    });
+}
