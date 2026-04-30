@@ -1,4 +1,3 @@
-/* Add this HTML block right before the body block */
 html {
     min-height: -webkit-fill-available;
 }
@@ -7,13 +6,11 @@ html {
     -webkit-tap-highlight-color: transparent;
 }
 
-
 body {
     font-family: 'Ubuntu', sans-serif;
     padding: 30px 0;
     text-align: center;
     color: #fff; 
-   /* background: linear-gradient(to bottom, #070707, #090909, #111111, #333333); */
     background: #05060A;
     box-sizing: border-box; 
     min-height: 100vh;
@@ -22,37 +19,63 @@ body {
     margin: 0;
 }
 
+/* Moved objects down */
 header {
     margin-bottom: 10px;
-    margin-top: 20px; 
+    margin-top: 60px; 
 }
 
+/* Reduced sizes */
 .profile-picture-container {
     position: relative;
     display: inline-block;
-    width: 132px;
-    height: 132px;
+    width: 115px; 
+    height: 115px;
 }
 
 .profile-picture {
-    width: 130px;
-    height: 130px;
+    width: 110px; 
+    height: 110px; 
     border-radius: 50%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    
+    /* Added transitions for click pop and dynamic glow */
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease, border-color 0.5s ease;
+    border: 3px solid transparent; 
+    
     user-select: none;          
     -webkit-user-drag: none;    
     -webkit-touch-callout: none; 
-    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: pointer; 
+}
 
-  /* Safari */
-  -webkit-user-select: none;
+/* The click "pop" animation class */
+.profile-picture.pop-clicked {
+    transform: scale(0.9) translateY(5px);
+}
 
-  /* Firefox */
-  -moz-user-select: none;
+/* --- DISCORD STATUS GLOW COLORS --- */
+.status-online {
+    border-color: #23a559;
+    box-shadow: 0 0 20px 5px rgba(35, 165, 89, 0.5);
+}
 
-  /* Internet Explorer/Edge */
-  -ms-user-select: none;
+.status-idle {
+    border-color: #f0b232;
+    box-shadow: 0 0 20px 5px rgba(240, 178, 50, 0.5);
+}
+
+.status-dnd {
+    border-color: #f23f43;
+    box-shadow: 0 0 20px 5px rgba(242, 63, 67, 0.5);
+}
+
+.status-offline {
+    border-color: #80848e;
+    box-shadow: 0 0 15px 3px rgba(128, 132, 142, 0.3);
 }
 
 .avatar-decoration {
@@ -83,17 +106,10 @@ h1 {
   -webkit-text-fill-color: transparent;
   animation: waveGlow 5s linear infinite;
   user-select: none;
-
-  /* Safari */
   -webkit-user-select: none;
-
-  /* Firefox */
   -moz-user-select: none;
-
-  /* Internet Explorer/Edge */
   -ms-user-select: none;
 }
-
 
 @keyframes waveGlow {
   0% { background-position: 0% center; }
@@ -112,11 +128,6 @@ p.yousuf {
   animation: waveGlow 5s linear infinite;
 }
 
-@keyframes waveGlow {
-  0% { background-position: 0% center; }
-  100% { background-position: 100% center; }
-}
-
 p {
     color: #777; 
     display: flex;
@@ -133,17 +144,10 @@ p.aboutme {
     font-family: 'Outfit', sans-serif;
     line-height: 1.6; 
     user-select: none;
-
-  /* Safari */
-  -webkit-user-select: none;
-
-  /* Firefox */
-  -moz-user-select: none;
-
-  /* Internet Explorer/Edge */
-  -ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
-
 
 .social-icons a {
     color: #fff;
@@ -164,139 +168,19 @@ p.aboutme {
 .social-icons a:active, .social-icons a.clicked {
     transform: scale(0.9); 
     user-select: none;
-
-  /* Safari */
-  -webkit-user-select: none;
-
-  /* Firefox */
-  -moz-user-select: none;
-
-  /* Internet Explorer/Edge */
-  -ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
-
-
 #my-age {
-    /* Magic property to make all numbers the same width */
     font-variant-numeric: tabular-nums;
-    /* Webkit support for older browsers */
     -webkit-font-feature-settings: "tnum";
     font-feature-settings: "tnum";
 }
 
 
-
-
-
-/* --- SPOTIFY CARD --- */
-.spotify-card {
-    background-color: rgba(20, 20, 20, 0.9);
-    border: 1px solid #333;
-    border-radius: 12px;
-    padding: 15px;
-    width: 278px;
-    margin: 10px auto;
-    text-align: left;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    backdrop-filter: blur(5px);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-.spotify-header {
-    font-size: 12px;
-    color: #1DB954;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-}
-
-.spotify-row {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    width: 100%;
-}
-
-#spotify-album-art {
-    width: 56px !important;
-    height: 56px !important;
-    min-width: 56px !important;
-    border-radius: 8px;
-    margin-right: 12px;
-    object-fit: cover;
-    flex-shrink: 0;
-    pointer-events: none;
-}
-
-.spotify-info {
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.song-title {
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block !important;
-    text-align: left !important;
-}
-
-.artist-name {
-    font-size: 12px;
-    color: #b3b3b3 !important;
-    margin: 2px 0 0 0;
-    display: block !important;
-    text-align: left !important;
-}
-
-.spotify-progress-wrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.spotify-progress-bar {
-    width: 100%;
-    height: 4px;
-    background-color: #404040;
-    border-radius: 2px;
-    position: relative;
-}
-
-#spotify-progress-fill {
-    height: 100%;
-    background-color: #fff;
-    border-radius: 2px;
-    width: 0%;
-    transition: width 1s linear;
-}
-
-.spotify-time {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: #b3b3b3;
-    margin-top: 5px;
-    font-family: monospace;
-}
-
-
-
-
 /* --- SIDEBAR & TOGGLE BUTTONS --- */
-
-/* The Sidebar Panel */
 .sidebar {
     position: fixed;
     top: 0;
@@ -306,28 +190,26 @@ p.aboutme {
     background-color: #111;
     border-right: 1px solid #333;
     z-index: 1500;
-    transform: translateX(-100%); /* Hidden by default */
+    transform: translateX(-100%); 
     transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
     box-shadow: 5px 0 15px rgba(0,0,0,0.5);
-    overflow: visible !important; /* IMPORTANT: Allows button to hang outside */
+    overflow: visible !important; 
 }
 
-/* Class added by JS to show sidebar */
 .sidebar.active {
     transform: translateX(0);
 }
 
-/* The Single Toggle Button */
 .side-toggle-btn {
-    position: absolute; /* Stick relative to the sidebar */
+    position: absolute; 
     top: 100px;
-    right: -35px; /* Push it 35px out the right side of the sidebar */
+    right: -35px; 
     width: 35px;
     height: 120px;
     background-color: #1e1e1e;
     color: #fff;
     border: 1px solid #333;
-    border-left: none; /* Make it look attached */
+    border-left: none; 
     border-radius: 0 10px 10px 0;
     cursor: pointer;
     display: flex;
@@ -342,7 +224,6 @@ p.aboutme {
     background-color: #252526;
 }
 
-/* Vertical Text Styling */
 .vertical-text {
     writing-mode: vertical-rl;
     text-orientation: mixed;
@@ -355,21 +236,14 @@ p.aboutme {
     -webkit-user-select: none;
 }
 
-/* Content inside the sidebar */
 .sidebar-content {
     padding: 30px;
     color: #d4d4d4;
     text-align: left;
     user-select: none;
-
-  /* Safari */
-  -webkit-user-select: none;
-
-  /* Firefox */
-  -moz-user-select: none;
-
-  /* Internet Explorer/Edge */
-  -ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .sidebar h2 {
@@ -377,16 +251,8 @@ p.aboutme {
     margin-bottom: 20px;
     user-select: none;
     -webkit-user-select: none;
-    user-select: none;
-
-  /* Safari */
-  -webkit-user-select: none;
-
-  /* Firefox */
-  -moz-user-select: none;
-
-  /* Internet Explorer/Edge */
-  -ms-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .sidebar-divider {
@@ -395,7 +261,6 @@ p.aboutme {
     margin-bottom: 20px;
 }
 
-/* Overlay */
 .overlay {
     position: fixed;
     top: 0;
@@ -418,36 +283,28 @@ p.aboutme {
 
 /* --- CODE SNIPPET STYLING --- */
 .code-snippet {
-    background-color: #1e1e1e; /* Matches your sidebar button */
-    color: #abb2bf;            /* Default text color */
+    background-color: #1e1e1e; 
+    color: #abb2bf;            
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
     font-size: 13px;
     padding: 15px;
     border-radius: 8px;
     text-align: left;
-    white-space: pre;          /* This keeps the spacing/indentation automatically */
-    overflow-x: auto;          /* Scroll sideways if text is too long */
+    white-space: pre;          
+    overflow-x: auto;          
     border: 1px solid #333;
     line-height: 1.5;
     box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
     user-select: none;
-
-  /* Safari */
-  -webkit-user-select: none;
-
-  /* Firefox */
-  -moz-user-select: none;
-
-  /* Internet Explorer/Edge */
-  -ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
-/* Syntax Highlighting Colors */
-.keyword { color: #c678dd; font-weight: bold; } /* const (Purple) */
-.variable { color: #e06c75; } /* me (Red) */
-.operator { color: #56b6c2; } /* = (Cyan) */
-.key { color: #d19a66; }      /* name, aka (Orange) */
-.string { color: #98c379; }   /* 'Ridouan' (Green) */
-.object { color: #e5c07b; }   /* console (Yellow) */
-.method { color: #61afef; }   /* log (Blue) */
-
+.keyword { color: #c678dd; font-weight: bold; } 
+.variable { color: #e06c75; } 
+.operator { color: #56b6c2; } 
+.key { color: #d19a66; }      
+.string { color: #98c379; }   
+.object { color: #e5c07b; }   
+.method { color: #61afef; }   
