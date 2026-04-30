@@ -152,33 +152,50 @@ h1 {
 }
 
 
+/* =========================================
+   FLOATING SOCIAL ICONS (Top Right)
+   ========================================= */
+.social-icons {
+    position: fixed; /* Floats them over everything else */
+    top: 25px;
+    right: 25px;
+    display: flex;
+    flex-direction: row; /* Change to 'column' if you prefer a vertical stack */
+    gap: 8px; /* Space between icons */
+    z-index: 1000; /* Ensures they stay on top of other elements */
+}
+
 .social-icons a {
     color: #fff;
-    margin: 0 3px;
-    font-size: 23px;
+    font-size: 19px; /* Reduced from 23px */
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 41px;
-    height: 41px;
+    width: 32px; /* Reduced from 41px */
+    height: 32px; /* Reduced from 41px */
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.2);
-    margin-bottom: 25px;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    
+    /* Removed the background */
+    background-color: transparent; 
+    
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
 }
 
+/* Since the background is gone, let's make them scale up slightly when hovered */
 .social-icons a:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.15);
+    opacity: 0.8;
 }
 
 .social-icons a:active, .social-icons a.clicked {
-    transform: scale(0.9); 
+    transform: scale(0.8); 
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
 }
+
 
 /* =========================================
    AL HILAL APP ICON STYLES
