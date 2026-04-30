@@ -1,3 +1,11 @@
+/* --- CUSTOM FONT INTEGRATION --- */
+@font-face {
+    font-family: 'gg sans';
+    src: url('fonts/gg sans Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
 html {
     min-height: -webkit-fill-available;
 }
@@ -5,15 +13,6 @@ html {
 * {
     -webkit-tap-highlight-color: transparent;
 }
-
-@font-face {
-    font-family: 'gg sans';
-    /* Make sure this path exactly matches where your font file is saved */
-    src: url('fonts/gg sans Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-}
-
 
 body {
     font-family: 'Ubuntu', sans-serif;
@@ -47,11 +46,11 @@ header {
     border-radius: 50%;
     object-fit: cover;
     
-    /* THE GAP: Reduced to 3px to keep it tight */
+    /* THE GAP: Keeps the tight 3px spacing between image and ring */
     padding: 3px; 
     
     /* THE RING: Thick border */
-    border: 4px solid transparent; 
+    border: 6px solid transparent; 
     
     transition: box-shadow 0.5s ease, border-color 0.5s ease;
     
@@ -109,17 +108,6 @@ header {
     100% { box-shadow: 0 0 5px 1px rgba(128, 132, 142, 0.2); }
 }
 
-.avatar-decoration {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 156px !important; 
-    height: 156px !important;
-    pointer-events: none;
-    z-index: 10;
-}
-
 h1, p {
     margin: 7px 0;
     -webkit-touch-callout: none; 
@@ -135,30 +123,6 @@ h1 {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-}
-
-p.yousuf {
-  font-family: "Scheherazade New", serif;
-  font-weight: bold;
-  margin-top: -10px; 
-  background: linear-gradient(120deg, gray, white, white, gray);
-  background-size: 400% auto;
-  background-position: 0% center;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: waveGlow 5s linear infinite;
-}
-
-@keyframes waveGlow {
-  0% { background-position: 0% center; }
-  100% { background-position: 100% center; }
-}
-
-p {
-    color: #777; 
-    display: flex;
-    justify-content: center;
-    font-family: 'Noto Sans', sans-serif; 
 }
 
 .social-icons a {
@@ -189,25 +153,47 @@ p {
     -ms-user-select: none;
 }
 
-#my-age {
-    font-variant-numeric: tabular-nums;
-    -webkit-font-feature-settings: "tnum";
-    font-feature-settings: "tnum";
+/* =========================================
+   AL HILAL ICON STYLES
+   ========================================= */
+.extra-icon-container {
+    margin-top: 10px;
+    opacity: 0; 
+    animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation-delay: 0.9s; 
 }
 
+.alhilal-icon {
+    width: 55px; 
+    height: 55px; 
+    object-fit: cover;
+    border-radius: 14px; 
+    border: 3px solid #666666; 
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.2s ease;
+    
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+}
+
+.alhilal-icon:hover {
+    border-color: #888888;
+}
+
+.alhilal-icon:active, .alhilal-icon.clicked {
+    transform: scale(0.85) translateY(5px); 
+}
 
 /* =========================================
    ENTRY ANIMATIONS (Fade In & Slide Up)
    ========================================= */
-
-/* 1. Initial hidden state so they can fade in */
 .profile-picture-container, 
 h1#mystery, 
 .social-icons a {
     opacity: 0; 
 }
 
-/* 2. Apply the animations with staggered delays */
 .profile-picture-container {
     animation: slideFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-delay: 0.1s;
@@ -218,7 +204,6 @@ h1#mystery {
     animation-delay: 0.3s;
 }
 
-/* Stagger the social icons to pop in one by one */
 .social-icons a {
     animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
@@ -228,7 +213,6 @@ h1#mystery {
 .social-icons a:nth-child(3) { animation-delay: 0.7s; }
 .social-icons a:nth-child(4) { animation-delay: 0.8s; }
 
-/* 3. The Keyframes that power the movement */
 @keyframes slideFadeUp {
     0% {
         opacity: 0;
