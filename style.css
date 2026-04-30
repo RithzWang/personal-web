@@ -24,12 +24,12 @@ header {
     margin-top: 60px; 
 }
 
-/* Slightly adjusted to accommodate the new gap */
+/* --- UPDATED PROFILE PICTURE SIZING --- */
 .profile-picture-container {
     position: relative;
     display: inline-block;
-    width: 136px; 
-    height: 136px;
+    width: 145px; 
+    height: 145px;
 }
 
 .profile-picture {
@@ -38,12 +38,13 @@ header {
     border-radius: 50%;
     object-fit: cover;
     
-    /* THIS PADDING CREATES THE GAP BETWEEN THE PICTURE AND THE BORDER */
-    padding: 5px; 
+    /* THE GAP: This creates the exact dark empty space */
+    padding: 6px; 
     
-    /* Removed the transform animation, keeping only the glow transitions */
+    /* THE RING: Thick border to match the image */
+    border: 6px solid transparent; 
+    
     transition: box-shadow 0.5s ease, border-color 0.5s ease;
-    border: 3px solid transparent; 
     
     user-select: none;          
     -webkit-user-drag: none;    
@@ -53,7 +54,7 @@ header {
     -ms-user-select: none;
 }
 
-/* --- DISCORD STATUS GLOW COLORS (Wip Wap Pulsing Effect) --- */
+/* --- DISCORD STATUS GLOW COLORS --- */
 .status-online {
     border-color: #23a559;
     animation: pulse-online 2s infinite ease-in-out;
@@ -76,27 +77,27 @@ header {
 
 /* --- THE "WIP WAP" KEYFRAMES --- */
 @keyframes pulse-online {
-    0% { box-shadow: 0 0 10px rgba(35, 165, 89, 0.3); }
-    50% { box-shadow: 0 0 25px rgba(35, 165, 89, 0.8); }
-    100% { box-shadow: 0 0 10px rgba(35, 165, 89, 0.3); }
+    0% { box-shadow: 0 0 8px 1px rgba(35, 165, 89, 0.4); }
+    50% { box-shadow: 0 0 20px 3px rgba(35, 165, 89, 0.8); }
+    100% { box-shadow: 0 0 8px 1px rgba(35, 165, 89, 0.4); }
 }
 
 @keyframes pulse-idle {
-    0% { box-shadow: 0 0 10px rgba(240, 178, 50, 0.3); }
-    50% { box-shadow: 0 0 25px rgba(240, 178, 50, 0.8); }
-    100% { box-shadow: 0 0 10px rgba(240, 178, 50, 0.3); }
+    0% { box-shadow: 0 0 8px 1px rgba(240, 178, 50, 0.4); }
+    50% { box-shadow: 0 0 20px 3px rgba(240, 178, 50, 0.8); }
+    100% { box-shadow: 0 0 8px 1px rgba(240, 178, 50, 0.4); }
 }
 
 @keyframes pulse-dnd {
-    0% { box-shadow: 0 0 10px rgba(242, 63, 67, 0.3); }
-    50% { box-shadow: 0 0 25px rgba(242, 63, 67, 0.8); }
-    100% { box-shadow: 0 0 10px rgba(242, 63, 67, 0.3); }
+    0% { box-shadow: 0 0 8px 1px rgba(242, 63, 67, 0.4); }
+    50% { box-shadow: 0 0 20px 3px rgba(242, 63, 67, 0.8); }
+    100% { box-shadow: 0 0 8px 1px rgba(242, 63, 67, 0.4); }
 }
 
 @keyframes pulse-offline {
-    0% { box-shadow: 0 0 8px rgba(128, 132, 142, 0.2); }
-    50% { box-shadow: 0 0 18px rgba(128, 132, 142, 0.6); }
-    100% { box-shadow: 0 0 8px rgba(128, 132, 142, 0.2); }
+    0% { box-shadow: 0 0 5px 1px rgba(128, 132, 142, 0.2); }
+    50% { box-shadow: 0 0 15px 2px rgba(128, 132, 142, 0.5); }
+    100% { box-shadow: 0 0 5px 1px rgba(128, 132, 142, 0.2); }
 }
 
 .avatar-decoration {
