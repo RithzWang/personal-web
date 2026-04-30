@@ -43,12 +43,3 @@ async function getDiscordStatus() {
 // --- TIMERS ---
 getDiscordStatus(); 
 setInterval(getDiscordStatus, 5000); 
-
-// --- PROFILE PICTURE TOGGLE ANIMATION ---
-const profileImage = document.querySelector('.profile-picture');
-if (profileImage) {
-    profileImage.addEventListener('click', function() {
-        // Toggles the 'pop-clicked' class on and off with each click
-        this.classList.toggle('pop-clicked');
-    });
-}
