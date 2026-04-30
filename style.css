@@ -123,7 +123,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px; /* This controls the space between the words and the separator */
+  gap: 15px; 
   
   user-select: none;
   -webkit-user-select: none;
@@ -138,17 +138,15 @@ h1 {
 .ar-name {
     font-family: 'Aref Ruqaa', serif;
     font-weight: 700;
-    /* Arabic fonts often sit differently on the baseline. 
-       This nudges it down slightly to perfectly align with the English text. */
     margin-top: 5px; 
 }
 
 .name-separator {
-    color: rgba(255, 255, 255, 0.25); /* Faint grey vertical line */
-    font-size: 36px; /* Slightly smaller than the names */
+    color: rgba(255, 255, 255, 0.25); 
+    font-size: 36px; 
     font-weight: 400;
-    font-family: 'Ubuntu', sans-serif; /* Gives a perfectly straight line */
-    margin-bottom: 5px; /* Nudges the separator to center it visually */
+    font-family: 'Ubuntu', sans-serif; 
+    margin-bottom: 5px; 
 }
 
 
@@ -156,13 +154,13 @@ h1 {
    FLOATING SOCIAL ICONS (Top Right)
    ========================================= */
 .social-icons {
-    position: fixed; /* Floats them over everything else */
+    position: fixed; 
     top: 25px;
     right: 25px;
     display: flex;
     flex-direction: row; 
-    gap: 8px; /* Space between icons */
-    z-index: 1000; /* Ensures they stay on top of other elements */
+    gap: 8px; 
+    z-index: 1000; 
 }
 
 .social-icons a {
@@ -176,13 +174,11 @@ h1 {
     height: 32px; 
     border-radius: 50%;
     
-    /* Removed the background */
     background-color: transparent; 
     
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
 }
 
-/* Let's make them scale up slightly when hovered */
 .social-icons a:hover {
     transform: scale(1.15);
     opacity: 0.8;
@@ -203,17 +199,16 @@ h1 {
 .flags-container {
     margin-top: 15px; 
     display: flex;
-    justify-content: center; /* Centers the row of flags */
+    justify-content: center; 
     align-items: center;
-    gap: 12px; /* Perfect amount of space between each flag */
+    gap: 12px; 
 }
 
 .flag-icon {
-    width: 38px;  /* Small and clean */
-    height: auto; /* Automatically keeps the 512x370 aspect ratio */
-    
-    border-radius: 6px; /* Softly rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle floating shadow */
+    width: 38px;  
+    height: auto; 
+    border-radius: 6px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
     
     cursor: pointer;
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -223,7 +218,6 @@ h1 {
     -webkit-touch-callout: none;
 }
 
-/* Bounces down when clicked */
 .flag-icon:active, .flag-icon.clicked {
     transform: scale(0.85); 
 }
@@ -239,11 +233,13 @@ h1 {
 .flag-wrapper::after {
     content: attr(data-tooltip);
     position: absolute;
-    /* Pushed down exactly 14px below the flag to make room for the arrow */
     top: calc(100% + 14px); 
     left: 50%;
     transform: translateX(-50%) translateY(-5px); 
-    background-color: rgba(30, 30, 30, 0.95);
+    
+    /* Changed to SOLID dark color so the seam disappears */
+    background-color: #1e1e1e; 
+    
     color: #fff;
     padding: 6px 12px;
     border-radius: 8px;
@@ -254,29 +250,36 @@ h1 {
     opacity: 0;
     visibility: hidden;
     transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    
+    /* Shadow pushes DOWN, keeping the top completely clean */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    
     pointer-events: none;
     z-index: 100;
-    /* Removed the border so the arrow melts right into the box! */
 }
 
 /* --- THE TOOLTIP ARROW (POINTING UP AT THE FLAG) --- */
 .flag-wrapper::before {
     content: '';
     position: absolute;
-    /* Positions the arrow exactly on top of the box (14px - 8px arrow height = 6px) */
-    top: calc(100% + 6px); 
+    
+    /* Moved down exactly 1px (7px instead of 6px) to perfectly overlap the box! */
+    top: calc(100% + 7px); 
     left: 50%;
     transform: translateX(-50%) translateY(-5px); 
-    /* A bigger, 8px solid triangle pointing UP */
+    
     border-width: 0 8px 8px 8px; 
     border-style: solid;
-    border-color: transparent transparent rgba(30, 30, 30, 0.95) transparent; 
+    /* Uses the exact same solid color as the box */
+    border-color: transparent transparent #1e1e1e transparent; 
+    
     opacity: 0;
     visibility: hidden;
     transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     pointer-events: none;
-    z-index: 100;
+    
+    /* Higher z-index forces it to sit flawlessly on top of the box edge */
+    z-index: 101; 
 }
 
 /* --- WHEN CLICKED (Triggered by JS) --- */
@@ -305,18 +308,17 @@ p,
     animation-delay: 0.2s;
 }
 
-/* 2. Social Icons: Float down slowly, matching the picture's start time */
+/* 2. Social Icons: Float down slowly */
 .social-icons a {
     animation: slideFadeDown 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Staggering the social icons slowly one by one */
 .social-icons a:nth-child(1) { animation-delay: 0.2s; } 
 .social-icons a:nth-child(2) { animation-delay: 0.4s; }
 .social-icons a:nth-child(3) { animation-delay: 0.6s; }
 .social-icons a:nth-child(4) { animation-delay: 0.8s; }
 
-/* 3. Name & Text: Slowly glides up after the picture is halfway in */
+/* 3. Name & Text: Slowly glides up */
 h1#mystery, p {
     animation: slideFadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-delay: 0.8s;
@@ -330,7 +332,6 @@ h1#mystery, p {
 
 /* --- THE ANIMATION KEYFRAMES --- */
 
-/* Slowly pops out from smaller size */
 @keyframes slowPopOut {
     0% {
         opacity: 0;
@@ -342,7 +343,6 @@ h1#mystery, p {
     }
 }
 
-/* Slides up slowly from below */
 @keyframes slideFadeUp {
     0% {
         opacity: 0;
@@ -354,7 +354,6 @@ h1#mystery, p {
     }
 }
 
-/* Slides down slowly from above */
 @keyframes slideFadeDown {
     0% {
         opacity: 0;
