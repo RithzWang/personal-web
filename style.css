@@ -9,14 +9,14 @@
 @font-face {
     font-family: 'times new roman';
     src: url('fonts/times.ttf') format('truetype');
-    font-weight: normal; /* Fixed from 40px to normal */
+    font-weight: normal; 
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Prima Sans Regular';
     src: url('fonts/Prima Sans Regular.otf') format('truetype');
-    font-weight: normal; /* Fixed from 40px to normal */
+    font-weight: normal; 
     font-style: normal;
 }
 
@@ -135,6 +135,7 @@ h1 {
   
   /* Flexbox makes them sit perfectly side-by-side */
   display: flex;
+  flex-wrap: wrap; /* ZOOMX FIX: Allows wrapping if zoomed in too much */
   justify-content: center;
   align-items: center;
   gap: 15px; 
@@ -156,17 +157,13 @@ h1 {
 }
 
 .name-separator {
-    /* Draws a custom line instead of using text */
-    width: 4px;  /* How thick the line is */
-    height: 32px; /* How tall the line is */
-    background-color: rgba(255, 255, 255, 0.25); /* Faint grey color */
-    
-    /* THIS is the magic line that makes the top and bottom perfectly round! */
+    /* Draws a perfectly round custom pill shape instead of using text */
+    width: 4px;  
+    height: 32px; 
+    background-color: rgba(255, 255, 255, 0.25); 
     border-radius: 10px; 
-    
-    margin-top: 5px; /* Nudges it down slightly to center it with the text */
+    margin-top: 5px; 
 }
-
 
 
 /* =========================================
@@ -218,6 +215,7 @@ h1 {
  .flags-container {
     margin-top: 15px; 
     display: flex;
+    flex-wrap: wrap; /* ZOOMX FIX: Allows wrapping if zoomed in too much */
     justify-content: center; 
     align-items: center;
     gap: 12px; 
@@ -256,23 +254,21 @@ h1 {
     left: 50%;
     transform: translateX(-50%) translateY(-5px); 
     
-    /* Changed to SOLID dark color so the seam disappears */
     background-color: #1e1e1e; 
-    
     color: #fff;
     padding: 6px 12px;
     border-radius: 8px;
     font-size: 12px;
     font-family: 'Prima Sans Regular', 'times new roman', sans-serif;
-    font-weight: normal; /* Fixed from 40px */
+    font-weight: normal; 
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     
-    /* Shadow pushes DOWN, keeping the top completely clean */
+    /* ZOOM FIX: Specifically targets opacity, visibility, and transform, NOT 'all' */
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
     box-shadow: 0 6px 12px rgba(0,0,0,0.4);
-    
     pointer-events: none;
     z-index: 100;
 }
@@ -282,22 +278,21 @@ h1 {
     content: '';
     position: absolute;
     
-    /* Moved down exactly 1px (7px instead of 6px) to perfectly overlap the box! */
     top: calc(100% + 7px); 
     left: 50%;
     transform: translateX(-50%) translateY(-5px); 
     
     border-width: 0 8px 8px 8px; 
     border-style: solid;
-    /* Uses the exact same solid color as the box */
     border-color: transparent transparent #1e1e1e transparent; 
     
     opacity: 0;
     visibility: hidden;
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    pointer-events: none;
     
-    /* Higher z-index forces it to sit flawlessly on top of the box edge */
+    /* ZOOM FIX: Specifically targets opacity, visibility, and transform, NOT 'all' */
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    pointer-events: none;
     z-index: 101; 
 }
 
