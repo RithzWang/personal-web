@@ -82,7 +82,7 @@ header {
 .speech-bubble {
     position: absolute;
     top: -15px;     /* Moves it up */
-    right: -30px;   /* Pushes it off to the right side */
+    right: -35px;   /* Pushes it off to the right side */
     background-color: #ffffff; 
     color: #05060A; /* Dark text for contrast */
     padding: 8px 14px;
