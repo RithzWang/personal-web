@@ -76,6 +76,38 @@ header {
     -ms-user-select: none;
 }
 
+/* =========================================
+   SPEECH BUBBLE STYLES
+   ========================================= */
+.speech-bubble {
+    position: absolute;
+    top: -15px;     /* Moves it up */
+    right: -50px;   /* Pushes it off to the right side */
+    background-color: #ffffff; 
+    color: #05060A; /* Dark text for contrast */
+    padding: 8px 14px;
+    border-radius: 16px; /* Smooth, rounded bubble shape */
+    font-family: 'gg sans', 'Ubuntu', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    pointer-events: none; /* Stops it from blocking clicks on your avatar */
+    white-space: nowrap;  /* Keeps the text on one line */
+}
+
+/* The little triangle tail pointing at your profile picture */
+.speech-bubble::before {
+    content: '';
+    position: absolute;
+    bottom: -6px;   /* Pushes it below the bubble */
+    left: 15px;     /* Adjusts where the tail sits horizontally */
+    border-width: 8px 8px 0 0; 
+    border-style: solid;
+    border-color: #ffffff transparent transparent transparent;
+}
+
+
 /* --- DISCORD STATUS GLOW COLORS --- */
 .status-online {
     border-color: #23a559;
@@ -313,7 +345,8 @@ h1 {
 h1#mystery, 
 p, 
 .social-icons a,
-.flags-container {
+.flags-container,
+.speech-bubble {
     opacity: 0; 
 }
 
@@ -323,7 +356,13 @@ p,
     animation-delay: 0.1s;
 }
 
-/* 2. Social Icons: Float down faster */
+/* 2. Speech Bubble: Pops in after the profile picture */
+.speech-bubble {
+    animation: bubblePop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation-delay: 0.8s; 
+}
+
+/* 3. Social Icons: Float down faster */
 .social-icons a {
     animation: slideFadeDown 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -334,13 +373,13 @@ p,
 .social-icons a:nth-child(3) { animation-delay: 0.3s; }
 .social-icons a:nth-child(4) { animation-delay: 0.4s; }
 
-/* 3. Name & Text: Glides up right behind the profile picture */
+/* 4. Name & Text: Glides up right behind the profile picture */
 h1#mystery, p {
     animation: slideFadeUp 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-delay: 0.4s;
 }
 
-/* 4. Flags: Appear quickly right after the name */
+/* 5. Flags: Appear quickly right after the name */
 .flags-container {
     animation: slideFadeUp 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     animation-delay: 0.6s; 
@@ -356,6 +395,17 @@ h1#mystery, p {
     100% {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+@keyframes bubblePop {
+    0% {
+        opacity: 0;
+        transform: scale(0) translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
     }
 }
 
