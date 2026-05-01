@@ -9,14 +9,14 @@
 @font-face {
     font-family: 'times new roman';
     src: url('fonts/times.ttf') format('truetype');
-    font-weight: 40px;
+    font-weight: normal; /* Fixed from 40px to normal */
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Prima Sans Regular';
     src: url('fonts/Prima Sans Regular.otf') format('truetype');
-    font-weight: 40px;
+    font-weight: normal; /* Fixed from 40px to normal */
     font-style: normal;
 }
 
@@ -259,7 +259,7 @@ h1 {
     border-radius: 8px;
     font-size: 12px;
     font-family: 'Prima Sans Regular', 'times new roman', sans-serif;
-    font-weight: 40px;
+    font-weight: normal; /* Fixed from 40px */
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
@@ -307,7 +307,7 @@ h1 {
 
 
 /* =========================================
-   ENTRY ANIMATIONS (Slow Cinematic Fade In)
+   ENTRY ANIMATIONS (Faster Cinematic Fade In)
    ========================================= */
 .profile-picture-container, 
 h1#mystery, 
@@ -317,32 +317,33 @@ p,
     opacity: 0; 
 }
 
-/* 1. Profile Picture: Slowly POP OUT (scale up) at 0.2s */
+/* 1. Profile Picture: POP OUT slightly faster at 0.1s */
 .profile-picture-container {
-    animation: slowPopOut 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 0.2s;
+    animation: slowPopOut 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.1s;
 }
 
-/* 2. Social Icons: Float down slowly */
+/* 2. Social Icons: Float down faster */
 .social-icons a {
-    animation: slideFadeDown 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: slideFadeDown 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.social-icons a:nth-child(1) { animation-delay: 0.2s; } 
-.social-icons a:nth-child(2) { animation-delay: 0.4s; }
-.social-icons a:nth-child(3) { animation-delay: 0.6s; }
-.social-icons a:nth-child(4) { animation-delay: 0.8s; }
+/* Staggered closely together so they zip in nicely */
+.social-icons a:nth-child(1) { animation-delay: 0.1s; } 
+.social-icons a:nth-child(2) { animation-delay: 0.2s; }
+.social-icons a:nth-child(3) { animation-delay: 0.3s; }
+.social-icons a:nth-child(4) { animation-delay: 0.4s; }
 
-/* 3. Name & Text: Slowly glides up */
+/* 3. Name & Text: Glides up right behind the profile picture */
 h1#mystery, p {
-    animation: slideFadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 0.8s;
+    animation: slideFadeUp 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.4s;
 }
 
-/* 4. Flags: Slowly appear last at the bottom */
+/* 4. Flags: Appear quickly right after the name */
 .flags-container {
-    animation: slideFadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 1.2s; 
+    animation: slideFadeUp 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.6s; 
 }
 
 /* --- THE ANIMATION KEYFRAMES --- */
