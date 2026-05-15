@@ -11,18 +11,16 @@
     <style>
         body {
             margin: 0;
-            background-color: #121212; /* Dark background */
+            background-color: #121212; 
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            
-            /* Added: Prevents users from highlighting/selecting anything */
+
             user-select: none;
             -webkit-user-select: none; 
         }
 
-        /* We use a div and CSS to load the image instead of an <img> tag */
         .image-container {
             width: 100%;
             height: 100%;
@@ -34,30 +32,24 @@
     </style>
 </head>
 
-<!-- Added: Blocks right-clicking anywhere on the page -->
 <body oncontextmenu="return false;">
     
     <div class="image-container"></div>
 
-    <!-- Added: JavaScript to block common Developer Tools keyboard shortcuts -->
     <script>
         document.addEventListener('keydown', function(event) {
-            // Block F12
             if (event.key === 'F12' || event.keyCode === 123) {
                 event.preventDefault();
                 return false;
-            }
-            // Block Ctrl+Shift+I (Windows) or Cmd+Option+I (Mac) for DevTools
+            } (Windows) or Cmd+Option+I (Mac) for DevTools
             if ((event.ctrlKey || event.metaKey) && event.shiftKey && (event.key === 'I' || event.key === 'i')) {
                 event.preventDefault();
                 return false;
             }
-            // Block Ctrl+Shift+C (Windows) or Cmd+Option+C (Mac) for Inspect Element
             if ((event.ctrlKey || event.metaKey) && event.shiftKey && (event.key === 'C' || event.key === 'c')) {
                 event.preventDefault();
                 return false;
             }
-            // Block Ctrl+U (Windows) or Cmd+U (Mac) for View Source
             if ((event.ctrlKey || event.metaKey) && (event.key === 'U' || event.key === 'u')) {
                 event.preventDefault();
                 return false;
