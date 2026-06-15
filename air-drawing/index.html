@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Finger Drawing</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #111;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+
+        /* Container to stack the canvases exactly on top of each other */
+        .canvas-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            /* Flip the container horizontally so it acts like a mirror */
+            transform: scaleX(-1);
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #videoCanvas { z-index: 1; }
+        #drawingCanvas { z-index: 2; }
+
+        /* UI overlay needs to NOT be mirrored, so it stays outside the container */
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 25px;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        h2 { margin: 0 0 10px 0; font-size: 24px; color: #00ffcc; }
+        p { margin: 0 0 15px 0; font-size: 14px; color: #ccc; }
+        
+        button {
+            background-color: #ff3366;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover { background-color: #ff1a53; }
+        
+        /* Loading text */
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="ui">
+        <h2>Air Drawing</h2>
+        <p>1. Keep your hand flat to hover (Red Dot).<br>
+           2. <b>Pinch thumb & index finger</b> to draw (Green Dot).</p>
+        <button id="clearBtn">Clear Canvas</button>
+    </div>
+
+    <div id="loading">Loading AI Camera... Please allow camera access.</div>
+
+    <video id="videoElement" style="display: none;" autoplay playsinline></video>
+
+    <div class="canvas-container">
+        <canvas id="videoCanvas"></canvas>
+        <canvas id="drawingCanvas"></canvas>
+    </div>
+
+    <script>
+        const videoElement = document.getElementById('videoElement');
+        const videoCanvas = document.getElementById('videoCanvas');
+        const drawingCanvas = document.getElementById('drawingCanvas');
+        const videoCtx = videoCanvas.getContext('2d');
+        const drawingCtx = drawingCanvas.getContext('2d');
+        const loadingText = document.getElementById('loading');
+
+        // Make canvases fill the screen
+        function resize() {
+            videoCanvas.width = window.innerWidth;
+            videoCanvas.height = window.innerHeight;
+            drawingCanvas.width = window.innerWidth;
+            drawingCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Clear canvas button
+        document.getElementById('clearBtn').addEventListener('click', () => {
+            drawingCtx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+        });
+
+        let previousPoint = null;
+
+        // Process the AI results
+        function onResults(results) {
+            // Hide loading text once camera runs
+            loadingText.style.display = 'none';
+
+            // Draw the webcam feed to the background canvas
+            videoCtx.save();
+            videoCtx.clearRect(0, 0, videoCanvas.width, videoCanvas.height);
+            if (results.image) {
+                // To keep aspect ratio filled
+                videoCtx.drawImage(results.image, 0, 0, videoCanvas.width, videoCanvas.height);
+            }
+
+            if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
+                const landmarks = results.multiHandLandmarks[0];
+
+                // Landmark 8 is the Index Finger Tip
+                // Landmark 4 is the Thumb Tip
+                const indexTip = landmarks[8];
+                const thumbTip = landmarks[4];
+
+                const x = indexTip.x * videoCanvas.width;
+                const y = indexTip.y * videoCanvas.height;
+
+                // Calculate distance between thumb and index finger
+                const distance = Math.hypot(thumbTip.x - indexTip.x, thumbTip.y - indexTip.y);
+                
+                // If distance is small, they are "pinching" -> Draw mode
+                const isDrawing = distance < 0.05; 
+
+                // Draw a cursor dot on the video canvas
+                videoCtx.beginPath();
+                videoCtx.arc(x, y, 12, 0, 2 * Math.PI);
+                videoCtx.fillStyle = isDrawing ? '#00ffcc' : '#ff3366'; // Green if drawing, Red if hovering
+                videoCtx.fill();
+
+                if (isDrawing) {
+                    if (previousPoint) {
+                        drawingCtx.beginPath();
+                        drawingCtx.moveTo(previousPoint.x, previousPoint.y);
+                        drawingCtx.lineTo(x, y);
+                        drawingCtx.strokeStyle = '#00ffcc'; // Ink color
+                        drawingCtx.lineWidth = 8;
+                        drawingCtx.lineCap = 'round';
+                        drawingCtx.stroke();
+                    }
+                    previousPoint = { x, y };
+                } else {
+                    // Lift pen
+                    previousPoint = null;
+                }
+            } else {
+                // Lift pen if hand goes off screen
+                previousPoint = null; 
+            }
+            videoCtx.restore();
+        }
+
+        // Initialize MediaPipe Hands
+        const hands = new Hands({locateFile: (file) => {
+            return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+        }});
+        
+        hands.setOptions({
+            maxNumHands: 1, // Only track one hand for simplicity
+            modelComplexity: 1,
+            minDetectionConfidence: 0.7,
+            minTrackingConfidence: 0.7
+        });
+        hands.onResults(onResults);
+
+        // Start the camera
+        const camera = new Camera(videoElement, {
+            onFrame: async () => {
+                await hands.send({image: videoElement});
+            },
+            width: 1280,
+            height: 720
+        });
+        camera.start();
+    </script>
+</body>
+</html>
