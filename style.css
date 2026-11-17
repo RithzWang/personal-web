@@ -490,3 +490,58 @@ h1#mystery, p {
 /* .spotify-song:hover {
     text-decoration: underline;
 } */
+
+.spotify-waveform {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 12px;
+    opacity: 0.75; /* Matches .spotify-prefix transparency */
+    flex-shrink: 0;
+}
+
+.spotify-waveform span {
+    display: block;
+    width: 2px;
+    height: 100%;
+    background-color: currentColor; /* Matches "Listening to" text color */
+    border-radius: 2px;
+    transform-origin: bottom;
+    animation: waveform-bounce 0.9s ease-in-out infinite;
+}
+
+/* Stagger each bar so they move like a real audio equalizer */
+.spotify-waveform span:nth-child(1) {
+    animation-duration: 0.85s;
+    animation-delay: 0s;
+}
+
+.spotify-waveform span:nth-child(2) {
+    animation-duration: 0.65s;
+    animation-delay: 0.2s;
+}
+
+.spotify-waveform span:nth-child(3) {
+    animation-duration: 0.95s;
+    animation-delay: 0.4s;
+}
+
+.spotify-waveform span:nth-child(4) {
+    animation-duration: 0.75s;
+    animation-delay: 0.1s;
+}
+
+/* Pause animation when nothing is playing */
+.spotify-status:not(.is-playing) .spotify-waveform span {
+    animation-play-state: paused;
+}
+
+@keyframes waveform-bounce {
+    0%, 100% {
+        transform: scaleY(0.25);
+    }
+    50% {
+        transform: scaleY(1);
+    }
+}
+
