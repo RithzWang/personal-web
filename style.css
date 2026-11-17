@@ -435,9 +435,27 @@ h1#mystery, p {
 
 
 .spotify-status {
-    align-items: baseline;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 5px;
-    max-width: 100%;
+    height: 24px;              /* Locks vertical space so the image never shifts */
+    margin-bottom: 12px;       /* Space between the text and your profile picture */
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Hidden by default without collapsing layout height */
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;      /* Prevents accidental clicks on the link while hidden */
+    transition: opacity 0.25s ease;
+}
+
+.spotify-status.is-playing {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .spotify-prefix {
@@ -452,6 +470,7 @@ h1#mystery, p {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 240px;          /* Keeps long song titles from overflowing on mobile */
 }
 
 .spotify-song:hover {
