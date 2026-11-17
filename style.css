@@ -438,7 +438,7 @@ h1#mystery, p {
     bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
-    margin-bottom: 12px;
+    margin-bottom: 20px;
     width: max-content;
     max-width: 90vw;
     display: flex;
