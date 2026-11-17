@@ -251,6 +251,14 @@ h1 {
     justify-content: center; 
     align-items: center;
     gap: 12px; 
+    
+       -webkit-touch-callout: none; 
+    -webkit-tap-highlight-color: transparent;
+    
+    user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .flag-icon {
@@ -262,9 +270,13 @@ h1 {
     cursor: pointer;
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     
+       -webkit-touch-callout: none; 
+    -webkit-tap-highlight-color: transparent;
+    
     user-select: none;
-    -webkit-user-drag: none;
-    -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .flag-icon:active, .flag-icon.clicked {
