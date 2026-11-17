@@ -8,22 +8,35 @@ document.querySelectorAll('.social-icons a').forEach(icon => {
     });
 });
 
-// --- FETCH SPOTIFY STATUS ---
-async function getSpotifyStatus() {
+// --- VARIABLES ---
+const DISCORD_ID = "792341624797265930";
+
+// --- FETCH DISCORD & SPOTIFY STATUS ---
+async function getDiscordStatus() {
     try {
-        const response = await fetch('https://rido-z.onrender.com/v1/spotify');
+        const response = await fetch(`https://rido-z.onrender.com/v1/users/${DISCORD_ID}`);
         if (!response.ok) return;
 
         const data = await response.json();
         if (!data.success) return;
 
+        // --- 1. DISCORD STATUS RING ---
+        const discordStatus = data.data.discord_status;
+        const profilePic = document.querySelector('.profile-picture');
+
+        if (profilePic) {
+            profilePic.classList.remove('status-online', 'status-idle', 'status-dnd', 'status-offline');
+            profilePic.classList.add(discordStatus ? `status-${discordStatus}` : 'status-offline');
+        }
+
+        // --- 2. SPOTIFY INLINE TEXT & WAVEFORM ---
         const spotifyStatus = document.getElementById('spotify-status');
         const spotifySong = document.getElementById('spotify-song');
 
         if (spotifyStatus && spotifySong) {
-            if (data.listening_to_spotify && data.spotify) {
-                spotifySong.textContent = data.spotify.song;
-                spotifySong.href = data.spotify.track_url || 'https://open.spotify.com';
+            if (data.data.listening_to_spotify && data.data.spotify) {
+                spotifySong.textContent = data.data.spotify.song;
+                spotifySong.href = data.data.spotify.track_url || 'https://open.spotify.com';
                 spotifyStatus.classList.add('is-playing');
             } else {
                 spotifyStatus.classList.remove('is-playing');
@@ -31,14 +44,13 @@ async function getSpotifyStatus() {
             }
         }
     } catch (error) {
-        console.error("Error fetching Spotify status:", error);
+        console.error("Error fetching status:", error);
     } finally {
-        setTimeout(getSpotifyStatus, 5000);
+        setTimeout(getDiscordStatus, 5000);
     }
 }
 
-getSpotifyStatus();
-
+getDiscordStatus();
 
 // --- FLAG ICONS & TOOLTIPS CLICK ANIMATION ---
 document.querySelectorAll('.flag-wrapper').forEach(wrapper => {
