@@ -39,6 +39,7 @@ async function getSpotifyStatus() {
 
 getSpotifyStatus();
 
+
 // --- FLAG ICONS & TOOLTIPS CLICK ANIMATION ---
 document.querySelectorAll('.flag-wrapper').forEach(wrapper => {
     wrapper.addEventListener('click', function () {
