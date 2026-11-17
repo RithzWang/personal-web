@@ -430,3 +430,30 @@ h1#mystery, p {
         transform: translateY(0);
     }
 }
+
+
+
+
+.spotify-status {
+    align-items: baseline;
+    gap: 5px;
+    max-width: 100%;
+}
+
+.spotify-prefix {
+    opacity: 0.75;
+    white-space: nowrap;
+}
+
+.spotify-song {
+    font-weight: 600;
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.spotify-song:hover {
+    text-decoration: underline;
+}
