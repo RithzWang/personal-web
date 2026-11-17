@@ -37,9 +37,10 @@ async function getDiscordStatus() {
             if (data.data.listening_to_spotify && data.data.spotify) {
                 spotifySong.textContent = data.data.spotify.song;
                 spotifySong.href = data.data.spotify.track_url || 'https://open.spotify.com';
-                spotifyStatus.hidden = false;
+                spotifyStatus.style.display = 'inline-flex';
             } else {
-                spotifyStatus.hidden = true;
+                spotifyStatus.style.display = 'none';
+                spotifySong.textContent = '';
             }
         }
     } catch (error) {
@@ -50,6 +51,7 @@ async function getDiscordStatus() {
 }
 
 getDiscordStatus();
+
 
 
 // --- FLAG ICONS & TOOLTIPS CLICK ANIMATION ---
