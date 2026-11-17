@@ -14,7 +14,7 @@ const DISCORD_ID = "837741275603009626";
 // --- FETCH DISCORD STATUS ---
 async function getDiscordStatus() {
     try {
-        const response = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
+        const response = await fetch(`https://rido-z.onrender.com/v1/users/${DISCORD_ID}`);
         const data = await response.json();
 
         if (!data.success) return;
