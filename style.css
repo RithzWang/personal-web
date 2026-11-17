@@ -433,24 +433,22 @@ h1#mystery, p {
 
 
 
-
 .spotify-status {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 12px;
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 5px;
-    height: 24px;              /* Locks vertical space so the image never shifts */
-    margin-bottom: 12px;       /* Space between the text and your profile picture */
-    max-width: 90vw;
-    margin-left: auto;
-    margin-right: auto;
-
-    /* Hidden by default without collapsing layout height */
     visibility: hidden;
     opacity: 0;
-    pointer-events: none;      /* Prevents accidental clicks on the link while hidden */
+    pointer-events: none;
     transition: opacity 0.25s ease;
 }
+
+
 
 .spotify-status.is-playing {
     visibility: visible;
