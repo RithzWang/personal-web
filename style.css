@@ -468,6 +468,9 @@ h1#mystery, p {
     opacity: 0.75;
     white-space: nowrap;
     
+     -webkit-touch-callout: none; 
+    -webkit-tap-highlight-color: transparent;
+    
     user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
