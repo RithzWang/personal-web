@@ -15,34 +15,42 @@ const DISCORD_ID = "792341624797265930";
 async function getDiscordStatus() {
     try {
         const response = await fetch(`https://rido-z.onrender.com/v1/users/${DISCORD_ID}`);
-        const data = await response.json();
+        if (!response.ok) return;
 
+        const data = await response.json();
         if (!data.success) return;
 
-        // --- DISCORD STATUS GLOW ---
-        const discordStatus = data.data.discord_status; // "online", "idle", "dnd", or "offline"
+        // --- 1. DISCORD STATUS GLOW ---
+        const discordStatus = data.data.discord_status;
         const profilePic = document.querySelector('.profile-picture');
-        
+
         if (profilePic) {
-            // Remove any existing status classes
             profilePic.classList.remove('status-online', 'status-idle', 'status-dnd', 'status-offline');
-            
-            // Apply the new glow class
-            if (discordStatus) {
-                profilePic.classList.add(`status-${discordStatus}`);
-            } else {
-                profilePic.classList.add('status-offline');
-            }
+            profilePic.classList.add(discordStatus ? `status-${discordStatus}` : 'status-offline');
         }
 
+        // --- 2. SPOTIFY INLINE TEXT ---
+        const spotifyStatus = document.getElementById('spotify-status');
+        const spotifySong = document.getElementById('spotify-song');
+
+        if (spotifyStatus && spotifySong) {
+            if (data.data.listening_to_spotify && data.data.spotify) {
+                spotifySong.textContent = data.data.spotify.song;
+                spotifySong.href = data.data.spotify.track_url || 'https://open.spotify.com';
+                spotifyStatus.hidden = false;
+            } else {
+                spotifyStatus.hidden = true;
+            }
+        }
     } catch (error) {
         console.error("Error fetching Discord status:", error);
+    } finally {
+        setTimeout(getDiscordStatus, 5000);
     }
 }
 
-// --- TIMERS ---
-getDiscordStatus(); 
-setInterval(getDiscordStatus, 5000); 
+getDiscordStatus();
+
 
 // --- FLAG ICONS & TOOLTIPS CLICK ANIMATION ---
 document.querySelectorAll('.flag-wrapper').forEach(wrapper => {
