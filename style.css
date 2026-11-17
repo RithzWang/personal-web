@@ -462,6 +462,11 @@ h1#mystery, p {
 .spotify-prefix {
     opacity: 0.75;
     white-space: nowrap;
+    
+    user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .spotify-song {
@@ -474,6 +479,6 @@ h1#mystery, p {
     max-width: 240px;          /* Keeps long song titles from overflowing on mobile */
 }
 
-.spotify-song:hover {
+/* .spotify-song:hover {
     text-decoration: underline;
-}
+} */
