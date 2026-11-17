@@ -9,7 +9,7 @@ document.querySelectorAll('.social-icons a').forEach(icon => {
 });
 
 // --- VARIABLES ---
-const DISCORD_ID = "837741275603009626";
+const DISCORD_ID = "792341624797265930";
 
 // --- FETCH DISCORD STATUS ---
 async function getDiscordStatus() {
