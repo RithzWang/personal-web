@@ -37,9 +37,9 @@ async function getDiscordStatus() {
             if (data.data.listening_to_spotify && data.data.spotify) {
                 spotifySong.textContent = data.data.spotify.song;
                 spotifySong.href = data.data.spotify.track_url || 'https://open.spotify.com';
-                spotifyStatus.style.display = 'inline-flex';
+                spotifyStatus.classList.add('is-playing');
             } else {
-                spotifyStatus.style.display = 'none';
+                spotifyStatus.classList.remove('is-playing');
                 spotifySong.textContent = '';
             }
         }
@@ -51,6 +51,7 @@ async function getDiscordStatus() {
 }
 
 getDiscordStatus();
+
 
 
 
