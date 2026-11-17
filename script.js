@@ -46,7 +46,7 @@ async function getDiscordStatus() {
     } catch (error) {
         console.error("Error fetching status:", error);
     } finally {
-        setTimeout(getDiscordStatus, 5000);
+        setTimeout(getDiscordStatus, 1000);
     }
 }
 
